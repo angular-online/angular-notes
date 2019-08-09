@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <!-- setTimeout, clearTimeOut -->
+        <p id="demo1">This text will change after some time.</p>
+        <button onclick="stop()">Stop Changing Text</button>
+        <script>
+            var timeOutRef = setTimeout(function() {
+                document.getElementById('demo1').innerText = "Text changed";
+            }, 3000);
+
+            function stop() {
+                clearTimeout(timeOutRef);
+            }
+        </script>
+
+        <br><br>
+
+        <!-- setInterval, clearInterval -->
+        <p id="count">0</p>
+        <button onclick="stopCounting()">Stop Counting</button>
+        <script>
+            var i = 0;
+            var intervalRef = setInterval(function(){
+                i++;
+                document.getElementById('count').innerText = i;
+            }, 1000);
+
+            function stopCounting() {
+                clearInterval(intervalRef);
+            }
+        </script>
+    </body>
+</html>

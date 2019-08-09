@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <style>
+        #failure-message {
+            color: rgb(216, 0, 0);
+        }
+    </style>  
+</head>
+<body>
+    <h4><a href="./dashboard.html">Go To Dashboard</a></h4>
+    <button onclick="loadData();">Load Data</button>
+    <ol id="todos-list"></ol>
+    <h4 id="failure-message"></h4>
+
+    <script src="./common.js"></script>
+    <script>
+        // loadData - version 1 - Passing direct functions
+        function loadData(){
+            sendServerRequest(function(response) {
+                var todos = [];
+                if(response) {
+                    todos = JSON.parse(response);
+                }
+                var todosHtml = '';
+                todos.forEach(function(todo){
+                    todosHtml = todosHtml + '<li>'+todo.title+'</li>';
+                });
+                console.log(todosHtml);
+                document.getElementById("todos-list").innerHTML = todosHtml;
+            }, function() {
+                document.getElementById("failure-message").innerHTML = 'Failed to load todos';
+            });
+        }
+
+        // loadData - version 2 - Passing Anonymous functions
+        /* function loadData(){
+            var successCallback = function(response) {
+                var todos = [];
+                if(response) {
+                    todos = JSON.parse(response);
+                }
+                var todosHtml = '';
+                todos.forEach(function(todo){
+                    todosHtml = todosHtml + '<li>'+todo.title+'</li>';
+                });
+                document.getElementById("todos-list").innerHTML = todosHtml;
+            };
+
+            var failureCallback = function() {
+                document.getElementById("failure-message").innerHTML = 'Failed to load todos';
+            };
+
+            sendServerRequest(successCallback, failureCallback);
+        } */
+
+        // loadData - version 3 - Passing function names
+        /* function loadData(){
+            function successCallback(response) {
+                var todos = [];
+                if(response) {
+                    todos = JSON.parse(response);
+                }
+                var todosHtml = '';
+                todos.forEach(function(todo){
+                    todosHtml = todosHtml + '<li>'+todo.title+'</li>';
+                });
+                document.getElementById("todos-list").innerHTML = todosHtml;
+            };
+            
+            function failureCallback() {
+                document.getElementById("failure-message").innerHTML = 'Failed to load todos';
+            };
+
+            sendServerRequest(successCallback, failureCallback);
+        } */
+    </script>
+</body>
+</html>

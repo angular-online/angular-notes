@@ -1,0 +1,710 @@
+HTML & CSS
+==========
+1. What are Block level & Inline elements?
+
+2. What is the differernce between display Inline, block and inline-block?
+
+3. What are pseudo elements and pseudo classes?
+
+4. What are different kind of element positions?
+
+5. What is CSS Box model and how it works?
+
+6. What is box-sizing property?
+
+7. What is 'float' property and how it works?
+
+8. What is clear property? why do we use it?
+
+9. How 'clear: both;' works?
+
+10. What is clearfix?
+
+11. What is media query? How do we use it? Write a media query for tab.
+
+12. What are different breakpoints for media queries?
+
+13. Explain about bootstrap grid system?
+
+14. What is the difference b/w container and container-fluid?
+
+15. What are the different bootstrap classes used for responsive design?
+
+16. What is Doctype? what is html 5 doctype?
+
+17. If we write styles for 'id' and 'class' of an element which takes high priority?
+
+18. What is css specificity?
+
+19. What are different specificity levels?
+
+20. What is cross browser compatability? How can we achieve it?
+
+21. what is the difference b/w class and id?
+
+22. what is base element and what is it for?
+
+23. How to print special characters in html?
+
+24. What is charset and why do we need it?
+
+25. What is a meta tag? List the known meta tags.
+
+26. What are different form action methods?
+
+27. What is the different b/w GET and POST?
+
+28. List out the know html5 elements.
+
+29. What are shiv and shim files?
+
+30. what is a semantic element?
+
+31. CSS stands for?
+
+32. In how many ways we can include css into html file?
+
+33. Which tag we use to include stylesheet? write down it.
+
+34. what is precedence / cascading in css? Which style rules take high precedence?
+
+35. what is css selector? what are different css selectors?
+
+36. what is a vendor prefix and why do we need it?
+
+37. what is the meaning of margin: 25px 10px 75px; On which side how will apply?
+
+38. what is difference b/w margin and padding?
+
+39. what is difference b/w width, min-width and max-width?
+
+40. what is the difference b/w border and outline?
+
+41. Do we need to wrap font-family value in quotes?
+
+42. what is the difference b/w px, em and rem?
+
+43. what is font face?
+
+44. How to include custom fonts into the webpage?
+
+45. what is visibility property and what are possible values for it?
+
+46. what is the diff b/w visibility hidden and display none?
+
+47. what are different overflow properties available?
+
+48. what are possible values for overflow property? 
+
+49. what are different css selector combinators? Explain about each one.
+
+50. What are pseudo elements?
+
+51. what are pseudo classes?
+
+52. what is opacity?
+
+53. what is Attribute selector? Give some examples.
+
+54. Please write text-Shadow property and some example value.
+
+55. Please write box-Shadow property and some example value.
+
+56. what is calc() function?
+
+57. what is css transition? how it works?
+
+58. what is keyframe in css?
+
+59. write some animation example.
+
+60. what is flexbox?
+
+61. what is a flex item?
+
+62. what is flex direction and it's possible values?
+
+63. what is flex wrap and it's possible values?
+
+64. what is flex wrap and it's possible values?
+
+65. what is flex flow and it's possible values?
+
+66. what is justify-content and it's possible values?
+
+67. what is align-items and it's possible values?
+
+68. what is align-content and it's possible values?
+
+69. How to re-order the flex items?
+
+70. what is flex-grow and how it works?
+
+71. what is flex-shrink?
+
+72. what is flex-basis?
+
+73. what is flex property?
+
+74. what is align self and how it works?
+
+75. what is media type?
+
+76. what is media query?
+
+77. what are the general media query breakpoints for responsive design?
+
+78. what is RWD?
+
+79. write a sample media query for tablet.
+
+80. what is viewport meta tag? How it works?
+
+Bootstrap
+=========
+1. what is bootstrap?
+
+2. Explain about the bootstrap grid system.
+
+3. What are different responsive breakpoints used in bootstrap?
+
+4. How many kinds of containers available in bootstrap?
+
+5. what are util classes? List out few util classes.
+
+6. What are different breakpoint wise class names?
+
+7. Grid divided into how many columns?
+
+8. How to get equl width to all columns in a row? 
+
+9. what is row?
+
+10. what is gutter? How to remove gutters?
+
+11. what is offset?
+
+SASS
+====
+1. What is SASS? 
+
+2. what is a css pre-processor?
+
+3. can you write command to compile to sass file to css.
+
+4. what is a variable in sass?
+
+5. what is selector nesting?
+
+6. what is a partial file? what is it's naming notation?
+
+7. How to import one file into other sass file?
+
+8. what is mixin? write an example.
+
+9. what is inheritance in sass?
+
+10. what is the difference b/w .sass and .scss
+
+11. what is SASS stands for?
+
+JS:
+===
+1. What is closure?
+
+2. What is prototype? How do we achieve inheritance in Javascript?
+
+3. what is event.preventDefault?
+
+4. what is event.stoppropagation?
+
+5. What is Capturing and Bubling?
+
+6. What is a constructor function?
+
+7. Difference b/w call and apply methods?
+
+8. What is Immediately invoked function?
+
+9. How to check a number?
+
+10. About 'typeof' operator?
+
+11. How Array sort method works?
+
+12. How to define an object?
+
+13. What is singleton pattern?
+
+14. What is 'this'? How it works?
+
+15. What is 'let' keyword?
+
+16. How do we bind 'events' to elements? In how many ways?
+
+17. Can we bind two events on one element?
+
+18. what is the default value of a variable?
+
+19. what are the data types available in javascript?
+
+20. How to generate a random number in javascript?
+
+21. How to search a word in a sentence?
+
+22. what is substring and substr? what is the difference?
+
+23. what is slice method?
+
+24. How to break a loop?
+
+25. what is the use of continue? 
+
+26. what is call back function? Give an example.
+
+27. what is self calling function? Give an example.
+
+28. what is constructor function? Give an example.
+
+29. What are the array functions known to you?
+
+30. How to split a string based on some delimeter?
+
+31. How to convert a string into an array?
+
+32. How to convert an array into a sentence?
+
+33. How to delete few elements from an array?
+
+35. How to insert few elements at middle of an array?
+
+36. what is the difference between delete and splice?
+
+37. How to find length of an object?
+
+38. what is JSON?
+
+39. How to parse json string?
+
+40. what is the default object in javascript?
+
+41. What is DOM?
+
+42. What are different functions available in javascript to access elements?
+
+43. What is the difference between element attribute and property?
+
+44. Can you list out the events available in js?
+
+45. what are window events?
+
+46. what is ajax?
+
+47. How to do an ajax call in javascript?
+
+48. what is localstorage and what are the available methods on it?
+
+49. How to handle errors in javascript?
+
+50. How to apply a regular expression against?
+
+ES6
+===
+1. what is let? 
+
+2. what is variable hoisting?
+
+3. what are different issues solved by let?
+
+4. Difference b/w var and let?
+
+5. what is const?
+
+6. what is block level scoping?
+
+7. what is destructuring? can you give an example with object?
+
+8. what are default parameters in functions?
+
+9. what are rest parameters / rest operator? can you give an example?
+
+10. what is spread operator? write down an example.
+
+11. What is template literal?
+
+12. what is an arrow function? what are advantages of arrow functions? write an example for it.
+
+13. Do we have classes in javascript?
+
+14. Do we have access modifiers in javascript classes?
+
+15. what are getter and setter methods? Give examples.
+
+16. what is super keyword? What is the use of it?
+
+17. what is a module in javascript?
+
+18. what is map?
+
+19. what is set?
+
+20. what are computed properties in an object?
+
+21. what is singleton?
+
+Typescript
+==========
+1. what is typescript?
+
+2. what is transpilation?
+
+3. how to compile a typescript file into javascript file?
+
+4. what are different data types available in ts?
+
+5. how to specify data type while defining variable?
+
+6. what is an interface?
+
+7. How to specify an optional property in interface?
+
+8. what is readonly property?
+
+9. what is the difference between readonly and const?
+
+10. How to specify structure of a function?
+
+11. How to specify structure of a class?
+
+12. How to specify return type of a function?
+
+13. can we extend one interface with another interface?
+
+14. can we extend one interface with class?
+
+15. Do we have access modifiers in ts classes?
+
+16. Difference b/w public, private and protected?
+
+17. what are parameter properties? Give an example.
+
+18. What is static property of a class? How can we access it?
+
+19. what is an abstract class?
+
+20. what are optional parameters? Give an example.
+
+21. what are default parameters? Give an example.
+
+22. what is generic? Give an example.
+
+23. what is union data type? Give an example.
+
+24. what is tsconfig.json file? why do we use it?
+
+25. what are known properties of tsconfig.json?
+
+26. what is decorator? How do we apply a decorator?
+
+27. what are typings? Why do we use typings?
+
+Angular
+=======
+1. what is angular?
+
+2. what is angular cli?
+
+3. how to create new angular application?
+
+4. how to run angular app?
+
+5. what is module in angular?
+
+6. write down module decorator and explain metadata properties.
+
+7. what is component?
+
+8. write down component decorator and explain metadata properties.
+
+9. what is component?
+
+10. write down component decorator and explain metadata properties.
+
+11. what is service?
+
+12. write down service decorator and explain metadata properties.
+
+13. what is template?
+
+14. how to bind component data in template?
+
+15. what is a directive?
+
+16. what is a decorator? what are different decorators available in angular?
+
+17. what is routing? why do we use it?
+
+18. How do we implement routing?
+
+19. what is an angular library? write down few.
+
+20. what is interpolation? write an example.
+
+21. what is property binding? write an example.
+
+22. which is good to use between interpolation and property binding?
+
+23. what is one-way data binding? write an example.
+
+24. what is two-way data binding? write an example.
+
+25. what is attribute binding? write an example.
+
+26. what is class binding? In how many ways we can bind classes?
+
+27. what is ngClass?
+
+28. what is style binding? In how many ways we can bind styles?
+
+29. what is ngStyle?
+
+30. what is event bindig in angular? Write an example for click event in angular.
+
+31. what is EventEmitter? Give an example.
+
+32. what is input property? Give an example.
+
+33. what is output property? Give an example.
+
+34. what is ngModel? why do we use it?
+
+35. what is template expression?
+
+36. what is template statement?
+
+37. what is template input variable? Give an example.
+
+38. what is template reference variable? Give an example.
+
+39. How many kinds of directives we have? Give some examples for each.
+
+40. what is ng-template?
+
+41. what is ng-container? Tell me some usecases for it.
+
+42. In how many ways we can pass data between components? which is the best way?
+
+43. What is view child and what is content child?
+
+44. what is component lifecycle?
+
+45. what are component lifecycle hooks? Tell me in execution oreder.
+
+46. what is the difference between constructor method and OnInit() ?
+
+47. what is hostlistener? why do we use it?
+
+48. what is hostbinding? why do we use it?
+
+49. what are different selectors provided by angular to target child and parent elements?
+
+50. what is pipe? How do we apply pipe? write an example?
+
+51. what is decorator for pipe? Explain about metadata properties?
+
+52. what is impure and pure pipes?
+
+53. What is application bootstraping? How bootstraping happen in angular?
+
+54. what is observable?
+
+55. what is RxJS?
+
+56. what are various methods available in rxjs to create observable?
+
+57. what is subject?
+
+58. what is the difference between observable and subject?
+
+59. what are different kinds subjects available and explain the difference?
+
+60. what is subscribe method? Please give an example.
+
+61. what are various callbacks we write in subscribe method? Explain about each.
+
+62. what is unsubscribe? why should we do it?
+
+63. what is an operator in rxjs?
+
+64. what is pipe method? why do we use it? Give an example.
+
+65. Explain about map operator.
+
+66. Explain about filter operator.
+
+67. Explain about switchMap operator.
+
+68. Explain about debounceTime operator and give an example for it.
+
+69. what is forkJoin operator and how it works? Give an example.
+
+70. what is lazy loading? how do we do it?
+
+71. what is eager loading? how do we do it?
+
+72. what are declarables?
+
+73. what is DI? Why should we have it in our app?
+
+74. what is injector?
+
+75. What is root injector?
+
+76. what is child injector? when it will be created?
+
+77. In how many ways we can register a service?
+
+78. what is injector Bubling?
+
+79. what is forRoot() method? why do we use it?
+
+80. what is core module? why should we have core module in our app?
+
+81. what is shared module? why should we have share module in our app?
+
+82. what is the difference between browser module and common module?
+
+83. what is root module?
+
+84. what is root component?
+
+85. what is entry component?
+
+86. what is reactive form? How to create it?
+
+87. what is template driven form? how to create it?
+
+88. what is form builder?
+
+89. write a reactive form example.
+
+90. write a template driven form example?
+
+91. what is the difference between reactive form and template driven form?
+
+92. what is REST api?
+
+93. what are different REST api methods you know?
+
+94. what is the difference between GET and POST?
+
+95. what is the difference between POST and PUT?
+
+96. How do we hit server / REST end points in angular? which library we use?
+
+97. what is http interceptor? write an example.
+
+98. How can we add a header to a call?
+
+99. what are wild match routes?
+
+100. write few routes?
+
+101. write a route for lazy loaded module.
+
+102. what is router outlet?
+
+103. what is router link? write an example.
+
+104. what is route guard? what are different kind of guards available?
+
+105. write cli command to create module.
+
+106. write cli command to create component.
+
+107. write cli command to create service.
+
+108. write cli command to create pipe.
+
+109. write cli command to create directive.
+
+110. what are environment variables? Why should we use?
+
+
+AngularJs:(Don't need to read for Angular 2+ interviews)
+==========
+1. Difference b/w Factory and Service?
+
+2. How to share data b/w two controllers?
+
+3. What is broadcast and emit?
+
+4. How to share data b/w two directives?
+
+5. What is scope life cycle?
+
+6. What is digest method?
+
+7. What is watch method?
+
+8. How many watches we can put in scope?
+
+9. What is compile method in directive?
+
+10. Directive link method?
+
+11. Post link and Pre link?
+
+12. Difference b/w pre link and compile method?
+
+13. What is isolated scope?
+
+14. What is promise?
+
+15. What is a controller?
+
+16. What do we write in services?
+
+17. What is a module?
+
+18. What is run method?
+
+19. What is config method?
+
+20. Difference b/w run and config method?
+
+21. Where do we configure application routes?
+
+22. What is http interceptor and why we use it?
+
+23. What is dependency injection?
+
+24. What is resolve in routes? How do we access resolved data in controller?
+
+25. Why we are using 'vm' in controllers? Use of 'vm'?
+
+26. How application bootstraps?
+
+27. Where do we bind events for elements?
+
+28. Where should we do DOM manipulation?
+
+29. What is two-way data binding? What is one-way data binding?
+
+30. What is filter?
+
+31. What is the meaning of symbols '=', '@' and '&' in isolated scope?
+
+32. What is a REST API? What are different method types?
+
+33. What is the difference b/w GET and POST methods.
+
+Reading Techniques
+==================
+1. Read in Question and Answer pattern. Read a concept, think about the possible questions in it. Question yourself and answer yourself. Play the dual-role as interviewer and interviewee while reading the master copies.
+
+2. Read some master-copy Top-Bottom once and Bottom-Top some other time.
+
+3. Read loud to twist your tongue.
+
+4. List out all the concepts in a master-copy and try to memorize the concepts list. That will give you a macro-level overview on the subject.

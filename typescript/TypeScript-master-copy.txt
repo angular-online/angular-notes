@@ -1,0 +1,1124 @@
+TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
+
+Installation:
+=============
+npm install -g typescript
+
+tsc --version
+
+tsc stands for "TypeScript Compiler".
+
+tsc helloworld.ts => helloworld.ts compile to helloworld.js
+
+class Person {
+    name = 'John Doe';
+    age = 25;
+}
+
+In .ts files we can write valid JavaScript. All valid JavaScript statements are valid TypeScript statements.
+
+Data Types:
+===========
+JavaScript is loosely typed language. But, typescript contains datatypes, we need to specify datatype of a variable while defining.
+
+let isDone: boolean = false;
+
+'isDone' is variable name, 'boolean' is datatype.
+
+Boolean:
+--------
+boolean datatype holds true/false.
+
+let isLoading: boolean = true;
+
+Number:
+-------
+As like JavaScript, in TypeScript also all kinds of numbers comes under 'number' data type.
+
+let decimalNum: number = 6;
+let floatNum: number = 6.66;
+let hexNum: number = 0xf00d;
+let binaryNum: number = 0b1010;
+let octalNum: number = 0o744;
+
+String:
+-------
+'string' data type holds text data.
+
+let color: string = "blue"; \\ Double quotes 
+color = 'red'; \\ Single quotes
+color = `green`; \\ Back tick
+
+let fullName: string = `John Doe`;
+let sentence: string = `Hello, my name is ${ fullName }`.
+
+Array:
+------
+let list: number[] = [1, 2, 3]; // Numerical array
+
+let list: Array<number> = [1, 2, 3];
+
+Tuple:
+------
+Tuple is a datatype used to express datatypes of array elements. 
+
+// Declare a tuple type
+let x: [string, number]; // 0th indexed value should be string, 1 indexed value should be number.
+
+// Initialize it
+x = ["hello", 10]; // OK
+
+// Initialize it incorrectly
+x = [10, "hello"]; // Error
+
+x[1].substr(1) // Retuns error in compilation. So, runtime errors will be prevented.
+
+x[3] = "world"; // 3rd index is out of the known indices. So, the value should be 'string | number' (union data type). 
+
+x[6] = true; // Error, 'boolean' isn't 'string | number'
+
+Enum:
+-----
+Enum is a datatype used to give friendly names to set of numerics.
+
+// For example:
+- Car racing game defined levels are 1000, 2000, 3000, 4000, 5000.
+- Player will get access to some privileges on crossing the levels.[Ex: Access to power mode, able to purchase powerful cars etc...]
+
+So, to handle these levels code looks like below.
+if(score > 1000) {
+    // Shift to power mode
+} else if(score > 2000) {
+    // Able to purchase sports car
+} else if(score > 3000) {
+    // Able to purchase racing car 
+} etc ...
+
+Let's give some names to the levels and handle the same code using enums. 
+
+enum level {one = 1000, two = 2000, three = 3000, four = 4000, five = 5000};
+let score = 2500;
+if(score <= level.one) {
+    console.log('Shift to power mode');
+} else if(score <= level.two) {
+    console.log('Able to purchase sports car');
+} else if(score <= level.three) {
+    console.log('Able to purchase racing car'); 
+} else if(score <= level.four){
+    console.log('Able to purchase super car');
+} else if(score <= level.five){
+    console.log('Able to purchase flying car');
+}
+
+enum level {one = 1001, two, three, four, five};
+If we initialize one with 1001, two will become 1002, three will become 1003 etc..
+
+enum level {one, two, three, four, five};
+If we don't initialize one will become 0, two will become 1, three will become 2 etc..
+
+We can know the name of enum with value.
+level[2000]; // Return two
+
+String enums:
+-------------
+enum Direction {
+    Up = "UP",
+    Down = "DOWN",
+    Left = "LEFT",
+    Right = "RIGHT"
+} // For string enums we need to initialize all the values.
+
+enum BooleanLikeHeterogeneousEnum {
+    No = 0,
+    Yes = "YES",
+} // It's a heterogeneous enum
+
+Any:
+----
+If we don't know type of variable at the time of writing the code we need to opt for 'any' kind. Sometimes we get data from user/third-party libraries.
+
+any accept any kind of data.
+
+let notSure: any = 4;
+notSure = "maybe a string instead";
+notSure = false;
+
+let list: any[] = [1, true, "free"];
+list[1] = 100;
+
+Void:
+-----
+'void' is used to represent the absence of having any type.
+
+function warnUser(): void {
+    alert("This is my warning message");
+}
+
+Declaring variables of type void is not useful because you can only assign undefined or null to them:
+
+let unusable: void = undefined;
+
+Null and Undefined:
+-------------------
+In TypeScript, both undefined and null actually have their own types named undefined and null respectively. Much like void, they’re not extremely useful on their own:
+
+let u: undefined = undefined;
+let n: null = null;
+
+By default null and undefined are subtypes of all other types. That means you can assign null and undefined to something like number.
+
+let num:number = 123;
+num = null;
+
+If we use strictNullChecks flag, we can't assign null and undefined to other datatyped variables.
+
+tsc --strictNullChecks temp.ts
+
+strictNullChecks is encouraged by TypeScript. As, it can avoid many common errors.
+
+While using strictNullChecks, if we want to accept 'number' or 'undefined' or 'null' for a variable, we can use union datatypes number|undefined|null.
+
+var str: number|undefined|null;
+
+Never:
+------
+'never' type represents the type of values that never occur. For instance, never is the return type for a function expression or an arrow function expression that always throws an exception or one that never returns.
+
+function error(message: string): never {
+    throw new Error(message);
+}
+
+function infiniteLoop(): never {
+    while (true) {
+    }
+}
+
+Type assertions:
+----------------
+A type assertion is like a type cast in other languages.
+
+Two syntaxes available for type assertion:
+1. angle-bracket
+
+let someValue: any = "this is a string";
+let strLength: number = (<string>someValue).length;
+
+2. as-syntax:
+
+let someValue: any = "this is a string";
+let strLength: number = (someValue as string).length;
+
+Union Types:
+------------
+function paddingLeft(padding: any) {
+    if (typeof padding === "number") {
+        // Do something and return
+    }
+    if (typeof padding === "string") {
+        // Do something and return
+    }
+    throw new Error(`Expected string or number, got '${padding}'.`);
+}
+
+As per the above function, padding should be string or number. 
+paddingLeft(true); // TSC can't find error on calling with 'true'.
+
+If we use union, we can restrict to string | number.
+
+function paddingLeft(padding: string | number) {
+    if (typeof padding === "number") {
+        // Do something and return
+    }
+    if (typeof padding === "string") {
+        // Do something and return
+    }
+    throw new Error(`Expected string or number, got '${padding}'.`);
+}
+paddingLeft(true); // TSC will return error.
+
+Conclusion of Datatypes:
+------------------------ 
+If we use data types, we can catch most of the errors / exceptions in the compilation phase itself.
+
+let and const:
+==============
+let x: number = 123;
+
+const y: String = 'John Doe';
+
+Destructuring:
+==============
+// Array Destructuring with datatypes
+let [first, second]: [number, number] = [1,2];
+console.log(first);
+console.log(second);
+
+// Object Destructuring with datatypes
+let { a, b }: { a: string, b: number } = {a: 'foo', b: 12};
+console.log(a);
+console.log(b);
+
+// Default values in destructuting
+let { a, b = 1000 }: { a: string, b?: number } = {a: 'foo'};
+console.log(a);
+console.log(b);
+
+'?' represents the optional value / parameter. If we don't specify '?' above, we will get error in compilation.
+
+Interfaces:
+===========
+We can understand interfaces as custom datatypes.
+
+Interfaces define the shape of a value. TypeScript always check whether the value is in specified format or not.
+
+function printLabel(labelledObj: { label: string }) {
+    console.log(labelledObj.label);
+}
+
+let myObj = {size: 10, label: "Size 10 Object"};
+printLabel(myObj);
+
+Type checker checks for label in myObj. If it is not found, compiler will return error.
+
+We can specify the stucture of labelledObj param using interface like below.
+
+interface LabelledValue {
+    label: string;
+}
+
+function printLabel(labelledObj: LabelledValue) {
+    console.log(labelledObj.label);
+}
+
+let myObj = {size: 10, label: "Size 10 Object"};
+printLabel(myObj);
+
+myObj contains 'size' property also. But, type checker checks for all the properties specified in the interface are available or not.
+
+Optional Properties:
+--------------------
+Not all properties of an interface may be required. Some exist under certain conditions or may not be there at all.
+
+Optional properties denoted by a ? at the end of the property name in the declaration.
+
+interface SquareConfig {
+    color?: string;
+    width?: number;
+}
+
+interface Square {
+    color: string; 
+    area: number
+}
+
+function createSquare(config: SquareConfig): Square {
+    let newSquare = {color: "white", area: 100};
+    if (config.color) {
+        newSquare.color = config.color;
+    }
+    if (config.width) {
+        newSquare.area = config.width * config.width;
+    }
+    return newSquare;
+}
+
+let mySquare = createSquare({color: "black"});
+
+Readonly properties:
+--------------------
+Some properties should only be modifiable when an object is first created. You can specify this by putting readonly before the name of the property.
+
+interface Point {
+    readonly x: number;
+    readonly y: number;
+}
+
+let p1: Point = { x: 10, y: 20 };
+
+p1.x = 5; // error!
+
+TypeScript comes with a ReadonlyArray<T> type that is the same as Array<T> with all mutating methods removed, so you can make sure you don’t change your arrays after creation:
+
+let a: Array<number> = [1, 2, 3, 4];
+let ro: ReadonlyArray<number> = a;
+ro[0] = 12; // error!
+ro.push(5); // error!
+ro.length = 100; // error!
+a = ro; // error! - can't assign ReadonlyArray to normal array. But, type assertion works.
+
+a = ro as Array<number>;
+
+readonly vs const:
+------------------
+Variables use const whereas object properties use readonly.
+const is for variables.
+readonly is for properties of objects.
+
+Function Types:
+---------------
+Interfaces can be used to describing function types.
+
+interface SearchFunc {
+    (source: string, subString: string): boolean;
+}
+
+let mySearch: SearchFunc = function(source: string, subString: string): boolean {
+    let result = source.search(subString);
+    return result > -1;
+}
+
+To describe a function type with an interface, we give the interface a call signature. This is like a function declaration with only the parameter list and return type given. Each parameter in the parameter list requires both name and type.
+
+For function types to correctly type-check, the names of the parameters do not need to match. We can write the above example like this:
+
+let mySearch: SearchFunc = function(src: string, sub: string): boolean {
+    let result = src.search(sub);
+    return result > -1;
+}
+
+Class Types:
+------------
+interface ClockInterface {
+    currentTime: Date;
+}
+
+class Clock implements ClockInterface {
+    currentTime: Date;
+    constructor(h: number, m: number) { }
+}
+
+we can also describe methods in an interface that are implemented in the class.
+
+interface ClockInterface {
+    currentTime: Date;
+    setTime(d: Date): void;
+}
+
+class Clock implements ClockInterface {
+    currentTime: Date;
+    setTime(d: Date) {
+        this.currentTime = d;
+    }
+    constructor(h: number, m: number) { }
+}
+
+Interfaces describe the public side of the class, rather than both the public and private side. This prohibits exposing private side.
+
+Extending Interfaces:
+---------------------
+Like classes, interfaces can extend each other. This allows you to copy the members of one interface into another, which gives you more flexibility in how you separate your interfaces into reusable components.
+
+interface Shape {
+    color: string;
+}
+
+interface Square extends Shape {
+    sideLength: number;
+}
+
+class SquareDemo implements Square {
+    color: string = 'red';
+    sideLength: number = 20;
+} // If we remove any property from above class we will get compilation error
+
+An interface can extend multiple interfaces, creating a combination of all of the interfaces.
+
+interface Shape {
+    color: string;
+}
+
+interface PenStroke {
+    penWidth: number;
+}
+
+interface Square extends Shape, PenStroke {
+    sideLength: number;
+}
+
+Interfaces Extending Classes:
+-----------------------------
+When an interface type extends a class type it inherits the members of the class but not their implementations.
+
+Interfaces inherit even the private and protected members of a base class.
+
+class Control {
+    state: any;
+}
+
+interface SelectableControl extends Control {
+    select(): void;
+}
+
+class SomeControl implements SelectableControl {
+    state: any = 'checked';
+    select(): void {}
+}
+
+Classes:
+========
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return "Hello, " + this.greeting;
+    }
+}
+
+let greeter = new Greeter("world");
+
+Inheritance:
+------------
+class Animal {
+    move(distanceInMeters: number = 0) {
+        console.log(`Animal moved ${distanceInMeters}m.`);
+    }
+}
+
+class Horse extends Animal {
+    run() {
+        console.log('Horse is running');
+    }
+}
+
+const horse = new Horse();
+horse.run();
+horse.move(10);
+
+super:
+------
+class Animal {
+    name: string;
+    constructor(theName: string) { this.name = theName; }
+    move(distanceInMeters: number = 0) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
+    }
+}
+
+class Horse extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 45) {
+        console.log("Galloping...");
+        super.move(distanceInMeters);
+    }
+}
+
+let tom: Horse = new Horse("Tommy the Palomino");
+tom.move(34);
+
+Public, private, and protected modifiers:
+-----------------------------------------
+public:
+-------
+By default all class members are public. We don’t need to mention it. But, we can set public explicitly if required.
+
+class Animal {
+    public name: string;
+    public constructor(theName: string) { this.name = theName; }
+    public move(distanceInMeters: number) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
+    }
+}
+
+private:
+--------
+When a member is marked private, it cannot be accessed from outside of its containing class.
+
+class Animal {
+    private name: string;
+    constructor(theName: string) { this.name = theName; }
+}
+
+var animalObj = new Animal("Cat");
+animalObj.name; // Error: 'name' is private;
+
+protected:
+----------
+Protected peoperties can be accessed only in own class and it's child classes. Protected properties can't be accessed on own class instance also. 
+
+class Person {
+    protected name: string;
+    protected constructor(name: string) { this.name = name; }
+}
+
+class Employee extends Person {
+    private department: string;
+
+    public constructor(name: string, department: string) {
+        super(name);
+        this.department = department;
+    }
+
+    protected getEmpDetails() {
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    }
+
+    public someMethod(){
+        this.getEmpDetails();
+        // Do something
+    }
+}
+
+let emp = new Employee("Howard", "Sales");
+emp.getEmpDetails(); // error
+emp.name; // error
+emp.someMethod();
+
+let person = new Person('John'); // error
+
+If we use 'protected' on constructor method, we can’t create object for it, but we can extend that class.
+
+Readonly modifier:
+------------------
+we can make properties readonly by using the readonly keyword. Readonly properties must be initialized at their declaration or in the constructor. 
+
+class Octopus {
+    readonly name: string;
+    readonly numberOfLegs: number = 8;
+    constructor (theName: string) {
+        this.name = theName;
+    }
+}
+let octObj = new Octopus("Man with the 8 strong legs");
+octObj.name = "Man with the 3-piece suit"; // error! name is readonly.
+
+Parameter properties:
+---------------------
+In our last example, we had to declare a readonly member name and a constructor parameter theName in the Octopus class, and we then immediately set name to theName. This turns out to be a very common practice. Parameter properties let you create and initialize a member in one place. Here’s a further revision of the previous Octopus class using a parameter property:
+
+class Octopus {
+    readonly numberOfLegs: number = 8;
+    constructor(readonly name: string) {
+    }
+}
+let octObj = new Octopus("Man with the 8 strong legs");
+
+Notice how we dropped 'theName' altogether and just use the shortened 'readonly name: string' parameter on the constructor to create and initialize the name member. We’ve consolidated the declarations and assignment into one location.
+
+We can use any modifier like public, private, protected, and readonly before parameter properties.
+
+Accessors (getters/setters):
+----------------------------
+let isLoggedIn = true;
+
+class Employee {
+    private _fullName: string;
+
+    get fullName(): string {
+        return this._fullName;
+    }
+
+    set fullName(newName: string) {
+        if (isLoggedIn) {
+            this._fullName = newName;
+        } else {
+            console.log("Error: Unauthorized update of employee!");
+        }
+    }
+}
+
+let employee = new Employee();
+console.log(employee.fullName); // getter
+employee.fullName = "Bob Smith"; // setter
+
+Static Properties:
+------------------
+Static members visible on the class itself rather than on the instances. 
+
+class Grid {
+    static origin = {x: 0, y: 0};
+
+    constructor (public scale: number) { }
+    
+    calculateDistance(point: {x: number; y: number;}) {
+        console.log('some functionality');
+    }
+}
+
+console.log(Grid.origin);
+
+let grid1 = new Grid(1.0);
+console.log(grid1.origin); // Get an error. We can't access static members on class instance.
+
+Abstract Classes:
+-----------------
+Abstract classes are base classes from which other classes may be derived. They may not be instantiated directly. Unlike an interface, an abstract class may contain implementation details for its members. The abstract keyword is used to define abstract classes as well as abstract methods within an abstract class.
+
+abstract class Animal {
+    abstract makeSound(): void;
+    move(): void {
+        console.log("roaming the earth...");
+    }
+}
+
+Methods within an abstract class that are marked as abstract do not contain an implementation and must be implemented in derived classes.
+
+abstract class Department { 
+
+    constructor(public name: string) {
+    }
+
+    printName(): void {
+        console.log("Department name: " + this.name);
+    }
+
+    abstract printMeeting(): void; // must be implemented in derived classes
+}
+
+class AccountingDepartment extends Department {
+
+    constructor() {
+        super("Accounting and Auditing"); // constructors in derived classes must call super()
+    }
+
+    printMeeting(): void {
+        console.log("The Accounting Department meets each Monday at 10am.");
+    }
+
+    generateReports(): void {
+        console.log("Generating accounting reports...");
+    }
+}
+
+let department: Department; // ok to create a reference to an abstract type
+department = new Department(); // error: cannot create an instance of an abstract class
+department = new AccountingDepartment(); // ok to create and assign a non-abstract subclass
+department.printName();
+department.printMeeting();
+department.generateReports(); // error: Property 'generateReports' does not exist on type 'Department'. Here 'department' is of type 'Department'.
+
+Class datatype:
+---------------
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return "Hello, " + this.greeting;
+    }
+}
+
+let greeter: Greeter;
+greeter = new Greeter("world");
+console.log(greeter.greet());
+
+Here 'greeter' is a variable of type Greeter.
+
+Functions:
+==========
+We can add types to each of the parameters and then to the function itself to add a return type. 
+function add(x: number, y: number): number {
+    return x + y;
+} // Named function example
+
+let myAdd = function(x: number, y: number): number { return x + y; }; // Anonymous function
+
+TypeScript can figure out the return type by looking at the return statements, so we can also optionally leave this off in many cases.
+
+function type:
+--------------
+let myAdd: (x: number, y: number) => number =  function(x: number, y: number): number { return x + y; };
+let myAdd: {(x: number, y: number): number} =  function(x: number, y: number): number { return x + y; };
+
+myAdd is a variable of type (x: number, y: number) => number. It should accept two numerical parameters and return numeric.
+
+Optional and Default Parameters:
+--------------------------------
+In TypeScript, every parameter is assumed to be required by the function. When the function is called the compiler will check that the user has provided a value for each parameter. The number of arguments given to a function has to match the number of parameters the function expects.
+
+function buildName(firstName: string, lastName: string) {
+    return firstName + " " + lastName;
+}
+
+let result1 = buildName("Bob");                  // error, too few parameters
+let result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+let result3 = buildName("Bob", "Adams");         // no error
+
+
+'?' followed by parameter name is optional parameter.
+function buildName(firstName: string, lastName?: string) {
+    if (lastName)
+        return firstName + " " + lastName;
+    else
+        return firstName;
+} // Optional parameters should be the last parameters in the function.
+
+let result1 = buildName("Bob");                  // works correctly now
+let result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+let result3 = buildName("Bob", "Adams");         // no error
+
+//Default Parameters
+function buildName(firstName: string, lastName = "Smith") {
+    return firstName + " " + lastName;
+}
+
+let result1 = buildName("Bob");                  // works correctly now, returns "Bob Smith"
+let result2 = buildName("Bob", undefined);       // still works, also returns "Bob Smith"
+let result3 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+let result4 = buildName("Bob", "Adams");         // no error
+
+Rest Parameters:
+----------------
+function buildName(firstName: string, ...restOfName: string[]) {
+    return firstName + " " + restOfName.join(" ");
+}
+
+let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
+
+Generics:
+=========
+Using Generics is a way to accept all kinds of datatypes in safe way without loosing type information.
+
+Let's see below examples to understand the need of generics.
+
+// Return a random number from array of numbers.
+function randomIntElem(theArray: number[]): number {
+    let randomIndex = Math.floor(Math.random()*theArray.length);
+    return theArray[randomIndex];
+}
+ 
+let numbers: number[] = [103, 458, 472, 458];
+let randomNumber: number = randomIntElem(numbers);
+
+If we want to make randomIntElem work with string array. We have to write like below.
+function randomStrElem(theArray: string[]): string {
+    let randomIndex = Math.floor(Math.random()*theArray.length);
+    return theArray[randomIndex];
+}
+ 
+let colors: string[] = ['violet', 'indigo', 'blue', 'green'];
+let randomColor: string = randomStrElem(colors);
+
+Here the functionality is same. So we can genaralise the above function like below using 'any' datatype.
+
+function randomElem(theArray: any[]): any {
+    let randomIndex = Math.floor(Math.random()*theArray.length);
+    return theArray[randomIndex];
+}
+ 
+let numbers = [103, 458, 472, 458];
+let randomNumber = randomElem(numbers);
+ 
+let colors = ['violet', 'indigo', 'blue', 'green'];
+let randomColor = randomElem(colors);
+
+Earlier, we were sure that randomNumber would be a number and randomColor would be a string.
+
+// This code will compile without an error.
+let colors: string[] = ['violet', 'indigo', 'blue', 'green'];
+let randomColor: number = randomElem(colors); // randomColor  is number but accepting string.
+
+So, If we can't catch the errors in compile time, we may encounter errors in runtime and application will break silently.
+
+A better solution to avoid code duplication while still preserving the type information is to use generics. Here is a generic function that returns random elements from an array.
+
+function randomElem<T>(theArray: T[]): T {
+    let randomIndex = Math.floor(Math.random()*theArray.length);
+    return theArray[randomIndex];
+}
+ 
+let colors: string[] = ['violet', 'indigo', 'blue', 'green'];
+let randomColor: number = randomElem<string>(colors); // 'number' for randomColor, we will get an error while compiling.
+
+TypeScript can infer the type information 'T', if we don't send it while calling the function.
+let colors: string[] = ['violet', 'indigo', 'blue', 'green'];
+let randomColor: number = randomElem(colors); // Removed <string>, but still generic works and we get error in compilation
+
+// Generic class
+class Greeter<T> {
+    greeting: T;
+    constructor(message: T) {
+        this.greeting = message;
+    }
+    greet() {
+        return this.greeting;
+    }
+}
+
+let greeter = new Greeter<string>("Hello, world");
+
+Type Inference:
+===============
+Infer means conclude something from evidence and reasoning rather than from explicit statements.
+
+Type Inference means concluding datatype of a variable depends on it's value.
+
+If we don't specify the datatype, typescript will infer the datatype depends on it's value.
+
+let x = 3; // x of type number
+
+TypeScript use 'Best common type' algorithm to decide datatype in some cases.
+
+let x = [0, 1, null]; // x will be considered as numerical array as per Best common type algorithm.
+
+let zoo = [new Rhino(), new Elephant(), new Snake()];
+
+zoo will become union of (Rhino | Elephant | Snake)[].
+
+Modules:
+========
+In TypeScript, just as in ECMAScript 2015(ES6), any file containing a top-level import or export is considered as module. Conversely, a file without any top-level import or export declarations is treated as a script whose contents are available in the global scope.
+
+Modules are executed within their own scope, not in the global scope; this means that variables, functions, classes, etc. declared in a module are not visible outside the module unless they are explicitly exported.
+
+//Validation.ts
+export interface StringValidator {
+    isAcceptable(s: string): boolean;
+}
+
+//ZipCodeValidator.ts
+import { StringValidator } from "./Validation";
+export const numberRegexp = /^[0-9]+$/;
+
+export class ZipCodeValidator implements StringValidator {
+    isAcceptable(s: string) {
+        return s.length === 5 && numberRegexp.test(s);
+    }
+}
+
+tsconfig.json File:
+===================
+tsconfig.json is typescript compiler configuration file.
+
+{
+    "compilerOptions": {
+        "target": "es5"
+    }
+}
+
+If a folder contains tsconfig.json file, then that folder will be considered as root folder of the project and the compilerOptions are applied to all the TypeScript files in that directory.
+
+If we run 'tsc' command in the root folder, typescript compiler will go through all the ts files and directories in the root folder and compile all ts files to js files.
+
+** If we pass file name to 'tsc' command, it will not consider tsconfig.json file.
+
+Decorators:
+===========
+Decorator is special kind of function which can be applied to class, method, property etc... TypeScript decorators adds some capabilities/extend the decorated element's functionality.
+
+Decorators are a stage 2 proposal for JavaScript and are available as an experimental feature of TypeScript.
+
+To enable experimental support for decorators, you must enable the "experimentalDecorators" compiler option either on the command line or in your tsconfig.json
+
+tsc --target ES5 --experimentalDecorators
+
+tsconfig.json:
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "experimentalDecorators": true
+    }
+}
+
+A Decorator is a special kind of declaration that can be attached to a class declaration, method, accessor, property, or parameter.
+
+Decorators use the form @expression, where expression must evaluate to a function that will be called at runtime with information about the decorated declaration.
+
+Applying Decorator:
+-------------------
+function trim(target) {
+    return target.trim();
+}
+
+// Applying trim decorator to variable x. trim function will be called with parameter x.
+@trim let x: string = " test "; // x value will become "test"
+
+// Applying multiple decorators in single line. 
+@f @g x
+
+// Applying multiple decorators in multiple lines.
+@f
+@g
+x
+
+First 'g' decorator and then 'f' decorator function will be called.
+'@f @g x' is equivalent to f(g(x))
+
+Class Decorators:
+-----------------
+A Class Decorator is applied just before a class declaration.
+
+@sealed
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return "Hello, " + this.greeting;
+    }
+}
+
+function sealed(constructor: Function) {
+    Object.seal(constructor); // Object.seal prevent new properties been added.
+    Object.seal(constructor.prototype);
+}
+
+Method Decorators:
+------------------
+A Method Decorator is applied just before a method declaration.
+
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+
+    @enumerable(false)
+    greet() {
+        return "Hello, " + this.greeting;
+    }
+}
+
+function enumerable(value: boolean) {
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        descriptor.enumerable = value;
+    };
+}
+
+Accessor Decorators: Decorators on getters and setters.
+--------------------
+An  Accessor Decorator is applied just before an accessor declaration.
+
+class Point {
+    private _x: number;
+    private _y: number;
+    constructor(x: number, y: number) {
+        this._x = x;
+        this._y = y;
+    }
+
+    @configurable(false)
+    get x() { return this._x; }
+
+    @configurable(false)
+    get y() { return this._y; }
+}
+
+function configurable(value: boolean) {
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        descriptor.configurable = value;
+    };
+}
+
+Property Decorators:
+--------------------
+A Property Decorator is applied just before a property declaration
+
+class Greeter {
+    @format("Hello, %s")
+    greeting: string;
+
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        let formatString = getFormat(this, "greeting");
+        return formatString.replace("%s", this.greeting);
+    }
+}
+
+HTML5 Web APIs in TS:
+=====================
+To define the shape of an object like user, we use interface IUser.
+
+To define the shape of a DOM object we use Web API interfaces.
+
+We can find list of all web api interfaces in below url.
+https://developer.mozilla.org/en-US/docs/Web/API
+
+TypeScript support all the web api interfaces.
+
+private x : HTMLInputElement;
+this.x = <HTMLInputElement>document.getElementById(xId);
+this.x = document.getElementById(xId) as HTMLInputElement;
+
+Below are few html interfaces,
+- HTMLInputElement
+- HTMLSpanElement
+- HTMLDivElement
+- HTMLImageElement
+- HTMLTextAreaElement
+- HTMLSelectElement
+- etc...
+
+How to use JavaScript libraries in TypeScript:
+==============================================
+Ex: typings-exmpl folder
+
+We need to install typings file of JavaScript library to work.
+
+To install typings file for jQuery we need to run below.
+npm install --save-dev @types/jquery
+
+After adding the typings file, include jquery in index.html file, then jQuery starts working.
+
+Confusing Syntaxes:
+===================
+Array notation:
+---------------
+let list: Array<number> = [1, 2, 3];
+let list: number[] = [1, 2, 3];
+
+Type casting / assertions:
+--------------------------
+let strLength: number = (<string>someValue).length;
+let strLength: number = (someValue as string).length;
+
+Generics Syntaxes
+-----------------
+function identity<T>(arg: T): T {
+    return arg;
+}
+let output = identity<string>("myString"); // Calling a generic function
+
+Generic function data type / shape
+----------------------------------
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+let myIdentity: <T>(arg: T) => T = identity;
+let myIdentity: {<T>(arg: T): T} = identity; // Generic interface with call signature of an object literal type
+
+Generic function interface
+--------------------------
+interface GenericIdentityFn {
+    <T>(arg: T): T;
+}
+
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+let myIdentity: GenericIdentityFn = identity;
+
+Generic function interface - another syntax
+--------------------------
+interface GenericIdentityFn<T> {
+    (arg: T): T;
+}
+
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+let myIdentity: GenericIdentityFn<number> = identity; 
+
+Generic Constraints
+-------------------
+function loggingIdentity<T>(arg: T): T {
+    console.log(arg.length);  // Error: T doesn't have .length
+    return arg;
+}
+
+interface Lengthwise {
+    length: number;
+}
+
+function loggingIdentity<T extends Lengthwise>(arg: T): T {
+    console.log(arg.length);  // Now we know it has a .length property, so no more error
+    return arg;
+}

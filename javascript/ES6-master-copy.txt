@@ -1,0 +1,880 @@
+ES6 / ECMA Script 2015.
+
+let:
+====
+It's a new keyword introduced to define variables with new features.
+ 
+Adding new features to "var" keyword will generate many backward compatability issues. So, introduced 'let' keyword.
+
+Variable hoisting with var:
+---------------------------
+var doWork = function(){
+  return x;
+} 
+
+doWork() // Return error. x is not defined
+
+var doWork = function(flag){
+    var x;
+    if(flag){
+        x = 3;
+    }	
+    return x;
+} 
+
+doWork(false) // Don't get error. undefined will be returned.
+
+var doWork = function(flag){
+    if(flag){
+        var x = 3; //This Variable will be hoisted
+    }	
+    return x;
+}
+
+doWork(false) // We should get error. But, we don't get because the variable x is hoisted to top of the function.
+
+Function hoisting:
+------------------
+Function declarations are also hoisted.
+// doWork is function name / identifier
+doWork();
+
+function doWork() {
+  console.log("test");
+}
+
+Functions assigned to variables are not hoisted.
+doWork();
+
+var doWork = function(){
+    console.log("test");
+}
+
+variables defined with "let" are not hoisted.
+
+Scope of the let Variable limited to it's current block.
+var doWork = function(flag){
+    if(flag){
+        let x = 3;
+    }
+    return x; 
+}
+doWork(false); // Reference error: x is not defined
+x is not hoisted above. 
+
+doWork(true); 
+x scope is limited to it's block. // Reference error: x is not defined
+The rule applies for all kind of blocks like for, switch etc..
+
+Re-declaration not allowed within the same block.
+var doWork = function(){
+    var x = 10;
+    var x = 12; // No Error with var
+    return x; 
+}
+
+doWork();
+
+var doWork = function(){
+    let x = 10;
+    let x = 12; // Syntax error. 
+    return x; 
+}
+
+doWork();
+
+var doWork = function(){
+    let x = 10;
+    var x = 12; // Syntax error. 
+    return x; 
+}
+
+doWork();
+
+** This re-declaration rule applies for only that block **
+
+(function(){
+    let x = 10;
+    let doWork = function(){
+        let x = 12;
+        console.log(x);
+        return x; 
+    }
+    doWork();
+    console.log(x);
+})();
+
+Summary of 'let' keyword:
+-------------------------
+* Scope of a variable defined with "let" is block level.So,variables are not hoisted to top.
+* Re-declaration not allowed within the same block.
+
+const:
+======
+'const' keyword is introduced in ES6 to define constants.
+
+const LIMIT = 10;
+
+LIMIT = 20; // Give an error, can't change the constants value.
+
+one thing we have to note about constants is, If we try to re-assign(changing reference) the value for constant it will throw error. But, we can change the internal properties in case of objects, arrays etc..
+
+'const' throws error for reference change, but not for internal property changes.
+
+const arr = [1,2];
+arr = [3,4]; // Return error
+arr[0] = 3; // Allowed
+arr[1] = 4; // Allowed
+
+const user = {
+    name: 'John',
+    age: 25
+};
+
+user = {}; // Return error
+user.name = 'Doe'; // Allowed
+user.age--; // Allowed
+
+Scope of const also block level.
+(function(){
+	const test = 10;
+	let doWork = function(){
+		const test = 20;
+		console.log(test);
+    } 
+    doWork();
+		console.log(test);
+})();
+
+Summary of 'const' keyword:
+---------------------------
+* Scope of constants is block level.So, constants are not hoisted to top.
+* Re-declaration not allowed within the same block. 
+* We can't change the reference of const value, but we can change internal properties.
+
+Destructuring:
+==============
+Destructuring is a new way to assign values to variables. Using destructuring we can extract values from arrays and objects.
+
+let x = 2;
+let y = 3; // Assigning values in normal way.
+
+let [x, y] = [2, 3];
+
+[x, y] = [y, x]; //Swaping the values
+
+The left side value is not actully array. It looks like an array. Arrays/Objects found on left side of assignment operator are not Arrays/Objects, we are dealing with individual variables at a time.
+
+If we find array symbol[] / object symbol{} on the left side of assignment operator, we can understand destructuring is used in that statement.
+
+let [x, y] = [2, 3]; // Define and assign number of variables at a time.
+
+let [a, b] = [1,2,3];
+let [, c, d] = [1,2,3];
+let [x, y, z] = [1,2]; // Will get z as undefined
+
+// Assign values using function
+function doWork(){
+    return [1, 2];
+}
+let [x, y] = doWork();
+
+All the above are array destructuring. 
+
+Object destructuring:
+---------------------
+let {firstName: first, lastName: last} = {firstName: "John", lastName: "Smith"};
+
+let {firstName: first, lastName: last, age: age} = {firstName: "John", lastName: "Smith"};
+
+let {firstName: first, lastName: last, social: {twitter: twtr}} = {firstName: "John", lastName: "Smith", social: {twitter: "twId", fb: "fbId"}};
+Tip to remember syntax: Simply copy object to the left side and replace values with variable names.
+
+If we want to use same key name, then we don't need to specify the variable name.
+
+let {firstName, lastName, social: {twitter}} = {firstName: "John",lastName: "Smith",social: {twitter: "twId", fb: "fbId"}};
+console.log(firstName);
+console.log(lastName);
+console.log(twitter);
+
+Default parameters:
+===================
+let doWork = function(name = "John"){
+    console.log(name);
+}
+doWork(); // Not passing name
+doWork("Peter"); // passing name
+doWork(undefined); // passing undefined - name is 'John'
+doWork(null); // passing null - name is 'null'
+
+null and undefined are not same in Javascript.
+undefined - existed but empty
+null - not existed
+
+let doWork = function(a = 1, b = 2, c = 3){
+    console.log(a);
+    console.log(b);
+    console.log(c);
+}
+doWork(5, undefined);
+
+Rest parameters:
+================
+Rest of the parameters in a function.
+If the number of parameters are not fixed we can use rest parameters.
+
+let doWork = function(name, ...grades){
+    console.log(name);
+    console.log(grades);
+}
+
+doWork("john", 1, 2, 3, 4);
+doWork("john"); // get grades as empty array
+
+Rest parameter must be last formal parameter
+
+let doWork = function(firstName, ...grades, lastName){
+    console.log(name);
+    console.log(grades);
+} // Uncaught SyntaxError: Rest parameter must be last formal parameter
+
+doWork("John", 1, 2, 3, 4, "doe"); 
+
+Rest operator is part of function defination.
+
+Spread operator:
+================
+spread is negation to Rest.
+
+Rest operator take individual values and combine them into an array. Spread operator take an array and split it into individual values.
+
+Spread operator is part of the function calling statement or other.
+
+let doWork = function(x, y, z){
+    console.log(x);
+    console.log(y);
+    console.log(z);
+}
+
+let arr = [1,2,3];
+doWork(...arr);
+doWork(...[4, 5, 6]);
+
+build new arrays:
+let a = [4,5,6];
+let b = [1,2,3,...a,7,8,9];
+
+we can also spread objects:
+let obj = { food: "spicy", price: "$10", ambiance: "peaceful" };
+let search = { ...obj, cuisine: "chinese" };
+
+***** We can use spread operator to clone an object.
+let user = { name: 'John', age: 25 };
+let userCopy = user;
+let userClone = { ...user };
+
+user.age = 30; // We find the updated age in both 'user' and 'userCopy', but not in userClone
+userClone.name = 'Michael'; // Only userClone is updated. Not user or userCopy.
+
+Template literals:
+==================
+Useful to build dynamic strings easily.
+
+Template literals starts and end with Backtic(`). ${x} replace the value of x in template literal string.
+
+Substitute the values and Execute the expressions:
+let x=1,y=2;
+let template = 'Addition of ' + x + ' and ' + y + ' is ' + (x+y)
+let template = `Addition of ${x} and ${y} is ${x+y}`;
+
+New lines don't break the code:
+let html = `<div>
+	<span>test</span>
+</div>`;
+
+` - Back tick.
+
+Arrow Functions:
+================
+Two benifits
+1. shorter syntax
+2. No binding of this. "this" is not bound in arrow functions.
+    - Arrow functions don't contain this, prototype, arguments property.
+
+1. shorter syntax
+
+var multiply = function(x, y){
+    return x*y;
+};
+
+var multiply = (x, y) => {return x*y};
+
+The symbol '=>' is called FAT ARROW.
+
+Curly brackets and return are not required if only one statement is present.
+
+var multiply = (x, y) => x*y;
+
+Parentheses are optional when only one parameter is present
+
+var strToArr = function(str){
+    return str.split(" ");
+};
+
+strToArr('Hello Good Morning')
+
+var strToArr = str => str.split(" ");
+
+Usage:
+var smartPhones = [
+    { name:'iphone', price:649 },
+    { name:'Galaxy S6', price:576 },
+    { name:'Galaxy Note 5', price:489 }
+];
+
+var smartPhonePrices = smartPhones.map(
+    function(smartPhone) {
+        return smartPhone.price;
+    }
+);
+
+var smartPhonePrices = smartPhones.map(smartPhone=>smartPhone.price);
+
+2. No binding of this. "this" is not bound in arrow functions.
+
+Every regular function define it's own this.
+
+For example in callbacks,
+
+function Person() {
+  this.age = 0;
+
+  setInterval(function growUp() {
+    this.age++;
+    console.log(this.age);
+  }, 1000);
+} // Expected 1, 2, 3 ... Actual: NaN
+
+var p = new Person();
+
+Conventional Fix:
+function Person() {
+    var that = this;
+    that.age = 0;
+
+    setInterval(function growUp() {
+        that.age++;
+        console.log(that.age);
+    }, 1000);
+}
+
+var p = new Person();
+
+Fix with Arrow function:
+function Person(){
+  this.age = 0;
+
+  setInterval(() => {
+    this.age++;
+    console.log(this.age);
+  }, 1000);
+}
+
+var p = new Person();
+
+An arrow function does not create its own this context.
+
+No binding of arguments
+
+function test(a, b){
+  console.log(arguments);
+}
+test(2, 3);
+
+var f = (a,b) => {console.log(arguments)}; // Uncaught ReferenceError: arguments is not defined
+f(2, 3); 
+
+Arrow functions cannot be used as constructors and will throw an error when used with new.
+
+var Foo = () => {};
+var foo = new Foo(); // TypeError: Foo is not a constructor
+
+Arrow functions do not have a prototype property.
+var Foo = () => {};
+Foo.prototype
+
+Returning object:
+-----------------
+var func = (a, b) => a+b;
+func(2, 3);
+
+var func = () => { foo: 1 }; // Gives undefined.
+
+var func = () => ({foo: 1});
+
+don't give line brakes before arrow
+var func = ()
+           => 1;
+
+Classes:
+========
+ES5:
+----
+In ES5 we don't have the concept of classes. We use constructor functions as classes and prototype property for inheritance.
+
+Prototype is a hidden property of a function which helps in inheritance.
+
+Every JavaScript function has a prototype property and it is empty by default.
+
+function simpleCalc(){
+	this.add = function(){
+	 console.log("Addition is simple"); 
+	};
+	this.subtract = function(){
+		console.log("Subtraction is simple"); 
+	}
+}
+
+var simpleObj = new simpleCalc();
+
+simpleObj.add()
+    
+function complexCalc(){
+	this.multiplication=function(){
+	 console.log("Multiplication is complex"); 
+	};
+	this.division=function(){
+		console.log("Division is complex"); 
+	}
+}
+
+complexCalc.prototype = simpleObj;
+
+var complexObj = new complexCalc();
+
+ES6:
+----
+class Employee {
+  doWork(){
+      return "done!";
+  }
+
+  getName(){
+      return "John";
+  }
+}
+
+let emp = new Employee();
+
+emp.doWork();
+
+Employee.prototype.doWork(); //classes use prototype property in the background.
+
+Constructor: Constructor is a function in class which is invoked automatically while creating an object.
+
+class Employee {
+    constructor(name){
+      this.empName = name;
+    }
+    doWork(){
+      return "done!";
+    }
+    getName(){
+      return this.empName;
+    }
+}
+
+let emp = new Employee("john");
+
+emp.empName // Returns employee name.
+
+getters and setters:
+--------------------
+Getter return the peoperty and setter set the property.
+
+class Employee {
+  constructor(name){
+    this.empName = name;
+  }
+  
+  get name(){
+    return this.empName;
+  }
+}
+
+let emp = new Employee("john");
+emp.name
+
+class Employee {
+  constructor(name){
+    this.empName = name;
+  }
+
+	get empName(){
+		return this.empName;
+  }
+
+	set empName(newName){
+		return this.empName = newName;
+  }
+} // It will create erros. We should not have same name for property and method
+
+let emp = new Employee("john");
+
+class Person {
+  constructor(name){
+    this._name = name;
+  }
+  
+  get name(){
+    return this._name;
+  }
+
+  set name(newName){
+    return this._name = newName;
+  }
+}
+var person = new Person("John");
+person.name
+
+person.name = "Doe"; //Setting property
+
+Inheretance:
+------------
+class Person {
+  constructor(name){
+    this._name = name;
+  }
+  
+  get name(){
+    return this._name;
+  }
+
+  set name(newName){
+    return this._name = newName;
+  }
+}
+
+class Employee extends Person{
+  doWork(){
+    return `${this.name} is working`;
+  }
+}
+
+var emp = new Employee("John");
+
+// If we give empty constructor it throw error
+class Employee extends Person{
+  constructor(){
+      
+  }
+  doWork(){
+    return `${this.name} is working`;
+  }
+}
+
+var emp = new Employee("John");
+
+Super:
+------
+class Person {
+  constructor(name){
+    this._name = name;
+  }
+	get name(){
+		return this._name;
+  }
+	set name(newName){
+		return this._name = newName;
+  }
+}
+
+class Employee extends Person{    
+  // Without constructor works
+  // With empty constructor doesn't work
+  // With super(), without passsing name doesn't work
+  constructor(name){
+    super(name);
+  }
+
+  doWork(){
+    return `${this.name} is working`;
+  }
+}
+
+var emp = new Employee("John");
+
+// Employee with two parameters
+class Employee extends Person{
+  constructor(name, title){
+    super(name);
+    this.title = title;
+  }    
+  doWork(){
+    return `${this.name} is working`;
+  }
+}
+
+var emp = new Employee("John", 'Mr');
+
+Super function invokes the parent class constructor and forward arguments from child class constructor to parent class constructor. 
+
+Overrides:
+----------
+class Person {
+  constructor(name){
+    this.name = name;
+  }
+	get name(){
+		return this._name;
+  }
+	set name(newName){
+		return this._name = newName;
+  }
+  doWork(){
+    console.log("person is working");
+    return `person is working`;
+  }
+}
+
+class Employee extends Person{
+  constructor(name, title){
+    super(name);
+    this.title = title;
+  }    
+  doWork(){
+    super.doWork(); // If we call this.doWork(), It will go to infinite loop.
+    return `${this.title} ${this.name} is working`;
+  }
+}
+
+var emp = new Employee("John", "Mr");
+emp.doWork();
+
+Note: There are no access modifiers like public, private and protected in ES6 classes. In TypeScript we have these access modifiers.
+
+Modules:
+========
+In JavaScript each file is a module and all objects defined in the file belong to that module.
+
+Another defination: Any javascript file which contains export or import statement can be considered as a module. 
+
+Using 'export' keyword One module can export objects, constants, functions, classes etc..., another module can import using 'import' keywodrd.
+
+//------ math-functions.js ------
+const sum = (a, b) => {
+    return a + b;
+};
+
+const product = (a, b) => {
+    return a * b;
+};
+
+export {sum, product};
+
+//------ app.js ------
+import {sum, product} from './modules/math-functions';
+
+resultSum.textContent = `The sum of ${a} and ${b} is ${sum(a, b)}.`;
+resultProduct.textContent = `The product of ${a} and ${b} is ${product(a, b)}.`;
+
+You can also import the complete module:
+
+//------ app.js ------
+import * as math from './modules/math-functions';
+resultSum.textContent = `The sum of ${a} and ${b} is ${math.sum(a, b)}.`;
+resultProduct.textContent = `The product of ${a} and ${b} is ${math.product(a, b)}.`;
+
+Browsers are not yet supporting modules feature in ES6.
+
+Webpack is module bundler, which convert ES6 modules into ES5 modules.
+
+// Install webpack globally
+> npm install webpack -g
+> npm install webpack-cli -g
+
+Code Repo: https://github.com/angular-online/getting-started-with-webpack-and-es6-modules-the-demo
+
+> Clone the Repo
+
+> npm install
+
+> webpack --watch
+
+webpack commands:
+----------------- 
+webpack - build and exit.
+
+webpack --watch  - build and keep on checking for changes.
+
+Default Exports:
+----------------
+An ES6 module can export a main value as default value. Default exports are easy to import.
+We have to export only one default value from one module.
+
+Default export of function:
+//------ default-demo.js ------
+export default function () {
+    console.log('default function called');
+}
+
+//------ app.js ------
+import MyFunc from './modules/default-demo';
+MyFunc();
+
+Default export of class:
+//------ default-demo.js ------
+export default class {} 
+
+//------ app.js ------
+import MyClass from 'MyClass';
+const inst = new MyClass();
+
+We can do default export of direct values also.
+
+export default 'abc';
+export default foo();
+export default /^xyz$/;
+export default 5 * 7;
+export default { no: false, yes: true };
+
+Imports and exports must be at the top level / first level(i.e not wrapped in any block {}).
+// No conditional Imports
+if (Math.random()) {
+    import {sum, product} from './modules/math-functions'; // SyntaxError
+}
+
+// You can’t even nest `import` and `export` inside a simple block:
+{
+    import {sum, product} from './modules/math-functions'; // SyntaxError
+}
+
+Imports are hoisted: Therefore, it doesn’t matter where you mention them in a module and the following code works without any problems:
+
+MyFunc();
+import MyFunc from './modules/default-demo';
+
+Symbols:
+========
+Symbol is a primitive data type.
+
+Object property keys may be either of string type, or of symbol type. Not numbers, not booleans, only strings or symbols.
+Ex: iterator symbol on arrays, maps etc...
+
+“Symbol” value represents a unique identifier.
+
+// id is a new symbol
+let id = Symbol();
+
+We can also give symbol a description / name:
+
+let userId = Symbol("id"); // Symbol is not a constructor function. we should not use 'new' before it.
+
+userId is a symbol with the description "id"
+
+Symbols are guaranteed to be unique. Even if we create many symbols with the same description, they are different values. The description is just a label that doesn’t affect anything.
+
+Below two symbols are not equal:
+let id1 = Symbol("id");
+let id2 = Symbol("id");
+
+id1 == id2 // false
+
+for...of loop
+=============
+We can use this for of loop to iterate through values of iterables like arrays, maps etc...
+
+let fruits = ["Lemon","Apple","Orange","Peach"];
+for(let fruit of fruits) {
+	console.log(fruit);
+}
+
+Object changes:
+===============
+object.assign() - to extend one object.
+---------------
+var obj1 = {name: "John"};
+var obj2 = {surname: "Doe"};
+
+Object.assign(obj1, obj2);
+
+obj1
+
+Object shorthand notations:
+---------------------------
+var firstName = "John";
+var lastName = "Doe";
+
+var person = {firstName: firstName, lastName: lastName};
+
+var person2 = {firstName, lastName}; // If key and value names are same.
+
+var person = {
+    doWork: function(){return "done"}
+};
+
+var person2 = {
+    doWork(){return "done"}
+};
+
+Computed Properties:
+--------------------
+Dynamic properties with dynamic key/property names.
+
+In ES5:
+var name1 = "firstName";
+var name2 = "lastName";
+
+var obj = {};
+obj[name1] = "John";
+obj[name2] = "Doe";
+
+In ES6:
+var obj2 = {
+    [name1]: "John",
+    [name2]: "Doe",
+};
+
+We can write simple expressions in [].
+var obj2 = {
+    [name1+'s']: "John",
+    [name2]: "Doe",
+};
+
+Array changes:
+==============
+find and findIndex:
+-------------------
+We use indexOf to search for an element in an array.
+
+We can use find() and findIndex() methods for conditional based search.
+
+var numbersArr = [1,2,2,4];
+
+numbersArr.find(function(item){
+    return item > 2; // Returns 4
+});
+
+numbersArr.findIndex(function(item){
+    return item > 2; // index of 4. it is 3.
+});
+
+Array.of():
+var newArr = new Array(3,2,1); // [3,2,1]
+var newArr = new Array(3); // [,,]
+
+var newArr = Array.of(3); // [3]
+var newArr = Array.of(3,2,1); // [3,2,1]
+
+Array.from():
+create array from array like objects.
+
+var arrayLike = document.querySelectorAll('div');
+
+var arr = Array.from(arrayLike);
+
+Sites to Refer:
+===============
+http://javascript.info/
+
+http://exploringjs.com/es6/

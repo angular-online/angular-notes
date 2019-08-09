@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .bubling-demo, .bubling-demo div, .bubling-demo div p {
+            margin: 10px;
+            border: 1px solid blue;
+        }
+    </style>
+    
+</head>
+<body>
+    <h3>Prevent default</h3>
+    
+    <a href="https://www.google.com/">Click here to go Goggle</a> <br><br>
+
+    <a href="https://www.google.com/" onclick="event.preventDefault()">You can't go Goggle - event.preventDefault - Default action prevented</a>
+
+    <br><br>
+
+    <form onsubmit="event.preventDefault();submitForm();" action="" method="GET">
+        <input type="text" value="John" name="firstName"/>
+        <button type="submit">Submit</button>
+    </form>
+
+    <br><br>
+
+    <h3>Event Bubling</h3>
+    <form class="bubling-demo" onclick="alert('form')">FORM
+        <div onclick="alert('div')">DIV
+            <p onclick="alert('p')">P</p>
+        </div>
+    </form>
+
+    <form class="bubling-demo" onclick="alert('form')">FORM - Bubling Prevented
+        <div onclick="alert('div')">DIV
+            <p onclick="alert('p');event.stopPropagation();">P</p>
+        </div>
+    </form>
+
+    <script>
+        function submitForm() {
+            console.log("Form Not Submitted. submitForm function called.");
+        };
+    </script>
+</body>
+</html>

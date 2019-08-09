@@ -1,0 +1,175 @@
+Angular CLI:
+============
+ng new --skip-install angular-todo => create project without installing dependencies
+ng new angular-customers-portal => create new folder and project
+ng new angular-customers-portal --directory ./ => create new project in exising folder
+ng serve => serve the project
+ng serve --open / ng serve -o => serve the project and open in default browser at port 4200(http://localhost:4200/)
+ng serve --extract-css => show separate css files in the inspector, instead of embedding in style.bundle
+ng generate module core => generate module with name 'core'
+ng generate service core/data --module=core/core.module => create 'DataService' under core folder and update 'core' module
+
+ng generate service core/sorter --module=core/core.module
+ng generate service core/dataFilter --module=core/core.module
+ng generate component customers/customers-grid --module=app
+ng generate pipe shared/pipes/capitalize --module=shared/shared.module
+
+NPM:
+===
+npm init => to initialize npm repo.
+
+npm init -y => to skip questions on initialization and directly create package.json
+
+npm install => to install all the dependencies in npm repo.
+
+npm install dependencyName -g => to install dependency globally.
+
+npm install dependencyName => install dependency without updating package.json
+
+npm install dependencyName --save => install dependency and update 'dependencies' of package.json
+
+npm install dependencyName --save-dev => install dependency and update 'devDependencies' of package.json  
+
+Webpack:
+========
+Webpack =>  build and exit.
+
+webpack --watch  => build and keep on checking for changes.
+
+webpack -d --watch => build and keep on checking for changes in debug mode.
+
+webpack -display-error-details  => display webpack error
+
+Git:
+====
+git clone => clone git repo
+
+git status => check for any changes
+
+git add -A => stage all changes
+
+git add test.txt => stage test.txt
+
+git commit -m 'msg' => commit with msg
+
+git push => push changes to remote.
+
+git pull => take update from remote.
+
+git checkout -b branchName => to create specific branch.
+git push --set-upstream origin branchName => to push the local branch to remote.
+
+git checkout branchName => to checkout specific branch.
+
+git stash => stash all changes
+
+git stash list => to check all the stashes available in repo
+
+git stash save customMessage => stash changes with custom customMessage
+
+git stash apply stash@{2} => apply stash based on stash number
+
+git stash drop stash@{0} => delete stash.
+
+git remote show origin => show the origin url
+git config --get remote.origin.url => show the origin url
+
+Git Init:
+---------
+git init
+> Do some change in some file.
+git add -A
+git commit -m "First commit"
+git remote add origin https://github.com/nagarjuna-immadi/angular-todo.git
+git push -u origin master
+
+Git check all branches:
+-----------------------
+git branch -a => show your branches and add * to current branch
+git branch => show all local branches
+git branch -r => show all remote branches
+
+git checkout -b new-branch existing-branch => create and checkout new-branch from existing-branch. If we skip existing-branch, current branch will become the base for new branch.
+
+git push --set-upstream origin new-branch => new branch will be pushed to remote.
+
+Delete branch:
+--------------
+> git branch -d branchName ---> Delete local branch
+> git push --delete origin branchName ---> Delete remote branch
+
+Push to another user repo:
+git config --local credential.helper ""
+
+Git set upstream to forked repo:
+--------------------------------
+git remote -v => Display the remote url's configured
+git remote add upstream https://github.com/sitepoint-editors/angular-todo-app.git
+git fetch upstream => fetch all upstream branches to local
+git checkout master => checkout fork targed branch[master branch here] 
+git merge upstream/master => Merge targeted upstream branch to local branch 
+
+VS Code:
+========
+Alt + z => Toggle word wrap.
+
+Alt + Shift + f => Format code
+
+Ctrl + ` => Open/Close terminal
+
+Ctrl + click => By ctrl+click we can navigate to actual implementation of class/interface/component etc..
+
+Alt + Left => Go back to where ctrl+clicked
+
+Alt + Right => Go to actual implementation. Works opp to Alt + Left.
+
+TypeScript:
+===========
+tsc temp.ts => compile TS to js
+
+tsc temp.ts --watch => compile TS to js and watch for changes
+
+tsc temp.ts --target ES6 => compile to ES6 code
+
+tsc --strictNullChecks temp.ts => enabling the strictNullChecks flag on TS compiler
+
+Heroku:
+=======
+heroku login
+heroku create app-name
+git push heroku master
+heroku ps:scale web=1 => Ensure that at least one instance of the app is running
+heroku open => launch app
+heroku logs --tail
+
+git add .
+git commit -m "Procfile"
+git push heroku master
+
+heroku ps
+heroku ps:scale web=0
+heroku ps:scale web=1
+
+MongoDB:
+========
+Export Entire DB:
+-----------------
+mongodump -d <database_name> -o <directory_backup>
+mongodump -d todos -o dbdump
+
+Import Entire DB:
+-----------------
+mongorestore -d <database_name> <directory_backup>
+dbdump>  mongorestore -d todos todos 
+
+Export collection:
+------------------
+mongoexport -d database_name -c collection_name -o file_name
+
+Import collection:
+------------------
+mongoimport -d datbase_name -c collection_name file_name
+
+Export collection without id:
+-----------------------------
+>mongo mongodb://localhost:27017/simplekart --quiet --eval "db.users.find({}, {_id:0}).forEach(printjson);" > users.json
