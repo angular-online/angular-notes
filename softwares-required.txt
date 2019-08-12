@@ -1,0 +1,3 @@
+ - Git, GitHub Account
+ - Visual studio code
+ - NodeJs

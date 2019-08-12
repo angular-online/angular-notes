@@ -1,6 +1,0 @@
- - Git, GitHub Account
- - Visual studio code
- - NodeJs
- - MongoDB
- - Robo 3T - https://robomongo.org/
- - nodemon - npm install -g nodemon

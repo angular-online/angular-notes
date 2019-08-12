@@ -3947,3 +3947,7 @@ To run the unit test cases.
 ng lint
 -------
 To run the linter.
+
+Angular 7 vs 8
+--------------
+https://alligator.io/angular/angular-8/
