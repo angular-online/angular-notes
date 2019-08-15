@@ -302,7 +302,7 @@ Two benifits
     - Arrow functions don't contain this, prototype, arguments property.
 
 1. shorter syntax
-
+-----------------
 var multiply = function(x, y){
     return x*y;
 };
@@ -340,7 +340,9 @@ var smartPhonePrices = smartPhones.map(
 
 var smartPhonePrices = smartPhones.map(smartPhone=>smartPhone.price);
 
-2. No binding of this. "this" is not bound in arrow functions.
+2. No binding of this 
+---------------------
+"this" is not bound in arrow functions.
 
 Every regular function define it's own this.
 

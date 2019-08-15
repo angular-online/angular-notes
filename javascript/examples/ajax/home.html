@@ -20,7 +20,7 @@
     <script>
         // loadData - version 1 - Passing direct functions
         function loadData(){
-            sendServerRequest(function(response) {
+            getTodos(function(response) {
                 var todos = [];
                 if(response) {
                     todos = JSON.parse(response);
@@ -54,7 +54,7 @@
                 document.getElementById("failure-message").innerHTML = 'Failed to load todos';
             };
 
-            sendServerRequest(successCallback, failureCallback);
+            getTodos(successCallback, failureCallback);
         } */
 
         // loadData - version 3 - Passing function names
@@ -75,7 +75,7 @@
                 document.getElementById("failure-message").innerHTML = 'Failed to load todos';
             };
 
-            sendServerRequest(successCallback, failureCallback);
+            getTodos(successCallback, failureCallback);
         } */
     </script>
 </body>

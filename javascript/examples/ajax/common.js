@@ -1,4 +1,4 @@
-function sendServerRequest(success, failure) {
+function getTodos(success, failure) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "https://todos-api-dev.herokuapp.com/todos");
     xhttp.send();

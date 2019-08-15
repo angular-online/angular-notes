@@ -12,7 +12,7 @@
     <script src="./common.js"></script>
     <script>
         function loadData(){
-            sendServerRequest(function(response) {
+            getTodos(function(response) {
                 var todos = [];
                 if(response) {
                     todos = JSON.parse(response);

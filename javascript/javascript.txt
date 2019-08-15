@@ -292,11 +292,36 @@ instanceof: for checking type of custom objects
 ===========
 user instanceof User
 
-var test = new String("abc");
-test instanceof String // true
+AJAX:
+=====
+AJAX - Asynchronous Javascript And Xml
 
-var test2 = "tst";
-test2 instanceof String // false
+It's not a programming language. It's a technique to hit server and change webpage content without re-loading page.
+
+function getTodos(success, failure) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "https://todos-api-dev.herokuapp.com/todos");
+  xhttp.send();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      success(this.responseText);
+    } else {
+      failure();
+    }
+  };
+}
+
+The onreadystatechange property specifies a function to be executed every time the status of the XMLHttpRequest object changes.
+When readyState property is 4 and the status property is 200, the response is ready.
+
+Different readyStates available are below,
+0	UNSENT - Client has been created. open() not called yet.
+1	OPENED - open() has been called.
+2	HEADERS_RECEIVED - send() has been called, and headers and status are available.
+3	LOADING	- Downloading; responseText holds partial data.
+4	DONE - The operation is complete.
+
+Ex: ajax folder
 
 Arrays:
 =======
@@ -490,6 +515,306 @@ if(Object.keys(box).length) {
   // box is not an empty object
 }
 
+DOM:
+====
+Document Object Model (DOM)
+- allow to access contents of the page, modify elements etc
+	
+The DOM represents document as a tree. The tree is made up of parent-child relationships, a parent can have one or many children nodes.
+
+window.document is the global object for DOM. We can access it as window.document OR document.
+
+Traversing:
+-----------
+document.body
+document.body.childNodes
+document.body.firstChild
+document.body.lastChild
+
+dir - method
+------------
+dir() is a chrome console method to expand and see the list of properties available on a DOM element.
+
+<div id="logo">div for logo</div>
+var logo = document.getElementById('logo');
+console.log(logo);
+
+dir(logo);
+
+document.getElementById:
+------------------------
+<div id="info">Info</div>
+<script>
+  var div = document.getElementById('info')
+  console.log( div.innerHTML )
+</script>
+
+getElementsByTagName
+--------------------
+<table id="myTable">
+  <tr>
+    <td>Your age:</td>
+
+    <td>
+      <label>
+        <input type="radio" name="age" value="young" checked/> under 18
+      </label>
+      <label>
+        <input type="radio" name="age" value="mature"/> from 18 to 50
+      </label>
+      <label>
+        <input type="radio" name="age" value="senior"/> older than 60
+      </label>
+    </td>
+  </tr>
+</table>
+
+<script>
+  var elements = document.getElementsByTagName('input');
+  console.log(elements);
+  for(var i=0; i<elements.length; i++) {
+    var input = elements[i]  
+    console.log(input.value+': '+input.checked)
+  }
+</script>
+
+document.getElementsByClassName
+-------------------------------
+<div class="abc def test">some text1</div>
+<div class="abc">some text2</div>
+<script>
+console.log( document.getElementsByClassName('abc') )
+</script>
+
+document.querySelector, querySelectorAll:
+-----------------------------------------
+The methods querySelector and querySelectorAll allow to select elements by CSS3 query.
+<ul>
+  <li>The</li>
+  <li>Test</li>
+</ul>
+<ul>
+  <li>Is</li>
+  <li>Passed</li>
+</ul>
+<script>
+  var elements = document.querySelectorAll('UL > LI:last-child')
+
+  for(var i=0; i<elements.length; i++) {
+    console.log(elements[i].innerHTML )
+  }
+</script>
+
+// document.querySelector - returns the first matched element.
+var elem = document.querySelector('ul');
+console.log(elem);
+
+Events:
+=======
+We can bind events to the elements in 3 ways,
+1. With element attribute
+2. With DOM-object property
+3. Using addEventListener method
+
+Handle events with element attribute:
+-------------------------------------
+<input id="b1" value="Click me" onclick="alert('Thanks!');" type="button"/>
+
+Inside an event handler, this references the current element.
+
+<button onclick="alert(this.innerHTML)">Click me to see me</button>
+
+'event' contains the entire information about the event.
+
+<button onclick="console.log(event)">Click me to see me</button>
+
+Handle events with DOM-object property:
+---------------------------------------
+<input id="myElement" type="button" value="Press me"/>
+<script>
+document.getElementById('myElement').onclick = function(event) {
+    console.log('Thanks');
+    console.log(event);
+}
+</script>
+
+Handle events using addEventListener:
+-------------------------------------
+Ex: remove-event-listener.html
+
+// Add event to element
+elem.addEventListener(type, handlerFunction)
+
+// Remove event to element
+elem.removeEventListener(type, handlerFunction)
+
+<script>
+    document.getElementById("myDIV").addEventListener("mousemove", myFunction);
+
+    function myFunction(event) {
+        console.log(event);
+        document.getElementById("demo").innerHTML = Math.random();
+    }
+
+    function removeHandler() {
+        document.getElementById("myDIV").removeEventListener("mousemove", myFunction);
+    }
+</script>
+
+mousedown
+Triggered by an element when a mouse button is pressed down over it
+mouseup
+Triggered by an element when a mouse button is released over it
+mouseover
+Triggered by an element when the mouse comes over it
+mouseout
+Triggered by an element when the mouse goes out of it
+mousemove
+Triggered by an element on every mouse move over it.
+
+click
+Triggered by a mouse click: mousedown and then mouseup over an element
+contextmenu
+Triggered by a right-button mouse click over an element.
+dblclick
+Triggered by two clicks within a short time over an element
+
+keydown
+A key is pressed down.
+keypress
+A character key is pressed.
+keyup
+A key is released.
+
+window events
+=============
+onload
+onunload
+
+window.onload = function() {
+    alert("Page loaded");
+};
+
+// window.onunload is working in IE. Not sure in Chrome etc.. 
+window.onunload = function() {
+    window.open("https://in.yahoo.com/"); 
+};
+
+Ex: win-events.html
+
+Along with load and unload we have resize and scroll events also.
+
+We have 'submit' event on form element. Also, focus, blur, change etc... events on form elements.
+
+Event Propagation and Prevent default:
+======================================
+Examples: event-propagation.html
+
+// To prevent default action. Ex: Prevent navigation of <a> tag, form submission etc..
+event.preventDefault();
+
+// Capturing and bubling events.
+An event contains 3 phases.
+1. Capturing
+2. Targeting
+3. Bubling
+
+Capturing: The event is first captured by the outermost element and propagated to the inner elements.
+Html -> Body -> Form -> Div -> P
+
+Tarrgeting means traverse through the DOM and find Targeted element.
+
+Bubling: When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.
+P -> Div -> Form
+
+event.stopPropagation(); // To prevent propagation.
+
+Timing methods
+==============
+Ex: timing.html
+
+setTimeout, clearTimeOut
+------------------------
+setTimeout function is used to execute a function or some statements after some specified time.
+
+var timeOutRef = setTimeout(function() {
+    document.getElementById('demo1').innerText = "Text changed";
+}, 3000);
+
+function stop() {
+    clearTimeout(timeOutRef);
+}
+
+setInterval, clearInterval
+--------------------------
+setInterval function is used to execute a function or some statements repeatedly on specified time interval.
+
+var i = 0;
+var intervalRef = setInterval(function(){
+    i++;
+    document.getElementById('count').innerText = i;
+}, 1000);
+
+function stopCounting() {
+    clearInterval(intervalRef);
+}
+
+localStorage
+============
+'localStorage' is a global object in javascript. We can access it by 'window.localStorage' or 'localStorage'.
+
+localStorage is domain specific. We can't access localStorage of one domain from another domain.
+
+We store the data as key, value pairs in localStorage. 
+
+localStorage.setItem("key", "value");
+
+localStorage.setItem("name", "John"); // To store data
+
+var lastname = localStorage.getItem("name"); // To retrieve data
+
+localStorage.removeItem("key"); // To remove data
+
+Only store strings
+------------------
+If we store object in localStorage and trying to access it, we will get "[object Object]". So, we need to stringify the objects and store it in localStorage.
+
+WRONG:
+localStorage.setItem('user', {name: 'John', age: 25});
+localStorage.getItem('user'); // "[object Object]"
+
+CORRECT:
+localStorage.setItem('user', JSON.stringify({name: 'John', age: 25}));
+var user = localStorage.getItem('user'); // "{name: 'John', age: 25}"
+user = JSON.parse(user); // {name: 'John', age: 25}
+
+NPM
+===
+npm init
+
+npm install jquery
+npm i jquery
+npm install jquery --save
+npm install jasmine --save-dev
+
+npm install -g @angular/cli - Global installation
+
+Specifying version in package.json
+----------------------------------
+"jquery": "*" - any version
+
+"jquery": "latest" - latest version
+
+"jquery": "1.x"
+  or:
+"jquery": "^1.0.0" ----> install the latest minor version. Upto 1.9.9 but not 2.0.0
+
+"jquery": "~1.11"  -----> install the latest patch version. Upto 1.11.9 but not 1.12.0
+
+
+
+Other Important Concepts
+========================
 this:
 =====
 > In a regular function, this will become window object
@@ -689,354 +1014,6 @@ counter();
 
 To overcome these kind of problems we use closures.
 
-DOM:
-====
-Document Object Model (DOM)
- allow to access contents of the page, modify elements etc
-	
-The DOM represents document as a tree. The tree is made up of parent-child relationships, a parent can have one or many children nodes.
-
-window.document is the global object for DOM. We can access it as window.document OR document.
-
-Traversing:
------------
-document.body
-document.body.childNodes
-document.body.firstChild
-document.body.lastChild
-
-dir - method
-------------
-dir() is a chrome console method to expand and see the list of properties available on a DOM element.
-
-<div id="logo">div for logo</div>
-var logo = document.getElementById('logo');
-console.log(logo);
-
-dir(logo);
-
-document.getElementById:
-------------------------
-<div id="info">Info</div>
-<script>
-  var div = document.getElementById('info')
-  console.log( div.innerHTML )
-</script>
-
-
-getElementsByTagName
---------------------
-<table id="myTable">
-  <tr>
-    <td>Your age:</td>
-
-    <td>
-      <label>
-        <input type="radio" name="age" value="young" checked/> under 18
-      </label>
-      <label>
-        <input type="radio" name="age" value="mature"/> from 18 to 50
-      </label>
-      <label>
-        <input type="radio" name="age" value="senior"/> older than 60
-      </label>
-    </td>
-  </tr>
-</table>
-
-<script>
-var elements = document.getElementsByTagName('input');
-  console.log(elements);
-  for(var i=0; i<elements.length; i++) {
-    var input = elements[i]  
-    console.log(input.value+': '+input.checked)
-  }
-</script>
-
-document.getElementsByClassName
--------------------------------
-<div class="abc def test">some text1</div>
-<div class="abc">some text2</div>
-<script>
-console.log( document.getElementsByClassName('abc') )
-</script>
-
-getElementsByName
-------------------
-<table id="myTable">
-  <tr>
-    <td>Your age:</td>
-
-    <td>
-      <label>
-        <input type="radio" name="age" value="young" checked/> under 18
-      </label>
-      <label>
-        <input type="radio" name="age" value="mature"/> from 18 to 50
-      </label>
-      <label>
-        <input type="radio" name="age" value="senior"/> older than 60
-      </label>
-    </td>
-  </tr>
-</table>
-
-<script>
-  var elements = document.getElementsByName('age');
-  console.log(elements);
-</script>
-
-document.querySelector, querySelectorAll:
------------------------------------------
-The methods querySelector and querySelectorAll allow to select elements by CSS3 query.
-<ul>
-  <li>The</li>
-  <li>Test</li>
-</ul>
-<ul>
-  <li>Is</li>
-  <li>Passed</li>
-</ul>
-<script>
-  var elements = document.querySelectorAll('UL > LI:last-child')
-
-  for(var i=0; i<elements.length; i++) {
-    console.log(elements[i].innerHTML )
-  }
-</script>
-
-// document.querySelector - returns the first matched element.
-var elem = document.querySelector('ul');
-console.log(elem);
-
-Difference b/w element attribute and element property
------------------------------------------------------
-There is a difference b/w element attributes and element properties.
-
-Generally most of the Attributes have an equivalent Property for it. Below is an example on 'input' element's 'value' attribute and 'value' property.
-
-<input type="text" id="name" value="John" />
-
-var inputObj = document.getElementById("name");
-var valueProperty = inputObj.value;
-var valueAttribute = inputObj.getAttribute("value");
-
-If we change the value of input, value property gets changed, but not value attribute.
-
-Some attributes don't have equivalent properties. Ex: table span attributes etc..
-
-<table>
-    <tr><td colspan="2" id="span-elem">Three-Four</td></tr>
-</table>
-
-Events:
-=======
-We can bind events to the elements in 3 ways,
-1. With element attribute
-2. With DOM-object property
-3. Using addEventListener method
-
-Handle events with element attribute:
--------------------------------------
-<input id="b1" value="Click me" onclick="alert('Thanks!');" type="button"/>
-
-Inside an event handler, this references the current element.
-
-<button onclick="alert(this.innerHTML)">Click me to see me</button>
-
-'event' contains the entire information about the event.
-
-<button onclick="console.log(event)">Click me to see me</button>
-
-Handle events with DOM-object property:
----------------------------------------
-<input id="myElement" type="button" value="Press me"/>
-<script>
-document.getElementById('myElement').onclick = function(event) {
-    console.log('Thanks');
-    console.log(event);
-}
-</script>
-
-Handle events using addEventListener:
--------------------------------------
-Ex: remove-event-listener.html
-
-// Add event to element
-elem.addEventListener(type, handler, false)
-
-// Remove event to element
-elem.removeEventListener(type, handler, false)
-
-<script>
-    document.getElementById("myDIV").addEventListener("mousemove", myFunction);
-
-    function myFunction(event) {
-        console.log(event);
-        document.getElementById("demo").innerHTML = Math.random();
-    }
-
-    function removeHandler() {
-        document.getElementById("myDIV").removeEventListener("mousemove", myFunction);
-    }
-</script>
-
-mousedown
-Triggered by an element when a mouse button is pressed down over it
-mouseup
-Triggered by an element when a mouse button is released over it
-mouseover
-Triggered by an element when the mouse comes over it
-mouseout
-Triggered by an element when the mouse goes out of it
-mousemove
-Triggered by an element on every mouse move over it.
-
-click
-Triggered by a mouse click: mousedown and then mouseup over an element
-contextmenu
-Triggered by a right-button mouse click over an element.
-dblclick
-Triggered by two clicks within a short time over an element
-
-keydown
-A key is pressed down.
-keypress
-A character key is pressed.
-keyup
-A key is released.
-
-window events
-=============
-onload
-onunload
-
-window.onload = function() {
-    alert("Page loaded");
-};
-
-// window.onunload is working in IE. Not sure in Chrome etc.. 
-window.onunload = function() {
-    window.open("https://in.yahoo.com/"); 
-};
-
-Ex: win-events.html
-
-Along with load and unload we have resize and scroll events also.
-
-We have 'submit' event on form element. Also, focus, blur, change etc... events on form elements.
-
-Event Propagation and Prevent default:
-======================================
-Examples: event-propagation.html
-
-// To prevent default action. Ex: Prevent navigation of <a> tag, form submission etc..
-event.preventDefault();
-
-// Capturing and bubling events.
-An event contains 3 phases.
-1. Capturing
-2. Targeting
-3. Bubling
-
-Capturing: The event is first captured by the outermost element and propagated to the inner elements.
-Html -> Body -> Form -> Div -> P
-
-Tarrgeting means traverse through the DOM and find Targeted element.
-
-Bubling: When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.
-P -> Div -> Form
-
-event.stopPropagation(); // To prevent propagation.
-
-AJAX:
-=====
-AJAX - Asynchronous Javascript And Xml
-
-It's not a programming language. It's a technique to hit server and change webpage content without re-loading page.
-
-function loadDoc() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://localhost:3000/todos", true);
-    xhttp.send();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML = this.responseText;
-        }
-    };
-}
-
-The onreadystatechange property specifies a function to be executed every time the status of the XMLHttpRequest object changes.
-When readyState property is 4 and the status property is 200, the response is ready.
-
-Different readyStates available are below,
-0	UNSENT - Client has been created. open() not called yet.
-1	OPENED - open() has been called.
-2	HEADERS_RECEIVED - send() has been called, and headers and status are available.
-3	LOADING	- Downloading; responseText holds partial data.
-4	DONE - The operation is complete.
-
-Ex: ajax folder
-
-Timing methods
-==============
-Ex: timing.html
-
-setTimeout, clearTimeOut
-------------------------
-setTimeout function is used to execute a function or some statements after some specified time.
-
-var timeOutRef = setTimeout(function() {
-    document.getElementById('demo1').innerText = "Text changed";
-}, 3000);
-
-function stop() {
-    clearTimeout(timeOutRef);
-}
-
-setInterval, clearInterval
---------------------------
-setInterval function is used to execute a function or some statements repeatedly on specified time interval.
-
-var i = 0;
-var intervalRef = setInterval(function(){
-    i++;
-    document.getElementById('count').innerText = i;
-}, 1000);
-
-function stopCounting() {
-    clearInterval(intervalRef);
-}
-
-localStorage
-============
-'localStorage' is a global object in javascript. We can access it by 'window.localStorage' or 'localStorage'.
-
-localStorage is domain specific. We can't access localStorage of one domain from another domain.
-
-We store the data as key, value pairs in localStorage. 
-
-localStorage.setItem("key", "value");
-
-localStorage.setItem("name", "John"); // To store data
-
-var lastname = localStorage.getItem("name"); // To retrieve data
-
-localStorage.removeItem("key"); // To remove data
-
-Only store strings
-------------------
-If we store object in localStorage and trying to access it, we will get "[object Object]". So, we need to stringify the objects and store it in localStorage.
-
-WRONG:
-localStorage.setItem('user', {name: 'John', age: 25});
-localStorage.getItem('user'); // "[object Object]"
-
-CORRECT:
-localStorage.setItem('user', JSON.stringify({name: 'John', age: 25}));
-var user = localStorage.getItem('user'); // "{name: 'John', age: 25}"
-user = JSON.parse(user); // {name: 'John', age: 25}
-
 Exceptions:
 ===========
 new Error([message[, fileName[, lineNumber]]])
@@ -1105,43 +1082,6 @@ str.match(/Widget/); // Search stops after first occurence
 str.match(/Widget/g); // Returns an array with 2 elements
 str.match(/widget/); // Returns null. Case sensitive search
 str.match(/widget/ig); // Returns an array with 2 elements. Case in-sensitive global search
-
-JavaScript Libraries:
-=====================
-- moment
-- lodash / underscore js
-- jquery
-
-We can find libraries for the tasks like fileupload, generate excel, generate pdf etc..
-
-NPM
-===
-npm init
-
-npm install jquery
-npm i jquery
-npm install jquery --save
-npm install jasmine --save-dev
-
-npm install -g @angular/cli - Global installation
-
-Specifying version in package.json
-----------------------------------
-"jquery": "*" - any version
-
-"jquery": "latest" - latest version
-
-"jquery": "1.x"
-  or:
-"jquery": "^1.0.0" ----> install the latest minor version. Upto 1.9.9 but not 2.0.0
-
-"jquery": "~1.11"  -----> install the latest patch version. Upto 1.11.9 but not 1.12.0
-
-Browser Compatibility:
-----------------------
-- We have many browsers. All the browsers don't behave in same way. Some features are not supported by few browsers.
-
-https://caniuse.com is to verify the browser compatibility of html, css and javascript features.
 
 Sites to Refer:
 ===============
