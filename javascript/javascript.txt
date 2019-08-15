@@ -123,6 +123,8 @@ var str = " double \" quote ";
 var str = "test \
 test"; // Escaping new line
 
+var str = "test";
+
 str.length
 
 str.charAt(0)
