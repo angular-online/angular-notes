@@ -515,6 +515,54 @@ if(Object.keys(box).length) {
   // box is not an empty object
 }
 
+this
+====
+This behaviour will change depends on context.
+> In a regular function, this will become window object
+function test(){
+  console.log(this); // this = window object
+}
+
+> Creating custom object:
+function User(name) {
+  this.name = name;
+ 
+  this.sayHi = function() {
+    console.log("I am "  + this.name)
+  };
+}
+
+var john = new User("John");
+var peter = new User("Peter");
+
+john.sayHi()
+peter.sayHi()
+
+The value of this is dynamic. It is determined when function is called, not when it is declared.
+
+> In an object method, this will become current object.
+Example1:
+var obj = {
+  name: 'John',
+  printName: function(){
+    console.log(this.name);
+  }
+};
+obj.printName(); // this = obj
+
+Example2:
+var john = { 
+  firstName: "John" 
+}
+
+function print() { 
+  console.log(this.firstName + ": hi!")
+}
+
+john.sayHi = print;
+
+john.sayHi()  // this = john
+
 DOM:
 ====
 Document Object Model (DOM)
@@ -815,53 +863,6 @@ Specifying version in package.json
 
 Other Important Concepts
 ========================
-this:
-=====
-> In a regular function, this will become window object
-function test(){
-  console.log(this); // this = window object
-}
-
-> Creating custom object:
-function User(name) {
-  this.name = name;
- 
-  this.sayHi = function() {
-    console.log("I am "  + this.name)
-  };
-}
-
-var john = new User("John");
-var peter = new User("Peter");
-
-john.sayHi()
-peter.sayHi()
-
-The value of this is dynamic. It is determined when function is called, not when it is declared.
-
-> In an object method, this will become current object.
-Example1:
-var obj = {
-  name: 'John',
-  printName: function(){
-    console.log(this.name);
-  }
-};
-obj.printName(); // this = obj
-
-Example2:
-var john = { 
-  firstName: "John" 
-}
-
-function print() { 
-  console.log(this.firstName + ": hi!")
-}
-
-john.sayHi = print;
-
-john.sayHi()  // this = john
-
 call, apply and bind methods
 ----------------------------
 func.call(context, arg1, arg2, ...)  // this = context

@@ -1,0 +1,49 @@
+Session 1
+---------
+- Variables
+- Data types and typeof operator
+- Numbers
+- Strings
+- Type Conversions
+
+Session 2
+---------
+- Functions
+- AJAX
+- Arrays
+- Objects
+- window Object
+
+Session 3
+---------
+- 'this' keyword
+- DOM
+- Events
+- Timing methods
+- localStorage
+- NPM
+
+Session 4
+---------
+- let and const
+- Destructuring
+- Default parameters
+- Rest parameters
+- Spread operator
+- Arrow Functions
+
+Session 5
+---------
+- Classes
+- Symbols
+- for...of loop
+- Object changes
+- Array changes
+
+Session 6
+---------
+- Modules
+- If possible introduce TypeScript
+
+
+

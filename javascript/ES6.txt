@@ -103,8 +103,8 @@ doWork();
   console.log(x);
 })();
 
-Summary of 'let' keyword:
--------------------------
+Summary of 'let' keyword
+------------------------
 * Scope of a variable defined with "let" is block level.So,variables are not hoisted to top.
 * Re-declaration not allowed within the same block.
 
@@ -126,8 +126,8 @@ arr[0] = 3; // Allowed
 arr[1] = 4; // Allowed
 
 const user = {
-    name: 'John',
-    age: 25
+  name: 'John',
+  age: 25
 };
 
 user = {}; // Return error
@@ -140,19 +140,19 @@ Scope of const also block level.
 	let doWork = function(){
 		const test = 20;
 		console.log(test);
-    } 
-    doWork();
-		console.log(test);
+  } 
+  doWork();
+  console.log(test);
 })();
 
-Summary of 'const' keyword:
----------------------------
+Summary of 'const' keyword
+--------------------------
 * Scope of constants is block level.So, constants are not hoisted to top.
 * Re-declaration not allowed within the same block. 
 * We can't change the reference of const value, but we can change internal properties.
 
-Destructuring:
-==============
+Destructuring
+=============
 Destructuring is a new way to assign values to variables. Using destructuring we can extract values from arrays and objects.
 
 let x = 2;
@@ -172,16 +172,8 @@ let [a, b] = [1,2,3];
 let [, c, d] = [1,2,3];
 let [x, y, z] = [1,2]; // Will get z as undefined
 
-// Assign values using function
-function doWork(){
-    return [1, 2];
-}
-let [x, y] = doWork();
-
-All the above are array destructuring. 
-
-Object destructuring:
----------------------
+Object destructuring
+--------------------
 let {firstName: first, lastName: last} = {firstName: "John", lastName: "Smith"};
 
 let {firstName: first, lastName: last, age: age} = {firstName: "John", lastName: "Smith"};
@@ -196,19 +188,15 @@ console.log(firstName);
 console.log(lastName);
 console.log(twitter);
 
-Default parameters:
-===================
+Default parameters
+==================
 let doWork = function(name = "John"){
-    console.log(name);
+  console.log(name);
 }
 doWork(); // Not passing name
 doWork("Peter"); // passing name
 doWork(undefined); // passing undefined - name is 'John'
 doWork(null); // passing null - name is 'null'
-
-null and undefined are not same in Javascript.
-undefined - existed but empty
-null - not existed
 
 let doWork = function(a = 1, b = 2, c = 3){
     console.log(a);
@@ -217,8 +205,8 @@ let doWork = function(a = 1, b = 2, c = 3){
 }
 doWork(5, undefined);
 
-Rest parameters:
-================
+Rest parameters
+===============
 Rest of the parameters in a function.
 If the number of parameters are not fixed we can use rest parameters.
 
@@ -241,8 +229,8 @@ doWork("John", 1, 2, 3, 4, "doe");
 
 Rest operator is part of function defination.
 
-Spread operator:
-================
+Spread operator
+===============
 spread is negation to Rest.
 
 Rest operator take individual values and combine them into an array. Spread operator take an array and split it into individual values.
@@ -250,9 +238,9 @@ Rest operator take individual values and combine them into an array. Spread oper
 Spread operator is part of the function calling statement or other.
 
 let doWork = function(x, y, z){
-    console.log(x);
-    console.log(y);
-    console.log(z);
+  console.log(x);
+  console.log(y);
+  console.log(z);
 }
 
 let arr = [1,2,3];
@@ -275,8 +263,8 @@ let userClone = { ...user };
 user.age = 30; // We find the updated age in both 'user' and 'userCopy', but not in userClone
 userClone.name = 'Michael'; // Only userClone is updated. Not user or userCopy.
 
-Template literals:
-==================
+Template literals
+=================
 Useful to build dynamic strings easily.
 
 Template literals starts and end with Backtic(`). ${x} replace the value of x in template literal string.
@@ -293,17 +281,17 @@ let html = `<div>
 
 ` - Back tick.
 
-Arrow Functions:
-================
+Arrow Functions
+===============
 Two benifits
 1. shorter syntax
 2. No binding of this. "this" is not bound in arrow functions.
-    - Arrow functions don't contain this, prototype, arguments property.
+   - Arrow functions don't contain this and arguments property.
 
 1. shorter syntax
 -----------------
 var multiply = function(x, y){
-    return x*y;
+  return x*y;
 };
 
 var multiply = (x, y) => {return x*y};
@@ -314,10 +302,10 @@ Curly brackets and return are not required if only one statement is present.
 
 var multiply = (x, y) => x*y;
 
-Parentheses are optional when only one parameter is present
+Parentheses are optional when only one parameter is present.
 
 var strToArr = function(str){
-    return str.split(" ");
+  return str.split(" ");
 };
 
 strToArr('Hello Good Morning')
@@ -326,16 +314,14 @@ var strToArr = str => str.split(" ");
 
 Usage:
 var smartPhones = [
-    { name:'iphone', price:649 },
-    { name:'Galaxy S6', price:576 },
-    { name:'Galaxy Note 5', price:489 }
+  { name:'iphone', price:649 },
+  { name:'Galaxy S6', price:576 },
+  { name:'Galaxy Note 5', price:489 }
 ];
 
-var smartPhonePrices = smartPhones.map(
-    function(smartPhone) {
-        return smartPhone.price;
-    }
-);
+var smartPhonePrices = smartPhones.map(function(smartPhone) {
+  return smartPhone.price;
+});
 
 var smartPhonePrices = smartPhones.map(smartPhone=>smartPhone.price);
 
@@ -349,7 +335,6 @@ For example in callbacks,
 
 function Person() {
   this.age = 0;
-
   setInterval(function growUp() {
     this.age++;
     console.log(this.age);
@@ -360,13 +345,13 @@ var p = new Person();
 
 Conventional Fix:
 function Person() {
-    var that = this;
-    that.age = 0;
+  var that = this;
+  that.age = 0;
 
-    setInterval(function growUp() {
-        that.age++;
-        console.log(that.age);
-    }, 1000);
+  setInterval(function growUp() {
+    that.age++;
+    console.log(that.age);
+  }, 1000);
 }
 
 var p = new Person();
@@ -385,7 +370,7 @@ var p = new Person();
 
 An arrow function does not create its own this context.
 
-No binding of arguments
+> No binding of arguments
 
 function test(a, b){
   console.log(arguments);
@@ -400,12 +385,8 @@ Arrow functions cannot be used as constructors and will throw an error when used
 var Foo = () => {};
 var foo = new Foo(); // TypeError: Foo is not a constructor
 
-Arrow functions do not have a prototype property.
-var Foo = () => {};
-Foo.prototype
-
-Returning object:
------------------
+Returning object
+----------------
 var func = (a, b) => a+b;
 func(2, 3);
 
@@ -417,51 +398,17 @@ don't give line brakes before arrow
 var func = ()
            => 1;
 
-Classes:
-========
-ES5:
-----
-In ES5 we don't have the concept of classes. We use constructor functions as classes and prototype property for inheritance.
+Classes
+=======
+In ES5 we don't have classes. In ES6 classes are introduced in javascript.
 
-Prototype is a hidden property of a function which helps in inheritance.
-
-Every JavaScript function has a prototype property and it is empty by default.
-
-function simpleCalc(){
-	this.add = function(){
-	 console.log("Addition is simple"); 
-	};
-	this.subtract = function(){
-		console.log("Subtraction is simple"); 
-	}
-}
-
-var simpleObj = new simpleCalc();
-
-simpleObj.add()
-    
-function complexCalc(){
-	this.multiplication=function(){
-	 console.log("Multiplication is complex"); 
-	};
-	this.division=function(){
-		console.log("Division is complex"); 
-	}
-}
-
-complexCalc.prototype = simpleObj;
-
-var complexObj = new complexCalc();
-
-ES6:
-----
 class Employee {
   doWork(){
-      return "done!";
+    return "done!";
   }
 
   getName(){
-      return "John";
+    return "John";
   }
 }
 
@@ -469,28 +416,26 @@ let emp = new Employee();
 
 emp.doWork();
 
-Employee.prototype.doWork(); //classes use prototype property in the background.
-
 Constructor: Constructor is a function in class which is invoked automatically while creating an object.
 
 class Employee {
-    constructor(name){
-      this.empName = name;
-    }
-    doWork(){
-      return "done!";
-    }
-    getName(){
-      return this.empName;
-    }
+  constructor(name){
+    this.empName = name;
+  }
+  doWork(){
+    return "done!";
+  }
+  getName(){
+    return this.empName;
+  }
 }
 
 let emp = new Employee("john");
 
 emp.empName // Returns employee name.
 
-getters and setters:
---------------------
+getters and setters
+-------------------
 Getter return the peoperty and setter set the property.
 
 class Employee {
@@ -652,111 +597,14 @@ class Employee extends Person{
 var emp = new Employee("John", "Mr");
 emp.doWork();
 
-Note: There are no access modifiers like public, private and protected in ES6 classes. In TypeScript we have these access modifiers.
+*** Note1 *** 
+There are no access modifiers like public, private and protected in ES6 classes. In TypeScript we have these access modifiers.
 
-Modules:
-========
-In JavaScript each file is a module and all objects defined in the file belong to that module.
+*** Note2 *** 
+We don't have interfaces in javascript. In TypeScript we have interfaces.
 
-Another defination: Any javascript file which contains export or import statement can be considered as a module. 
-
-Using 'export' keyword One module can export objects, constants, functions, classes etc..., another module can import using 'import' keywodrd.
-
-//------ math-functions.js ------
-const sum = (a, b) => {
-    return a + b;
-};
-
-const product = (a, b) => {
-    return a * b;
-};
-
-export {sum, product};
-
-//------ app.js ------
-import {sum, product} from './modules/math-functions';
-
-resultSum.textContent = `The sum of ${a} and ${b} is ${sum(a, b)}.`;
-resultProduct.textContent = `The product of ${a} and ${b} is ${product(a, b)}.`;
-
-You can also import the complete module:
-
-//------ app.js ------
-import * as math from './modules/math-functions';
-resultSum.textContent = `The sum of ${a} and ${b} is ${math.sum(a, b)}.`;
-resultProduct.textContent = `The product of ${a} and ${b} is ${math.product(a, b)}.`;
-
-Browsers are not yet supporting modules feature in ES6.
-
-Webpack is module bundler, which convert ES6 modules into ES5 modules.
-
-// Install webpack globally
-> npm install webpack -g
-> npm install webpack-cli -g
-
-Code Repo: https://github.com/angular-online/getting-started-with-webpack-and-es6-modules-the-demo
-
-> Clone the Repo
-
-> npm install
-
-> webpack --watch
-
-webpack commands:
------------------ 
-webpack - build and exit.
-
-webpack --watch  - build and keep on checking for changes.
-
-Default Exports:
-----------------
-An ES6 module can export a main value as default value. Default exports are easy to import.
-We have to export only one default value from one module.
-
-Default export of function:
-//------ default-demo.js ------
-export default function () {
-    console.log('default function called');
-}
-
-//------ app.js ------
-import MyFunc from './modules/default-demo';
-MyFunc();
-
-Default export of class:
-//------ default-demo.js ------
-export default class {} 
-
-//------ app.js ------
-import MyClass from 'MyClass';
-const inst = new MyClass();
-
-We can do default export of direct values also.
-
-export default 'abc';
-export default foo();
-export default /^xyz$/;
-export default 5 * 7;
-export default { no: false, yes: true };
-
-Imports and exports must be at the top level / first level(i.e not wrapped in any block {}).
-// No conditional Imports
-if (Math.random()) {
-    import {sum, product} from './modules/math-functions'; // SyntaxError
-}
-
-// You can’t even nest `import` and `export` inside a simple block:
-{
-    import {sum, product} from './modules/math-functions'; // SyntaxError
-}
-
-Imports are hoisted: Therefore, it doesn’t matter where you mention them in a module and the following code works without any problems:
-
-MyFunc();
-import MyFunc from './modules/default-demo';
-
-Symbols:
-========
+Symbols
+=======
 Symbol is a primitive data type.
 
 Object property keys may be either of string type, or of symbol type. Not numbers, not booleans, only strings or symbols.
@@ -790,8 +638,8 @@ for(let fruit of fruits) {
 	console.log(fruit);
 }
 
-Object changes:
-===============
+Object changes
+==============
 object.assign() - to extend one object.
 ---------------
 var obj1 = {name: "John"};
@@ -811,11 +659,11 @@ var person = {firstName: firstName, lastName: lastName};
 var person2 = {firstName, lastName}; // If key and value names are same.
 
 var person = {
-    doWork: function(){return "done"}
+  doWork: function(){return "done"}
 };
 
 var person2 = {
-    doWork(){return "done"}
+  doWork(){return "done"}
 };
 
 Computed Properties:
@@ -832,20 +680,20 @@ obj[name2] = "Doe";
 
 In ES6:
 var obj2 = {
-    [name1]: "John",
-    [name2]: "Doe",
+  [name1]: "John",
+  [name2]: "Doe"
 };
 
 We can write simple expressions in [].
 var obj2 = {
-    [name1+'s']: "John",
-    [name2]: "Doe",
+  [name1+'s']: "John",
+  [name2]: "Doe"
 };
 
-Array changes:
-==============
-find and findIndex:
--------------------
+Array changes
+=============
+find and findIndex
+------------------
 We use indexOf to search for an element in an array.
 
 We can use find() and findIndex() methods for conditional based search.
@@ -857,7 +705,7 @@ numbersArr.find(function(item){
 });
 
 numbersArr.findIndex(function(item){
-    return item > 2; // index of 4. it is 3.
+  return item > 2; // index of 4. it is 3.
 });
 
 Array.of():
@@ -873,6 +721,105 @@ create array from array like objects.
 var arrayLike = document.querySelectorAll('div');
 
 var arr = Array.from(arrayLike);
+
+Modules
+=======
+In JavaScript each file is a module and all objects defined in the file belong to that module.
+
+Another defination: Any javascript file which contains export or import statement can be considered as a module. 
+
+Using 'export' keyword One module can export objects, constants, functions, classes etc..., another module can import using 'import' keywodrd.
+
+//------ math-functions.js ------
+const sum = (a, b) => {
+  return a + b;
+};
+
+const product = (a, b) => {
+  return a * b;
+};
+
+export {sum, product};
+
+//------ app.js ------
+import {sum, product} from './modules/math-functions';
+
+resultSum.textContent = `The sum of ${a} and ${b} is ${sum(a, b)}.`;
+resultProduct.textContent = `The product of ${a} and ${b} is ${product(a, b)}.`;
+
+You can also import the complete module:
+
+//------ app.js ------
+import * as math from './modules/math-functions';
+resultSum.textContent = `The sum of ${a} and ${b} is ${math.sum(a, b)}.`;
+resultProduct.textContent = `The product of ${a} and ${b} is ${math.product(a, b)}.`;
+
+ES6 Modules are not yet supported by all the browsers. So, we need to convert and bundle the es6 modules code to es5 equivalent code. Webpack is an advanced javascript module bundler / build tool.
+
+// Install webpack globally
+> npm install webpack -g
+> npm install webpack-cli -g
+
+Code Repo: https://github.com/angular-online/getting-started-with-webpack-and-es6-modules-the-demo
+
+> Clone the Repo
+
+> npm install
+
+> webpack --watch
+
+webpack commands:
+----------------- 
+webpack - build and exit.
+
+webpack --watch  - build and keep on checking for changes.
+
+Default Exports:
+----------------
+An ES6 module can export a main value as default value. Default exports are easy to import.
+We have to export only one default value from one module.
+
+Default export of function:
+//------ default-demo.js ------
+export default function () {
+  console.log('default function called');
+}
+
+//------ app.js ------
+import MyFunc from './modules/default-demo';
+MyFunc();
+
+Default export of class:
+//------ default-demo.js ------
+export default class {} 
+
+//------ app.js ------
+import MyClass from 'MyClass';
+const inst = new MyClass();
+
+We can do default export of direct values also.
+
+export default 'abc';
+export default foo();
+export default /^xyz$/;
+export default 5 * 7;
+export default { no: false, yes: true };
+
+Imports and exports must be at the top level / first level(i.e not wrapped in any block {}).
+// No conditional Imports
+if (someCondition) {
+  import {sum, product} from './modules/math-functions'; // SyntaxError
+}
+
+// You can’t even nest `import` and `export` inside a simple block:
+{
+  import {sum, product} from './modules/math-functions'; // SyntaxError
+}
+
+Imports are hoisted: Therefore, it doesn’t matter where you mention them in a module and the following code works without any problems:
+
+MyFunc();
+import MyFunc from './modules/default-demo';
 
 Sites to Refer:
 ===============
