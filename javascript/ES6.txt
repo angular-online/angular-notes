@@ -2,11 +2,11 @@ ES6 / ECMA Script 2015.
 
 let:
 ====
-It's a new keyword introduced to define variables with new features.
+'let' is a new keyword introduced to define variables with new features.
  
 Adding new features to "var" keyword will generate many backward compatability issues. So, introduced 'let' keyword.
 
-Variable hoisting with var:
+Hoisting confusion with var
 ---------------------------
 var doWork = function(){
   return x;
@@ -15,28 +15,27 @@ var doWork = function(){
 doWork() // Return error. x is not defined
 
 var doWork = function(flag){
-    var x;
-    if(flag){
-        x = 3;
-    }	
-    return x;
+  var x;
+  if(flag){
+    x = 3;
+  }	
+  return x;
 } 
 
 doWork(false) // Don't get error. undefined will be returned.
 
 var doWork = function(flag){
-    if(flag){
-        var x = 3; //This Variable will be hoisted
-    }	
-    return x;
+  if(flag){
+    var x = 3; //This Variable will be hoisted
+  }	
+  return x;
 }
 
 doWork(false) // We should get error. But, we don't get because the variable x is hoisted to top of the function.
 
-Function hoisting:
-------------------
+Function hoisting
+-----------------
 Function declarations are also hoisted.
-// doWork is function name / identifier
 doWork();
 
 function doWork() {
@@ -47,15 +46,15 @@ Functions assigned to variables are not hoisted.
 doWork();
 
 var doWork = function(){
-    console.log("test");
+  console.log("test");
 }
 
 variables defined with "let" are not hoisted.
 
-Scope of the let Variable limited to it's current block.
+Scope of the let variable limited to it's current block.
 var doWork = function(flag){
     if(flag){
-        let x = 3;
+      let x = 3;
     }
     return x; 
 }
@@ -68,25 +67,25 @@ The rule applies for all kind of blocks like for, switch etc..
 
 Re-declaration not allowed within the same block.
 var doWork = function(){
-    var x = 10;
-    var x = 12; // No Error with var
-    return x; 
+  var x = 10;
+  var x = 12; // No Error with var
+  return x; 
 }
 
 doWork();
 
 var doWork = function(){
-    let x = 10;
-    let x = 12; // Syntax error. 
-    return x; 
+  let x = 10;
+  let x = 12; // Syntax error. 
+  return x; 
 }
 
 doWork();
 
 var doWork = function(){
-    let x = 10;
-    var x = 12; // Syntax error. 
-    return x; 
+  let x = 10;
+  var x = 12; // Syntax error. 
+  return x; 
 }
 
 doWork();
@@ -94,14 +93,14 @@ doWork();
 ** This re-declaration rule applies for only that block **
 
 (function(){
-    let x = 10;
-    let doWork = function(){
-        let x = 12;
-        console.log(x);
-        return x; 
-    }
-    doWork();
-    console.log(x);
+  let x = 10;
+  let doWork = function(){
+      let x = 12;
+      console.log(x);
+      return x; 
+  }
+  doWork();
+  console.log(x);
 })();
 
 Summary of 'let' keyword:
