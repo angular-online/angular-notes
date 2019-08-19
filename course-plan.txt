@@ -45,5 +45,13 @@ Session 6
 - Modules
 - If possible introduce TypeScript
 
+Session 7
+---------
+- Installation
+- Data Types
+- Destructuring
 
-
+Session 8
+---------
+- Interfaces
+- 

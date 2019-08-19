@@ -8,12 +8,17 @@ tsc --version
 
 tsc stands for "TypeScript Compiler".
 
-tsc helloworld.ts => helloworld.ts compile to helloworld.js
+tsc demo.ts => demo.ts compile to temp.js
 
+// sample code
 class Person {
     name = 'John Doe';
     age = 25;
 }
+
+tsc demo.ts // by default compiles to es5
+tsc demo.ts --target es5 // specifying version explicitly
+tsc demo.ts --target es6
 
 In .ts files we can write valid JavaScript. All valid JavaScript statements are valid TypeScript statements.
 
@@ -58,84 +63,9 @@ let list: number[] = [1, 2, 3]; // Numerical array
 
 let list: Array<number> = [1, 2, 3];
 
-Tuple:
-------
-Tuple is a datatype used to express datatypes of array elements. 
-
-// Declare a tuple type
-let x: [string, number]; // 0th indexed value should be string, 1 indexed value should be number.
-
-// Initialize it
-x = ["hello", 10]; // OK
-
-// Initialize it incorrectly
-x = [10, "hello"]; // Error
-
-x[1].substr(1) // Retuns error in compilation. So, runtime errors will be prevented.
-
-x[3] = "world"; // 3rd index is out of the known indices. So, the value should be 'string | number' (union data type). 
-
-x[6] = true; // Error, 'boolean' isn't 'string | number'
-
-Enum:
------
-Enum is a datatype used to give friendly names to set of numerics.
-
-// For example:
-- Car racing game defined levels are 1000, 2000, 3000, 4000, 5000.
-- Player will get access to some privileges on crossing the levels.[Ex: Access to power mode, able to purchase powerful cars etc...]
-
-So, to handle these levels code looks like below.
-if(score > 1000) {
-    // Shift to power mode
-} else if(score > 2000) {
-    // Able to purchase sports car
-} else if(score > 3000) {
-    // Able to purchase racing car 
-} etc ...
-
-Let's give some names to the levels and handle the same code using enums. 
-
-enum level {one = 1000, two = 2000, three = 3000, four = 4000, five = 5000};
-let score = 2500;
-if(score <= level.one) {
-    console.log('Shift to power mode');
-} else if(score <= level.two) {
-    console.log('Able to purchase sports car');
-} else if(score <= level.three) {
-    console.log('Able to purchase racing car'); 
-} else if(score <= level.four){
-    console.log('Able to purchase super car');
-} else if(score <= level.five){
-    console.log('Able to purchase flying car');
-}
-
-enum level {one = 1001, two, three, four, five};
-If we initialize one with 1001, two will become 1002, three will become 1003 etc..
-
-enum level {one, two, three, four, five};
-If we don't initialize one will become 0, two will become 1, three will become 2 etc..
-
-We can know the name of enum with value.
-level[2000]; // Return two
-
-String enums:
--------------
-enum Direction {
-    Up = "UP",
-    Down = "DOWN",
-    Left = "LEFT",
-    Right = "RIGHT"
-} // For string enums we need to initialize all the values.
-
-enum BooleanLikeHeterogeneousEnum {
-    No = 0,
-    Yes = "YES",
-} // It's a heterogeneous enum
-
 Any:
 ----
-If we don't know type of variable at the time of writing the code we need to opt for 'any' kind. Sometimes we get data from user/third-party libraries.
+If we don't know type of variable at the time of writing the code then we need to opt for 'any' kind. Sometimes we get data from user/third-party libraries.
 
 any accept any kind of data.
 
@@ -154,7 +84,7 @@ function warnUser(): void {
     alert("This is my warning message");
 }
 
-Declaring variables of type void is not useful because you can only assign undefined or null to them:
+Declaring variables of type void is not useful because you can only assign undefined or null to them.
 
 let unusable: void = undefined;
 
@@ -172,33 +102,21 @@ num = null;
 
 If we use strictNullChecks flag, we can't assign null and undefined to other datatyped variables.
 
-tsc --strictNullChecks temp.ts
+tsc demo.ts --strictNullChecks 
 
 strictNullChecks is encouraged by TypeScript. As, it can avoid many common errors.
 
 While using strictNullChecks, if we want to accept 'number' or 'undefined' or 'null' for a variable, we can use union datatypes number|undefined|null.
 
-var str: number|undefined|null;
-
-Never:
-------
-'never' type represents the type of values that never occur. For instance, never is the return type for a function expression or an arrow function expression that always throws an exception or one that never returns.
-
-function error(message: string): never {
-    throw new Error(message);
-}
-
-function infiniteLoop(): never {
-    while (true) {
-    }
-}
+let num:number|undefined|null = 123;
+num = null;
 
 Type assertions:
 ----------------
 A type assertion is like a type cast in other languages.
 
 Two syntaxes available for type assertion:
-1. angle-bracket
+1. angle-bracket syntax
 
 let someValue: any = "this is a string";
 let strLength: number = (<string>someValue).length;
@@ -210,41 +128,51 @@ let strLength: number = (someValue as string).length;
 
 Union Types:
 ------------
-function paddingLeft(padding: any) {
-    if (typeof padding === "number") {
-        // Do something and return
+function square(a: any) {
+    if(typeof a === "number") {
+        return a*a;
+    } else if(typeof a === "string") {
+        let val = parseInt(a); 
+        if(!isNaN(val)) {
+            return val*val;
+        } else {
+            throw new Error(`Expected a parsable string, but got '${a}'.`);
+        }
+    } else {
+        throw new Error(`Expected string or number, but got '${a}'.`);
     }
-    if (typeof padding === "string") {
-        // Do something and return
-    }
-    throw new Error(`Expected string or number, got '${padding}'.`);
 }
 
-As per the above function, padding should be string or number. 
-paddingLeft(true); // TSC can't find error on calling with 'true'.
+square(2);
+square('2px');
+square(true); // Don't show compilation error. Causes a runtime exception, page will be broken.
 
-If we use union, we can restrict to string | number.
+The square function is designed to handle only numbers and strings. To accept both strings and numbers, we are using any(a: any) data type. Because of that, TSC can not find the unsupported data types. So, it don't show any compilation errors even we pass unsupported values. Ex: square(true);
 
-function paddingLeft(padding: string | number) {
-    if (typeof padding === "number") {
-        // Do something and return
+Using union datatypes we can restrict the function to accept only numbers and strings instead of 'any'.
+
+function square(a: number | string) {
+    if(typeof a === "number") {
+        return a*a;
+    } else if(typeof a === "string") {
+        let val = parseInt(a); 
+        if(!isNaN(val)) {
+            return val*val;
+        } else {
+            throw new Error(`Expected a parsable string, but got '${a}'.`);
+        }
+    } else {
+        throw new Error(`Expected string or number, but got '${a}'.`);
     }
-    if (typeof padding === "string") {
-        // Do something and return
-    }
-    throw new Error(`Expected string or number, got '${padding}'.`);
 }
-paddingLeft(true); // TSC will return error.
+
+square(2);
+square('2px');
+square(true); // Show compilation error
 
 Conclusion of Datatypes:
 ------------------------ 
 If we use data types, we can catch most of the errors / exceptions in the compilation phase itself.
-
-let and const:
-==============
-let x: number = 123;
-
-const y: String = 'John Doe';
 
 Destructuring:
 ==============
@@ -267,7 +195,7 @@ console.log(b);
 
 Interfaces:
 ===========
-We can understand interfaces as custom datatypes.
+We can use interfaces as custom datatypes.
 
 Interfaces define the shape of a value. TypeScript always check whether the value is in specified format or not.
 
@@ -282,11 +210,11 @@ Type checker checks for label in myObj. If it is not found, compiler will return
 
 We can specify the stucture of labelledObj param using interface like below.
 
-interface LabelledValue {
+interface LabelledObjShape {
     label: string;
 }
 
-function printLabel(labelledObj: LabelledValue) {
+function printLabel(labelledObj: LabelledObjShape) {
     console.log(labelledObj.label);
 }
 
