@@ -265,26 +265,15 @@ let p1: Point = { x: 10, y: 20 };
 
 p1.x = 5; // error!
 
-TypeScript comes with a ReadonlyArray<T> type that is the same as Array<T> with all mutating methods removed, so you can make sure you don’t change your arrays after creation:
-
-let a: Array<number> = [1, 2, 3, 4];
-let ro: ReadonlyArray<number> = a;
-ro[0] = 12; // error!
-ro.push(5); // error!
-ro.length = 100; // error!
-a = ro; // error! - can't assign ReadonlyArray to normal array. But, type assertion works.
-
-a = ro as Array<number>;
-
 readonly vs const:
 ------------------
 Variables use const whereas object properties use readonly.
 const is for variables.
 readonly is for properties of objects.
 
-Function Types:
----------------
-Interfaces can be used to describing function types.
+Function Interfaces:
+--------------------
+Interfaces can be used to describe the shape of function.
 
 interface SearchFunc {
     (source: string, subString: string): boolean;
@@ -304,8 +293,8 @@ let mySearch: SearchFunc = function(src: string, sub: string): boolean {
     return result > -1;
 }
 
-Class Types:
-------------
+Class Interfaces
+----------------
 interface ClockInterface {
     currentTime: Date;
 }
@@ -315,7 +304,7 @@ class Clock implements ClockInterface {
     constructor(h: number, m: number) { }
 }
 
-we can also describe methods in an interface that are implemented in the class.
+we can also describe methods in an interface that must be implemented in the class.
 
 interface ClockInterface {
     currentTime: Date;
@@ -332,58 +321,8 @@ class Clock implements ClockInterface {
 
 Interfaces describe the public side of the class, rather than both the public and private side. This prohibits exposing private side.
 
-Extending Interfaces:
----------------------
-Like classes, interfaces can extend each other. This allows you to copy the members of one interface into another, which gives you more flexibility in how you separate your interfaces into reusable components.
-
-interface Shape {
-    color: string;
-}
-
-interface Square extends Shape {
-    sideLength: number;
-}
-
-class SquareDemo implements Square {
-    color: string = 'red';
-    sideLength: number = 20;
-} // If we remove any property from above class we will get compilation error
-
-An interface can extend multiple interfaces, creating a combination of all of the interfaces.
-
-interface Shape {
-    color: string;
-}
-
-interface PenStroke {
-    penWidth: number;
-}
-
-interface Square extends Shape, PenStroke {
-    sideLength: number;
-}
-
-Interfaces Extending Classes:
------------------------------
-When an interface type extends a class type it inherits the members of the class but not their implementations.
-
-Interfaces inherit even the private and protected members of a base class.
-
-class Control {
-    state: any;
-}
-
-interface SelectableControl extends Control {
-    select(): void;
-}
-
-class SomeControl implements SelectableControl {
-    state: any = 'checked';
-    select(): void {}
-}
-
-Classes:
-========
+Classes
+=======
 class Greeter {
     greeting: string;
     constructor(message: string) {
@@ -569,53 +508,6 @@ console.log(Grid.origin);
 let grid1 = new Grid(1.0);
 console.log(grid1.origin); // Get an error. We can't access static members on class instance.
 
-Abstract Classes:
------------------
-Abstract classes are base classes from which other classes may be derived. They may not be instantiated directly. Unlike an interface, an abstract class may contain implementation details for its members. The abstract keyword is used to define abstract classes as well as abstract methods within an abstract class.
-
-abstract class Animal {
-    abstract makeSound(): void;
-    move(): void {
-        console.log("roaming the earth...");
-    }
-}
-
-Methods within an abstract class that are marked as abstract do not contain an implementation and must be implemented in derived classes.
-
-abstract class Department { 
-
-    constructor(public name: string) {
-    }
-
-    printName(): void {
-        console.log("Department name: " + this.name);
-    }
-
-    abstract printMeeting(): void; // must be implemented in derived classes
-}
-
-class AccountingDepartment extends Department {
-
-    constructor() {
-        super("Accounting and Auditing"); // constructors in derived classes must call super()
-    }
-
-    printMeeting(): void {
-        console.log("The Accounting Department meets each Monday at 10am.");
-    }
-
-    generateReports(): void {
-        console.log("Generating accounting reports...");
-    }
-}
-
-let department: Department; // ok to create a reference to an abstract type
-department = new Department(); // error: cannot create an instance of an abstract class
-department = new AccountingDepartment(); // ok to create and assign a non-abstract subclass
-department.printName();
-department.printMeeting();
-department.generateReports(); // error: Property 'generateReports' does not exist on type 'Department'. Here 'department' is of type 'Department'.
-
 Class datatype:
 ---------------
 class Greeter {
@@ -634,8 +526,8 @@ console.log(greeter.greet());
 
 Here 'greeter' is a variable of type Greeter.
 
-Functions:
-==========
+Functions
+=========
 We can add types to each of the parameters and then to the function itself to add a return type. 
 function add(x: number, y: number): number {
     return x + y;
@@ -695,8 +587,8 @@ function buildName(firstName: string, ...restOfName: string[]) {
 
 let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
 
-Generics:
-=========
+Generics
+========
 Using Generics is a way to accept all kinds of datatypes in safe way without loosing type information.
 
 Let's see below examples to understand the need of generics.
@@ -767,8 +659,11 @@ class Greeter<T> {
 
 let greeter = new Greeter<string>("Hello, world");
 
-Type Inference:
-===============
+Array is a generic class.
+var arr:Array<string> = new Array<string>('a', 'b', 'c');
+
+Type Inference
+==============
 Infer means conclude something from evidence and reasoning rather than from explicit statements.
 
 Type Inference means concluding datatype of a variable depends on it's value.
@@ -785,8 +680,8 @@ let zoo = [new Rhino(), new Elephant(), new Snake()];
 
 zoo will become union of (Rhino | Elephant | Snake)[].
 
-Modules:
-========
+Modules
+=======
 In TypeScript, just as in ECMAScript 2015(ES6), any file containing a top-level import or export is considered as module. Conversely, a file without any top-level import or export declarations is treated as a script whose contents are available in the global scope.
 
 Modules are executed within their own scope, not in the global scope; this means that variables, functions, classes, etc. declared in a module are not visible outside the module unless they are explicitly exported.
@@ -822,8 +717,8 @@ If we run 'tsc' command in the root folder, typescript compiler will go through 
 
 ** If we pass file name to 'tsc' command, it will not consider tsconfig.json file.
 
-Decorators:
-===========
+Decorators
+==========
 Decorator is special kind of function which can be applied to class, method, property etc... TypeScript decorators adds some capabilities/extend the decorated element's functionality.
 
 Decorators are a stage 2 proposal for JavaScript and are available as an experimental feature of TypeScript.
@@ -948,8 +843,8 @@ class Greeter {
     }
 }
 
-HTML5 Web APIs in TS:
-=====================
+HTML5 Web APIs in TS
+====================
 To define the shape of an object like user, we use interface IUser.
 
 To define the shape of a DOM object we use Web API interfaces.
@@ -972,8 +867,8 @@ Below are few html interfaces,
 - HTMLSelectElement
 - etc...
 
-How to use JavaScript libraries in TypeScript:
-==============================================
+How to use JavaScript libraries in TypeScript
+=============================================
 Ex: typings-exmpl folder
 
 We need to install typings file of JavaScript library to work.
@@ -983,8 +878,8 @@ npm install --save-dev @types/jquery
 
 After adding the typings file, include jquery in index.html file, then jQuery starts working.
 
-Confusing Syntaxes:
-===================
+All syntaxes at a glance
+========================
 Array notation:
 ---------------
 let list: Array<number> = [1, 2, 3];

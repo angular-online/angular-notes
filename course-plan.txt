@@ -54,4 +54,19 @@ Session 7
 Session 8
 ---------
 - Interfaces
-- 
+- Classes
+
+Session 9
+---------
+- Functions
+- Generics
+- Type Inference
+- Modules
+- tsconfig.json
+
+Session 10
+----------
+- Decorators
+- HTML5 Web APIs in TS
+- Typings
+- All syntaxes at a glance
