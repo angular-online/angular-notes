@@ -286,7 +286,7 @@ Arrow Functions
 Two benifits
 1. shorter syntax
 2. No binding of this. "this" is not bound in arrow functions.
-   - Arrow functions don't contain this and arguments property.
+   - Arrow functions don't contain 'this' and 'arguments' property.
 
 1. shorter syntax
 -----------------
@@ -563,7 +563,7 @@ class Employee extends Person{
 
 var emp = new Employee("John", 'Mr');
 
-Super function invokes the parent class constructor and forward arguments from child class constructor to parent class constructor. 
+Super function invokes the parent  class constructor and forward arguments from child class constructor to parent class constructor. 
 
 Overrides:
 ----------
