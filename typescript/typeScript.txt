@@ -883,6 +883,7 @@ All syntaxes at a glance
 Array notation:
 ---------------
 let list: Array<number> = [1, 2, 3];
+var list: Array<string> = new Array<string>('a', 'b', 'c');
 let list: number[] = [1, 2, 3];
 
 Type casting / assertions:
