@@ -607,9 +607,6 @@ Symbols
 =======
 Symbol is a primitive data type.
 
-Object property keys may be either of string type, or of symbol type. Not numbers, not booleans, only strings or symbols.
-Ex: iterator symbol on arrays, maps etc...
-
 “Symbol” value represents a unique identifier.
 
 // id is a new symbol
@@ -629,6 +626,14 @@ let id2 = Symbol("id");
 
 id1 == id2 // false
 
+Object property keys may be either of string type, or of symbol type. Not numbers, not booleans, only strings or symbols.
+
+var user = {};
+let id = Symbol("id");
+user[id] = 123;
+
+Also, iterator symbol on arrays, maps etc...
+
 for...of loop
 =============
 We can use this for of loop to iterate through values of iterables like arrays, maps etc...
@@ -640,7 +645,7 @@ for(let fruit of fruits) {
 
 Object changes
 ==============
-object.assign() - to extend one object.
+Object.assign() - to extend one object.
 ---------------
 var obj1 = {name: "John"};
 var obj2 = {surname: "Doe"};
