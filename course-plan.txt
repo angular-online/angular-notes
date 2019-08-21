@@ -50,23 +50,24 @@ Session 7
 - Installation
 - Data Types
 - Destructuring
+- Type Inference
+- Interfaces
 
 Session 8
 ---------
-- Interfaces
 - Classes
-
-Session 9
----------
 - Functions
 - Generics
-- Type Inference
 - Modules
 - tsconfig.json
 
-Session 10
-----------
+Session 9
+---------
 - Decorators
 - HTML5 Web APIs in TS
 - Typings
 - All syntaxes at a glance
+
+Session 10
+----------
+

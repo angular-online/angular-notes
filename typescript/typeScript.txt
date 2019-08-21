@@ -8,7 +8,7 @@ tsc --version
 
 tsc stands for "TypeScript Compiler".
 
-tsc demo.ts => demo.ts compile to temp.js
+tsc demo.ts => demo.ts compile to demo.js
 
 // sample code
 class Person {
@@ -192,6 +192,24 @@ console.log(a);
 console.log(b);
 
 '?' represents the optional value / parameter. If we don't specify '?' above, we will get error in compilation.
+
+Type Inference
+==============
+Infer means conclude something from evidence and reasoning rather than from explicit statements.
+
+Type Inference means concluding datatype of a variable depends on it's value.
+
+If we don't specify the datatype, typescript will infer the datatype depends on it's value.
+
+let x = 3; // x of type number
+
+TypeScript use 'Best common type' algorithm to decide datatype in some cases.
+
+let x = [0, 1, null]; // x will be considered as numerical array as per Best common type algorithm.
+
+let zoo = [new Rhino(), new Elephant(), new Snake()];
+
+zoo will become union of (Rhino | Elephant | Snake)[].
 
 Interfaces:
 ===========
@@ -661,24 +679,6 @@ let greeter = new Greeter<string>("Hello, world");
 
 Array is a generic class.
 var arr:Array<string> = new Array<string>('a', 'b', 'c');
-
-Type Inference
-==============
-Infer means conclude something from evidence and reasoning rather than from explicit statements.
-
-Type Inference means concluding datatype of a variable depends on it's value.
-
-If we don't specify the datatype, typescript will infer the datatype depends on it's value.
-
-let x = 3; // x of type number
-
-TypeScript use 'Best common type' algorithm to decide datatype in some cases.
-
-let x = [0, 1, null]; // x will be considered as numerical array as per Best common type algorithm.
-
-let zoo = [new Rhino(), new Elephant(), new Snake()];
-
-zoo will become union of (Rhino | Elephant | Snake)[].
 
 Modules
 =======
