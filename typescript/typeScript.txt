@@ -490,6 +490,10 @@ let isLoggedIn = true;
 class Employee {
     private _fullName: string;
 
+    constructor(name: string) {
+        this._fullName = name;
+    }
+
     get fullName(): string {
         return this._fullName;
     }
@@ -503,7 +507,7 @@ class Employee {
     }
 }
 
-let employee = new Employee();
+let employee = new Employee("John");
 console.log(employee.fullName); // getter
 employee.fullName = "Bob Smith"; // setter
 
