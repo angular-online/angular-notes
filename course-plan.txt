@@ -70,4 +70,27 @@ Session 9
 
 Session 10
 ----------
+- Angular Installation
+- Create todos-app
+- Create modules and components
+- Setup routing
+- Add bootstrap package
+- Add header and footer
+
+Session 11
+----------
+- Create todos service
+- Add Interfaces
+- Fetch todos list
+- Add font-awesome
+- Build todos list
+- Discuss folder structure and Architecture
+- Angular libraries
+
+Session 12
+----------
+- Start Angular fundamentals
+
+
+
 

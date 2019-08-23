@@ -161,8 +161,6 @@ Modules, Components, Services, Templates, Data binding and Directives are basic 
 
 Angular libraries:
 ==================
-Angular is a collection of JavaScript modules.
-
 Each Angular library name begins with the @angular prefix. Ex: '@angular/core'
 
 Install them with the npm package manager and import parts of them with JavaScript import statements.
