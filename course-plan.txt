@@ -73,24 +73,136 @@ Session 10
 - Angular Installation
 - Create todos-app
 - Create modules and components
+
+Session 11
+----------
 - Setup routing
 - Add bootstrap package
 - Add header and footer
 
-Session 11
+Session 12
 ----------
 - Create todos service
 - Add Interfaces
 - Fetch todos list
+- Introduction to Observables and subscription
 - Add font-awesome
 - Build todos list
 - Discuss folder structure and Architecture
 - Angular libraries
 
-Session 12
+Session 13
 ----------
 - Start Angular fundamentals
+- Display data in template
+- Interpolation binding
+- Property binding
+- Attribute, class, and style bindings
+
+Session 14
+----------
+- Event Binding
+- Custom events with EventEmitter
+- Template Expressions
+- Template Expression Operators
+- Template Statements
+- Template reference variables
+
+Session 15
+----------
+
+Session 16
+----------
 
 
+Session 17
+----------
 
 
+Session 18
+----------
+
+
+Session 19
+----------
+
+
+Session 19
+----------
+
+
+Session 20
+----------
+
+
+Session 21
+----------
+
+
+Session 22
+----------
+
+
+Session 23
+----------
+
+Session 24
+----------
+
+Session 25
+----------
+
+Session 26
+----------
+
+
+Session 27
+----------
+
+
+Session 28
+----------
+
+
+Session 29
+----------
+
+
+Session 30
+----------
+
+
+Session 31
+----------
+
+
+Session 32
+----------
+
+
+Session 33
+----------
+
+
+Session 34
+----------
+
+Session 35
+----------
+
+Session 36
+----------
+
+Session 37
+----------
+
+Session 38
+----------
+
+
+Session 39
+----------
+
+
+Session 40
+----------

@@ -214,7 +214,7 @@ http://localhost:4200/components-templates/template-syntax
 -----------------------
 <p>My current hero is {{currentHero.name}}</p>
 
-We can use interpolation in attributes also.
+We can use interpolation for properties also.
 <h3>
   <img src="{{heroImageUrl}}" style="height:30px">
 </h3>
@@ -227,7 +227,7 @@ We can call component functions from interpolation bindings.
 
 Interpolation bindings evaluates the expression and converts the final value to string.
 
-** In template files, we need to give image paths relative to the index.html file OR to the template file.
+** In template files, we can give image paths relative to the index.html file OR to the template file.
 
 2. Property Binding: []
 ------------------------
@@ -257,7 +257,7 @@ Here 'src' is the target property of the image element.
 
 Avoid the side effects in property binding or interpolation bindings. Keep these bindings minimal to value binding or to a function call. The calling function should not change value of any other properties, Angular may fail to update the property values in such case. The function should do nothing other than returning a value.
 
-Interpolation and Property bindings intened to read the component properties. Not to update properties.
+Interpolation and Property bindings intended to read the component properties. Not to update properties.
 
 What if we forgot the square brackets in the property binding:
 --------------------------------------------------------------
@@ -409,7 +409,7 @@ http://localhost:4200/components-templates/template-syntax -> Event binding
 
 4.1 Custom events with EventEmitter
 -----------------------------------
-In Components / Directives we use Angular EventEmitter to raise custom events. 
+In Components / Directives we use Angular EventEmitter to create custom events. 
 
 EventEmitter example program:
 http://localhost:4200/components-templates/template-syntax/custom-events
