@@ -103,25 +103,34 @@ Session 14
 ----------
 - Event Binding
 - Custom events with EventEmitter
-- Template Expressions
-- Template Expression Operators
-- Template Statements
-- Template reference variables
+- Input and Output properties
+- Native Vs Custom
+- Types of directives
+- Angular compilation
 
 Session 15
 ----------
+- Two-way binding - NgModel
+- Template Expressions
+- Template Expression Operators
+- Template Statements
+- Template input variables
+- Template reference variables
 
 Session 16
 ----------
-
+- Attribute directives
+- ngIf, ngFor and NgSwitch
 
 Session 17
 ----------
-
+- ng-template
+- ng-container
+- Custom structural directives
 
 Session 18
 ----------
-
+- Component interaction
 
 Session 19
 ----------

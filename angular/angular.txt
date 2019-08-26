@@ -506,7 +506,7 @@ There are three kinds of directives in Angular:
 
 Angular Compiles Custom Elements(Components) / Directives:
 ----------------------------------------------------------
-- Initially while application loading / View change / Page change / Route change, before rendering the view, Angular compiler go through all the tags in the view file and bind the data to interpolation bindings, property binding. 
+- Initially while application loading / Page change, before rendering the view, Angular compiler go through all the tags in the view file and bind the data to interpolation bindings, property binding. 
 
 - When it encountered a new tag other than native tags, Angular compiler try to match it with any of the component selector available in the application. If it found a match, that component gets processed and appropriate view file will be loaded. In view file, if Angular finds another new tag, again it try to match it with available components in the application.
 
@@ -516,51 +516,19 @@ Angular Compiles Custom Elements(Components) / Directives:
 
 5. Two-way binding [(...)]
 --------------------------
-Two way data binding is a combination of setting an element property and listening for that property change event.
+In Two-way data binding data flows in both the directions. Component <=> View.
 
-Syntax for Two-way data binding is [(x)]. It combines the brackets of property binding [x] and  parentheses of event binding (x).
-
-[(x)] means 'x' is a settable property of an element and that element listening for 'xChange' event.
-
-http://localhost:4200/components-templates/template-syntax/two-way-binding
-
-Two way data binding:
-<app-font-sizer [(size)]="fontSize"></app-font-sizer>
-
-Instead of [( ... )] syntax, we can use 'bindon-' syntax.
-<app-font-sizer bindon-size="fontSize"></app-font-sizer>
-
-The two-way binding syntax is really just syntactic sugar for a property binding and an event binding. Angular desugars the fontSizerComponent binding into this:
-
-<app-font-sizer [size]="fontSizePx" (sizeChange)="fontSizePx=$event"></app-font-sizer>
-
-5.1 NgModel Directive:
-----------------------
-No, native HTML element follows the 'x' value and 'xChange' event pattern. i.e input, select, textarea etc.. are not angular components like 'app-font-sizer'. So, those elements don't have in built 'valueChange' event.
-
-<input [value]="currentHero.name" (valueChange)="currentHero.name=$event.target.value" >
+If we two way bind one element value with component property, If we change the value in view that will update the component property and also if we update component property that will impact the element value.
 
 <input [value]="currentHero.name" (input)="currentHero.name=$event.target.value" >
 
-<select [value]="currentHero.name" (change)="currentHero.name=$event.target.value">
-  <option value="">Select Hero</option>
-  <option value="John Doe">John Doe</option>
-  <option value="Chris">Chris</option>
-  <option value="Evan">Evan</option>
-</select>
-
-For above input and select dropdown we achieved the two-way data binding. Below are the problems in it,
-- We should know which element property to set. In our case 'value' is the property. Common for both the elements.
-- Which event emits user changes? For input element it is "input" event, for select element it is "change" event.
-- Need to know the structure of the '$event' object to extract the currently displayed text and update the data property.
-
-Remembering and applying these 3 things for every form element is difficult.
-
-So, to handle Two-Way data binding on native HTML form elements Angular provided 'ngModel' directive.
+To handle Two-Way data binding in simple way, Angular provided 'ngModel' directive.
 
 <input [(ngModel)]="currentHero.name">
 
 ** FormsModule is required to use ngModel **
+
+Alternate syntax: <input bindon-ngModel="currentHero.name">
 
 Inside ngModel: Below is the ngModel expanded form.
 
@@ -592,7 +560,7 @@ The template expression language is a subset of JavaScript syntax. But,it don't 
 
 Template expressions supports the template expression operators |(pipe), ?. and !.
 
-Template expression can access the component properties, methods and template input variables, template reference variables.
+Template expression can access the component properties, methods, template input variables and template reference variables.
 
 <div *ngFor="let hero of heroes">{{hero.name}}</div>
 
@@ -627,7 +595,7 @@ The non-null assertion operator ( !. )
 --------------------------------------
 When we are using strictNullChecks flag, TypeScript compiler will throw errors even if it can't understand whether the variable is null or not.
 
-If we know a variable is won't become null in runtime, then we can explicitly tell the TSC that the variable is not a null.
+If we know a variable won't become null in runtime, then we can explicitly tell the TSC that the variable is not a null.
 
 <div *ngIf="hero">
   The hero's name is {{hero!.name}}
@@ -1055,14 +1023,6 @@ Ex: http://localhost:4300/components-templates/template-syntax/custom-events
 
 // In display-hero.component.ts file
 @Input() hero;
-
-Intercept input property changes with a setter:
------------------------------------------------
-We can use @Input property binding and setter method, to manipulate the received value and set it to another property of the componet.
-
-http://localhost:4200/components-templates/component-interaction
-
-'_name' property having Getter and Setter method. Setter method receive inputed property 'name', trim it and set it to '_name'.
 
 Data flows from Parent component -> Child component.
 
