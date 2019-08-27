@@ -86,12 +86,14 @@ Session 12
 - Add Interfaces
 - Fetch todos list
 - Introduction to Observables and subscription
-- Add font-awesome
+
+Session 13
+----------
 - Build todos list
 - Discuss folder structure and Architecture
 - Angular libraries
 
-Session 13
+Session 14
 ----------
 - Start Angular fundamentals
 - Display data in template
@@ -99,7 +101,7 @@ Session 13
 - Property binding
 - Attribute, class, and style bindings
 
-Session 14
+Session 15
 ----------
 - Event Binding
 - Custom events with EventEmitter
@@ -108,7 +110,7 @@ Session 14
 - Types of directives
 - Angular compilation
 
-Session 15
+Session 16
 ----------
 - Two-way binding - NgModel
 - Template Expressions
@@ -117,101 +119,20 @@ Session 15
 - Template input variables
 - Template reference variables
 
-Session 16
+Session 17
 ----------
 - Attribute directives
 - ngIf, ngFor and NgSwitch
 
-Session 17
+Session 18
 ----------
 - ng-template
 - ng-container
 - Custom structural directives
 
-Session 18
+Session 19
 ----------
 - Component interaction
 
-Session 19
-----------
-
-
-Session 19
-----------
-
-
 Session 20
-----------
-
-
-Session 21
-----------
-
-
-Session 22
-----------
-
-
-Session 23
-----------
-
-Session 24
-----------
-
-Session 25
-----------
-
-Session 26
-----------
-
-
-Session 27
-----------
-
-
-Session 28
-----------
-
-
-Session 29
-----------
-
-
-Session 30
-----------
-
-
-Session 31
-----------
-
-
-Session 32
-----------
-
-
-Session 33
-----------
-
-
-Session 34
-----------
-
-Session 35
-----------
-
-Session 36
-----------
-
-Session 37
-----------
-
-Session 38
-----------
-
-
-Session 39
-----------
-
-
-Session 40
 ----------
