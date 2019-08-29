@@ -777,6 +777,12 @@ Built in attribute directives:
 
 We can apply many attribute directives to one host element.
 
+HostBinding
+-----------
+'HostBinding' is a decorator. Using it we can bind the properties of host element(directive / component).
+
+@HostBinding('class') testClass: String = 'some-test-class';
+
 2. Structural directives:
 ------------------------- 
 Structural directives are responsible for HTML layout. They shape or reshape the DOM's structure, typically by adding, removing, or manipulating elements.
@@ -1292,83 +1298,6 @@ http://localhost:4200/components-templates/lifecycle-hooks -> ngAfterContentInit
 'ngAfterContentChecked()' method is executed every time on changing values within the projected content.
 
 The frequency of 'ngAfterContentChecked()' metod is high. Input focus in and focus out also trigger this method. Implementaiton of this method sould be as lean as possible to make sure it doesn't impact the performance of the app.
-
-See the sequence once.
-
-HostListener & HostBinding
-==========================
-'HostListener' is a decorator. Using it we can listen to events on the host element of a directive / component.
-
-HostBinding:
-------------
-'HostBinding' is a decorator. Using it we can bind the properties of host element.
-
-http://localhost:4200/components-templates/styles-demo
-
-@HostBinding('class') get themeClass() {
-  return 'theme-light';
-}
-
-Here we are setting the 'class' property of host element to 'theme-light'. We can check the added class in developer tools.
-
-We can set the attribute, style and other property bindings also with @HostBinding decorator.
-
-Component Styles
-================
-http://localhost:4200/components-templates/styles-demo
-
-The scope of component styles is only limited to that particular component. Component styles normally apply only to the HTML in the component's own template. One component styles don't apply to it's child components also.
-
-Special selectors:
-------------------
-Angular provides us some special css selectors to target host and child elements.
-
-:host
------
-Using :host pseudo-class selector we can apply the styles for host element.
-
-:host-context()
----------------
-The :host-context() selector looks for a CSS class in any ancestor of the component host element, up to the document root.
-
-:host-context(.theme-light) h2 {
-  background-color: #eef;
-}
-
-/deep/, >>>, and ::ng-deep
----------------------------
-Above three selectors are same. One is aliase for other.
-
-Using /deep/ selector we can target the styles of child components.
-
-The /deep/ selector works to any depth of nested components, and it applies to both the view children and content children of the component.
-
-:host /deep/ h3 {
-  font-style: italic;
-}
-
-Loading component styles:
--------------------------
-There are several ways to add styles to a component:
- - By setting styles or styleUrls metadata.
- - Inline in the template HTML.
- - With CSS imports.
-
-Our example covers all of these methods.
-
-Register global style files in the styles section of 'angular.json' files.
-
-We can use css pre-processors like sass, less or stylus in our angular application. We have to choose while creatting new app.
-
-If we choose scss, while creating component it will create scss files instead of .css files.
-
-EX:
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
-})
-
 
 Pipes:
 ======
