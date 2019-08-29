@@ -74,7 +74,8 @@ In an Angualr app, we use both the Angular and JavaScript module systems togethe
     BrowserModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule { }
 
