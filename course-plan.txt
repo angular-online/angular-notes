@@ -136,3 +136,23 @@ Session 19
 
 Session 20
 ----------
+- Component Lifecycle Hooks
+
+Session 21
+----------
+- Pipes
+
+Session 22
+----------
+- Observables
+
+Session 23
+----------
+- Subjects
+
+Session 24
+----------
+- Operators
+
+Session 25
+----------

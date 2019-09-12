@@ -1366,18 +1366,11 @@ export class FlyingHeroesImpurePipe implements PipeTransform { }
 
 For impure pipes, We need to set 'pure' to 'false' in pipe decorator metadata.
 
-Bootstrapping
-=============
-Application bootstrapping(loading) starts from 'main.ts' file.
+Async pipe
+----------
+Async pipe is used to subscribe observable from view.
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
-
-The above line of code is loading 'AppModule' initially. AppModule contains 'bootstrap' component. It will be loaded initially.  
-
-Angular Bootstrapping is platform-specific.
-
-platformBrowserDynamic module do up and run(bootstrap) Angular app in browser. If we don't need to run our Angular app in browser we can omit that module. But, we have to use some other module to bootstrap the app on targeted platform(mobile / desktop).
+<div>{{ tracker.todoObservable$ | async }}</div>
 
 
 Observables & RxJS
