@@ -1106,7 +1106,7 @@ In the above example <app-user-detail> is the parent component, other content is
 
 The <ng-content> tag is a placeholder for the external content. It tells Angular where to insert the projected content.
 
-'ngAfterContentChecked' is component lifecycle hook. It will be called when there is a change in the contentChild component property.
+'ngAfterContentInit' is component lifecycle hook. It will be called when the content child initialization completed.
 
 @ContentChild is decorator applied on 'editUserContent' property.
 
