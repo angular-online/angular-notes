@@ -1116,7 +1116,7 @@ As per the above declaration, @ContentChild decorator gets reference of 'EditUse
 
 6. Via a service
 ----------------
-A parent component and its children share a service. We can use that service to exchange data between two components.
+We can use a service to exchange data between two components.
 
 http://localhost:4200/components-templates/component-interaction -> Via a service
 
