@@ -1370,6 +1370,8 @@ Async pipe
 ----------
 Async pipe is used to subscribe observable from view.
 
+Ex: http://localhost:4200/components-templates/component-interaction -> Via a service
+
 <div>{{ tracker.todoObservable$ | async }}</div>
 
 
