@@ -1739,7 +1739,7 @@ oddSquaredNumbers$.subscribe(value => this.oddSquareLogs1.push(value));
 
 Pipe() method
 ------------- 
-Using pipe() function we can link operators together.  pipe() function let us combine multiple operator functions into a single function. 
+Using pipe() function we can link operators together. pipe() function let us combine multiple operator functions into a single function. 
 
 The pipe() function takes operator functions as it's arguments, execute each operator function in specified sequence.
 
