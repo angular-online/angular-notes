@@ -156,3 +156,43 @@ Session 24
 
 Session 25
 ----------
+- Lazy loading
+- Dependency Injection introduction
+- Angular Dependency Injection
+- Injector bubbling
+
+Session 26
+----------
+- Singleton Services
+
+Session 27
+----------
+- DI Providers
+- Entry Components
+- SharedModule VS CoreModule
+
+Session 28
+----------
+- Reactive Forms concepts
+
+Session 29
+----------
+- Template Driven Forms
+
+Session 30
+----------
+- Form Validation
+
+Session 31
+----------
+- Todos App - Add Edit Form
+
+Session 32
+----------
+- Todos App - SwitchMap and ForkJoin operators
+- Todos App - Delete feature
+
+Session 33
+----------
+- SimpleKart
+
