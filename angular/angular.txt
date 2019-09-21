@@ -1891,7 +1891,7 @@ First Source (5s): 3 Second Source (1s): 19
 ------
 After all observables emit; emit values as an array.
 
-when one observable completes no more values will be emitted.
+when second observable completes no more values will be emitted.
 
 const numbers1$ = interval(1000);
 const numbers2$ = numbers1$.pipe(take(2));
