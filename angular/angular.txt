@@ -2966,6 +2966,9 @@ Instead of 'useClass', here we have used 'useExisting'. That means,
 
 TODO APP: Complete Todos-app CRUD with both Reactive and Template driven forms.
 ========
+- Entry components
+- Environments
+- forkJoin and switchMap operators
 
 REST
 ====
