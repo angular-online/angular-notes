@@ -194,5 +194,17 @@ Session 32
 
 Session 33
 ----------
-- SimpleKart
+- SimpleKart header
+- Signup, login
+- Authentication
+
+Session 34
+----------
+- Http Interceptors
+- Route guards
+
+Session 35
+----------
+- HttpClient and Routing notes
+- Other misc concepts
 
