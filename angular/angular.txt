@@ -3771,3 +3771,6 @@ To run the linter.
 Angular 7 vs 8
 --------------
 https://alligator.io/angular/angular-8/
+
+
+- Cut the branch with existing code.
