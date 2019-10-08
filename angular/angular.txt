@@ -3157,7 +3157,6 @@ addUser (): Observable<IUser> {
 
 this.addUser(); // Don't send a http call
 this.addUser().subscribe(); // Send the http call
-this.addUser().subscribe(); // Send the same http call again
 
 URL Parameters / Query Parameters / Search Parameters
 -----------------------------------------------------
@@ -3771,6 +3770,3 @@ To run the linter.
 Angular 7 vs 8
 --------------
 https://alligator.io/angular/angular-8/
-
-
-- Cut the branch with existing code.
