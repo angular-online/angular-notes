@@ -54,7 +54,7 @@ typeof function(){} // "function". There is no function data type. It comes unde
 
 
 typeof {} // 'object'
-typeof [] // 'object'
+typeof [] // 'object' // Array.isArray([]) - true, Array.isArray({}) - false
 typeof new Date() // 'object'
 
 typeof "test" // string
