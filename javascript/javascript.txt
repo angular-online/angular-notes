@@ -237,6 +237,9 @@ If a function don't return anything, by default "undefined" will be returned.
 variables declared inside function are local to that function.
 Example: examples/scoping.html
 
+Global variables can be accessed from anywhere in the code. 
+Local variables can be accessed within the function block only.
+
 Callback function
 -----------------
 We can pass one function as parameter to another function, 
@@ -272,9 +275,6 @@ Self calling functions / Immediately invoked functions:
 
 all the variables become local to that self calling function block only.
 Example: self invoked function folder
-
-Global variables can be accessed from anywhere in the code. 
-Local variables can be accessed within the function block only.
 
 Using Self calling functions we can stop polluting the global scope.
 
@@ -532,11 +532,11 @@ function User(name) {
   };
 }
 
-var john = new User("John");
-var peter = new User("Peter");
+var userObj1 = new User("John");
+var userObj2 = new User("Peter");
 
-john.sayHi()
-peter.sayHi()
+userObj1.sayHi()
+userObj2.sayHi()
 
 The value of this is dynamic. It is determined when function is called, not when it is declared.
 
