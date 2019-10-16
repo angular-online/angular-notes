@@ -533,10 +533,8 @@ function User(name) {
 }
 
 var userObj1 = new User("John");
-var userObj2 = new User("Peter");
 
 userObj1.sayHi()
-userObj2.sayHi()
 
 The value of this is dynamic. It is determined when function is called, not when it is declared.
 
