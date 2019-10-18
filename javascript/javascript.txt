@@ -847,6 +847,8 @@ npm install -g @angular/cli - Global installation
 
 Specifying version in package.json
 ----------------------------------
+npm install jquery@2.2.4 - Install specific version
+
 "jquery": "*" - any version
 
 "jquery": "latest" - latest version
@@ -859,8 +861,8 @@ Specifying version in package.json
 
 
 
-Other Important Concepts
-========================
+Other Concepts
+==============
 call, apply and bind methods
 ----------------------------
 func.call(context, arg1, arg2, ...)  // this = context
