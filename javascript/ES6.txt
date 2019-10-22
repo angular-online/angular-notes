@@ -771,6 +771,12 @@ Code Repo: https://github.com/angular-online/getting-started-with-webpack-and-es
 
 > npm install
 
+> npm run build
+
+-- OR --
+
+> npm install -g webpack
+> npm install -g webpack-cli
 > webpack --watch
 
 webpack commands:

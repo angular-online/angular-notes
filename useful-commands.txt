@@ -29,6 +29,7 @@ npm install dependencyName => install dependency without updating package.json
 npm install dependencyName --save => install dependency and update 'dependencies' of package.json
 
 npm install dependencyName --save-dev => install dependency and update 'devDependencies' of package.json  
+npm install dependencyName -D         => install dependency and update 'devDependencies' of package.json
 
 Webpack:
 ========
