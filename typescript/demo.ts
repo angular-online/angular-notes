@@ -1,1 +1,4 @@
-let test = 10;
+class Person {
+    name = 'John Doe';
+    age = 25;
+}

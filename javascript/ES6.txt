@@ -805,7 +805,7 @@ Default export of class:
 export default class {} 
 
 //------ app.js ------
-import MyClass from 'MyClass';
+import MyClass from 'default-demo';
 const inst = new MyClass();
 
 We can do default export of direct values also.
