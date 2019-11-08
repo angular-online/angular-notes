@@ -121,7 +121,7 @@ Services:
 ---------
 For data or logic that is not associated with a specific view, and that you want to share across components, you create a service class. 
 
-To define a class as a service in Angular, use the @Injectable decorator to provide the metadata that allows Angular to inject it into a component as a dependency.
+To define a class as a service in Angular, use the @Injectable decorator.
 
 @Injectable()
 export class TodoService {

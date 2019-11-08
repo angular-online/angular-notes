@@ -110,6 +110,9 @@ git fetch upstream => fetch all upstream branches to local
 git checkout master => checkout fork targed branch[master branch here] 
 git merge upstream/master => Merge targeted upstream branch to local branch 
 
+git revert command
+git cherry pick
+
 VS Code:
 ========
 Alt + z => Toggle word wrap.
