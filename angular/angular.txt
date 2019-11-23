@@ -1053,7 +1053,7 @@ Event data flows from Child component -> Parent component
 
 3. Parent interacts with child via local variable (template reference variable)
 --------------------------------------------------------------------------------
-Define a template reference variable(#var) on child component element. Using that template reference variable we can read the properties and call the methods of child component in parent component templae file.
+Define a template reference variable(#var) on child component element. Using that template reference variable we can read the properties and call the methods of child component in parent component template file.
 
 http://localhost:4200/components-templates/component-interaction -> Parent interacts with child via template reference variable
 
