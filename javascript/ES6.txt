@@ -377,25 +377,25 @@ function test(a, b){
 }
 test(2, 3);
 
-var f = (a,b) => {console.log(arguments)}; // Uncaught ReferenceError: arguments is not defined
-f(2, 3); 
+var test = (a,b) => {console.log(arguments)}; // Uncaught ReferenceError: arguments is not defined
+test(2, 3); 
 
 Arrow functions cannot be used as constructors and will throw an error when used with new.
 
-var Foo = () => {};
-var foo = new Foo(); // TypeError: Foo is not a constructor
+var User = () => {};
+var userObj = new User(); // TypeError: User is not a constructor
 
 Returning object
 ----------------
-var func = (a, b) => a+b;
-func(2, 3);
+var test = (a, b) => a+b;
+test(2, 3);
 
-var func = () => { foo: 1 }; // Gives undefined.
+var test = () => { foo: 1 }; // Gives undefined.
 
-var func = () => ({foo: 1});
+var test = () => ({foo: 1});
 
 don't give line brakes before arrow
-var func = ()
+var test = ()
            => 1;
 
 Classes
