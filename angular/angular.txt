@@ -3770,3 +3770,7 @@ To run the linter.
 Angular 7 vs 8
 --------------
 https://alligator.io/angular/angular-8/
+
+Generate TypeScript Interfaces from objects
+-------------------------------------------
+http://www.jsontots.com/

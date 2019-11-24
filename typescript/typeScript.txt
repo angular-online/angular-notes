@@ -339,6 +339,10 @@ class Clock implements ClockInterface {
 
 Interfaces describe the public side of the class, rather than both the public and private side. This prohibits exposing private side.
 
+Generate TypeScript Interfaces from objects
+-------------------------------------------
+http://www.jsontots.com/
+
 Classes
 =======
 class Greeter {
@@ -881,3 +885,7 @@ To install typings file for jQuery we need to run below.
 npm install --save-dev @types/jquery
 
 After adding jquery typings, typescript files with jquery code will be compiled without any errors.
+
+Generate TypeScript Interfaces from objects
+-------------------------------------------
+http://www.jsontots.com/
