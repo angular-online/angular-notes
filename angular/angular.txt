@@ -1140,7 +1140,7 @@ Summary of Component Interaction:
 - By declaring template reference variable on child component, we can access the properties and methods of child component from parent component template.
 - Using @ViewChild we can access the properties and methods of child component in parent component class.
 - Using @ContentChild we can access the properties and methods of projected component child in parent component class.
-- We can use a service as mediator b/w two components to pass data.
+- We can use a service as mediator b/w multiple components to pass data.
 
 Component Lifecycle Hooks
 =========================
