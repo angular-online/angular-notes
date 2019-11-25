@@ -65,7 +65,7 @@ let list: Array<number> = [1, 2, 3];
 
 Any:
 ----
-If we don't know type of variable at the time of writing the code then we need to opt for 'any' kind. Sometimes we get data from user/third-party libraries.
+If we don't know type of variable at the time of defining the variable then we need to opt for 'any' kind. Sometimes we get data from user/third-party libraries.
 
 any accept any kind of data.
 
