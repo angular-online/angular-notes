@@ -1285,7 +1285,7 @@ http://localhost:4200/components-templates/lifecycle-hooks -> ngAfterViewInit(),
 
 'ngAfterViewInit()' method is executed once, when the child view is initiated.
 
-'ngAfterViewChecked()' method is executed every time on changing values within the child view.
+'ngAfterViewChecked()' method is executed every time on updating the child view properties.
 
 The frequency of 'ngAfterViewChecked()' metod is high. Input focus in and focus out also trigger this method. Implementaiton of this method sould be as lean as possible to make sure it doesn't impact the performance of the app.
 

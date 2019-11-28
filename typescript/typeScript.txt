@@ -339,10 +339,6 @@ class Clock implements ClockInterface {
 
 Interfaces describe the public side of the class, rather than both the public and private side. This prohibits exposing private side.
 
-Generate TypeScript Interfaces from objects
--------------------------------------------
-http://www.jsontots.com/
-
 Classes
 =======
 class Greeter {
