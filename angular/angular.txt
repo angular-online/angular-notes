@@ -1620,7 +1620,7 @@ Observable is unicast.
 
 Observable creates multiple instances.
 
-In case of Subject, when we create a new subject it creates an execution context(i.e stream). If we subscribe to that subject, the subscriber will be tied to the existing stream. The lapsed values won't be emitted to new subscriber. next() value will be received by new subscribers.
+In case of Subject, when we create a new subject it creates an execution context(i.e stream). If we subscribe to that subject, the subscriber will be tied to the existing stream. The lapsed values won't be emitted to new subscriber. next value will be received by new subscribers.
 
 In given example, for numbersSubject, observer2 subscribes at 1.5 seconds, so it will receive the next value at 2 seconds.
 
