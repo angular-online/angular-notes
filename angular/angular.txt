@@ -2063,6 +2063,29 @@ In case of eager loading we load all the application code at once on page load.
 
 **** If we want to use exported declarables(components, directives and pipes) of FeatureModuleA into FeatureModuleB, then we must import  FeatureModuleA into FeatureModuleB. Even though FeatureModuleA is imported in AppModule, FeatureModuleB can't access declarables of FeatureModuleA until and unless it is imported in B.
 
+/* FeatureModuleA.ts file */
+@NgModule({
+  declarations: [Component1, Directive1, Pipe1],
+  imports: [],
+  exports: [Component1],
+  providers: [
+    Service1
+  ]
+})
+export class FeatureModuleA { }
+
+/* FeatureModuleB.ts file */
+import { FeatureModuleA } from '../FeatureModuleA.ts';
+@NgModule({
+  declarations: [Component2, Directive2, Pipe2],
+  imports: [FeatureModuleA],
+  exports: [],
+  providers: [
+    Service2
+  ]
+})
+export class FeatureModuleB { }
+
 Lazy Loading Feature Modules
 ============================
 Modules can be loaded lazily by the router when required.
@@ -2079,6 +2102,10 @@ Router is responsible for loading lazy modules.
 
 { path: 'customers', loadChildren: '../customers/customers.module#CustomersModule' },
 { path: 'orders', loadChildren: '../orders/orders.module#OrdersModule' },
+
+/* Angular 8 lazy loading syntax */
+{ path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)},
+{ path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule)}
 
 Dependency Injection(DI)
 ========================
