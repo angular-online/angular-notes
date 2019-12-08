@@ -2147,6 +2147,8 @@ class Car {
   }
 }
 
+var carObj = new Car();
+
 Like above we need to update all the places where we used Engine class.
 
 Problem: Now the Car class is not flexible to create car with more engine capacity. we can create car with 1000 cc capacity only. To make it flexible let's change the car class Implementaiton to DI version.
