@@ -2371,7 +2371,7 @@ providers: [Logger]
 
 The expanded provider configuration is an object literal with two properties.
 
-[{ provide: Logger, useClass: Logger }]
+providers: [{ provide: Logger, useClass: Logger }]
 
 The provide property holds the "token" that serves as the key for configuring the injector.
 
@@ -2379,7 +2379,7 @@ The second property is a provider definition object, which tells the injector ho
 
 Use different names for token and provider
 ------------------------------------------
-[{ provide: Logger, useClass: BetterLogger }]
+providers: [{ provide: Logger, useClass: BetterLogger }]
 
 Here 'Logger' is token and 'BetterLogger' class instance will be supplied when we request with 'Logger' token.
 
@@ -2387,11 +2387,15 @@ Dependency injection tokens
 ---------------------------
 When we configure an injector with a provider, we associate that provider with a DI token. The injector maintains an internal token - provider map. The token is the key to the map.
 
+let Logger = new InjectionToken<MyInterface>('Logger');
+
+providers: [{ provide: Logger, useClass: BetterLogger }]
+
 Aliased class providers
 -----------------------
 If we want to provide same class instance with two tokens then we use 'useExisting'.
 
-[ NewLogger,
+providers: [ NewLogger,
   // Alias OldLogger w/ reference to NewLogger
   { provide: OldLogger, useExisting: NewLogger}]
 
