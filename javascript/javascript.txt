@@ -20,6 +20,8 @@ We can access the page runtime from browser console. We can access the existing 
 So, there is no difference in between running script from page or through console.
 Ex: temp.html
 
+While executing code through console, to go to next line use Shift + Enter. If you hit enter, it will execute the code.
+
 <script>
   var x = 10, y = 20, z = 30;
   console.log(x);
@@ -214,6 +216,7 @@ var test = 123;
 test.toString();
 
 var value = true;
+value.toString();
 valStr = String(value);
 
 To Number:
@@ -320,7 +323,7 @@ var minorAges = ages.filter(function (value, index){
   return value <= 18;
 }); // [4, 9, 16]
 
-Ex: ajax folder
+Ex: examples/ajax folder
 
 Self calling functions / Immediately invoked functions:
 -------------------------------------------------------
