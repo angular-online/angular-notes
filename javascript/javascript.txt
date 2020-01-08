@@ -379,6 +379,53 @@ Different readyStates available are below,
 
 Ex: ajax folder
 
+Closure:
+========
+A closure is an inner function that has access to the outer function’s variables, properties and scope.
+
+function getCounter() {
+  var count = 0;
+  function counter() {
+    count += 1;
+    console.log(count)
+  }
+  return counter;
+}
+
+var count = getCounter();
+
+count();
+count();
+count();
+
+Here counter() function is closure.
+
+Problems solved by closure:
+---------------------------
+1. If we put 'var count = 0;' in global scope, any other script may change 'count' value. For example, if your colleague define a variable with same name, then our function doesn't work properly.
+
+var count = 0;
+function counter() {
+  count += 1;
+  console.log(count)
+}
+
+counter();
+counter();
+
+2. If we put 'var count = 0;' in local scope, 'count' will be initiated again and again when we call count. So, counter doesn't work properly.
+
+function counter() {
+  var count = 0;
+  count += 1;
+  console.log(count)
+}
+
+counter();
+counter();
+
+To overcome these kind of problems we use closures.
+
 Arrays:
 =======
 var arr = [];
