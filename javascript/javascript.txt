@@ -242,7 +242,7 @@ str = 'test';
 
 JSON <=> String:
 ----------------
-var obj = { "name":"John", "age":30, "city":"New York"};
+var obj = { "name":"John", "age":30, "city":"New York" };
 var myJSON = JSON.stringify(obj);
 
 var obj = JSON.parse(myJSON);
@@ -277,19 +277,48 @@ function greet(name) {
   console.log("Hi, "+name) 
 } 
 
-function callUser(callback){
+function greetUser(callback){
 	callback("John");
 }
 
-callUser(greet);
+greetUser(greet);
 
 Here greet is a call back function.
 
 Instead of passing function using it's name, we can define the function while passing it.
 
-callUser(function(name) { 
+greetUser(function(name) { 
   console.log("Hi, "+name) 
 });
+
+Below are some example callback functions in javascript,
+
+Array forEach() method accepts a callback function to handle the iterated elements.
+
+var arr = ["Why", "learn", "JavaScript"];
+
+arr.forEach(function(value, index){
+  console.log(value);
+  console.log(index);
+});
+
+Array map() method accepts a callback function to manipulate the elements.
+
+Take each value and manipulate and returns the new array.
+var arr = [4, 9, 16, 25];
+
+var sqrts = arr.map(function(value, index){
+	return Math.sqrt(value);
+}); // [2, 3, 4, 5]
+
+Array filter() method accepts a callback function to filter the array elements
+
+Returns a new array of filtered values.
+var ages = [4, 9, 16, 25];
+
+var minorAges = ages.filter(function (value, index){
+  return value <= 18;
+}); // [4, 9, 16]
 
 Ex: ajax folder
 
@@ -303,11 +332,6 @@ Self calling functions / Immediately invoked functions:
 })()
 
 all the variables become local to that self calling function block only.
-Example: self invoked function folder
-
-Using Self calling functions we can stop polluting the global scope.
-
-In our example, we defined 'performAddition' in math.js file with out effecting 'performAddition' function in app.js
 
 Constructor function: It is used to create objects.
 ---------------------
