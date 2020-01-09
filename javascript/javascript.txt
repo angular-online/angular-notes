@@ -379,8 +379,8 @@ Different readyStates available are below,
 
 Ex: ajax folder
 
-Closure:
-========
+Closure
+=======
 A closure is an inner function that has access to the outer function’s variables, properties and scope.
 
 function getCounter() {
@@ -587,7 +587,7 @@ JSON: JavaScript Object Notation
 
 window Object
 =============
-window is the global object in javascript.
+window is the global object in browser.
 
 var a = 10;
 Here 'a' will become property in window object. We can access it as 'window.a' OR just 'a'
@@ -642,7 +642,6 @@ userObj1.sayHi()
 The value of this is dynamic. It is determined when function is called, not when it is declared.
 
 > In an object method, this will become current object.
-Example1:
 var obj = {
   name: 'John',
   printName: function(){
@@ -650,19 +649,6 @@ var obj = {
   }
 };
 obj.printName(); // this = obj
-
-Example2:
-var john = { 
-  firstName: "John" 
-}
-
-function print() { 
-  console.log(this.firstName + ": hi!")
-}
-
-john.sayHi = print;
-
-john.sayHi()  // this = john
 
 DOM:
 ====
@@ -722,8 +708,8 @@ getElementsByTagName
   var elements = document.getElementsByTagName('input');
   console.log(elements);
   for(var i=0; i<elements.length; i++) {
-    var input = elements[i]  
-    console.log(input.value+': '+input.checked)
+    var input = elements[i]; 
+    console.log(input.value+': '+input.checked);
   }
 </script>
 
@@ -732,7 +718,7 @@ document.getElementsByClassName
 <div class="abc def test">some text1</div>
 <div class="abc">some text2</div>
 <script>
-console.log( document.getElementsByClassName('abc') )
+console.log( document.getElementsByClassName('abc') );
 </script>
 
 document.querySelector, querySelectorAll:
@@ -750,7 +736,7 @@ The methods querySelector and querySelectorAll allow to select elements by CSS3 
   var elements = document.querySelectorAll('UL > LI:last-child')
 
   for(var i=0; i<elements.length; i++) {
-    console.log(elements[i].innerHTML )
+    console.log(elements[i].innerHTML );
   }
 </script>
 
@@ -834,26 +820,6 @@ keypress
 A character key is pressed.
 keyup
 A key is released.
-
-window events
-=============
-onload
-onunload
-
-window.onload = function() {
-    alert("Page loaded");
-};
-
-// window.onunload is working in IE. Not sure in Chrome etc.. 
-window.onunload = function() {
-    window.open("https://in.yahoo.com/"); 
-};
-
-Ex: win-events.html
-
-Along with load and unload we have resize and scroll events also.
-
-We have 'submit' event on form element. Also, focus, blur, change etc... events on form elements.
 
 Event Propagation and Prevent default:
 ======================================
