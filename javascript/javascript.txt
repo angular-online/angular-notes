@@ -392,11 +392,11 @@ function getCounter() {
   return counter;
 }
 
-var count = getCounter();
+var counter = getCounter();
 
-count();
-count();
-count();
+counter();
+counter();
+counter();
 
 Here counter() function is closure.
 
