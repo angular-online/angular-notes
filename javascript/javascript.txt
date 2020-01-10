@@ -775,7 +775,7 @@ document.getElementById('myElement').onclick = function(event) {
 
 Handle events using addEventListener:
 -------------------------------------
-Ex: remove-event-listener.html
+Ex: event-listener.html
 
 // Add event to element
 elem.addEventListener(type, handlerFunction)
@@ -909,8 +909,10 @@ npm init
 
 npm install jquery
 npm i jquery
-npm install jquery --save
-npm install jasmine --save-dev
+npm install jquery --save // Old NPM version
+
+npm install jasmine -D
+npm install jasmine --save-dev // Old NPM version
 
 npm install -g @angular/cli - Global installation
 
@@ -924,9 +926,9 @@ npm install jquery@2.2.4 - Install specific version
 
 "jquery": "1.x"
   or:
-"jquery": "^1.0.0" ----> install the latest minor version. Upto 1.9.9 but not 2.0.0
+"jquery": "^1.0.0" ----> install the latest minor version. Latest in 1.x.x but not 2.0.0
 
-"jquery": "~1.11"  -----> install the latest patch version. Upto 1.11.9 but not 1.12.0
+"jquery": "~1.11"  -----> install the latest patch version. Upto 1.11.x but not 1.12.0
 
 Sites to Refer:
 ===============
