@@ -390,12 +390,13 @@ Classes
 In ES5 we don't have classes. In ES6 classes are introduced in javascript.
 
 class Employee {
+  name = 'john';
   doWork(){
     return "done!";
   }
 
   getName(){
-    return "John";
+    return name;
   }
 }
 
@@ -406,6 +407,7 @@ emp.doWork();
 Constructor: Constructor is a function in class which is invoked automatically while creating an object.
 
 class Employee {
+  empName;
   constructor(name){
     this.empName = name;
   }
@@ -426,6 +428,7 @@ getters and setters
 Getter return the peoperty and setter set the property.
 
 class Employee {
+  empName;
   constructor(name){
     this.empName = name;
   }
@@ -439,6 +442,7 @@ let emp = new Employee("john");
 emp.name
 
 class Employee {
+  empName;
   constructor(name){
     this.empName = name;
   }
