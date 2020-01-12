@@ -160,8 +160,6 @@ let y = 3; // Assigning values in normal way.
 
 let [x, y] = [2, 3];
 
-[x, y] = [y, x]; //Swaping the values
-
 The left side value is not actully array. It looks like an array. Arrays/Objects found on left side of assignment operator are not Arrays/Objects, we are dealing with individual variables at a time.
 
 If we find array symbol[] / object symbol{} on the left side of assignment operator, we can understand destructuring is used in that statement.
@@ -286,7 +284,6 @@ Arrow Functions
 Two benifits
 1. shorter syntax
 2. No binding of this. "this" is not bound in arrow functions.
-   - Arrow functions don't contain 'this' and 'arguments' property.
 
 1. shorter syntax
 -----------------
@@ -369,16 +366,6 @@ function Person(){
 var p = new Person();
 
 An arrow function does not create its own this context.
-
-> No binding of arguments
-
-function test(a, b){
-  console.log(arguments);
-}
-test(2, 3);
-
-var test = (a,b) => {console.log(arguments)}; // Uncaught ReferenceError: arguments is not defined
-test(2, 3); 
 
 Arrow functions cannot be used as constructors and will throw an error when used with new.
 
@@ -563,7 +550,7 @@ class Employee extends Person{
 
 var emp = new Employee("John", 'Mr');
 
-Super function invokes the parent  class constructor and forward arguments from child class constructor to parent class constructor. 
+Super function invokes the parent class constructor and forward arguments from child class constructor to parent class constructor. 
 
 Overrides:
 ----------

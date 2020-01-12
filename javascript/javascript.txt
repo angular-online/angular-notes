@@ -930,6 +930,8 @@ npm install jquery@2.2.4 - Install specific version
 
 "jquery": "~1.11"  -----> install the latest patch version. Upto 1.11.x but not 1.12.0
 
+package-lock.json
+
 Sites to Refer:
 ===============
 https://www.w3schools.com/
