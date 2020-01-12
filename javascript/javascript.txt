@@ -839,7 +839,7 @@ Html -> Body -> Form -> Div -> P
 
 Tarrgeting means traverse through the DOM and find Targeted element.
 
-Bubling: When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.
+Bubling: When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up to the ancestors.
 P -> Div -> Form
 
 event.stopPropagation(); // To prevent propagation.
