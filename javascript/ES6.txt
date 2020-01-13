@@ -476,7 +476,7 @@ person.name
 
 person.name = "Doe"; //Setting property
 
-Inheretance:
+Inheritance:
 ------------
 class Person {
   constructor(name){
