@@ -396,7 +396,7 @@ class Employee {
   }
 
   getName(){
-    return name;
+    return this.name;
   }
 }
 
@@ -404,7 +404,7 @@ let emp = new Employee();
 
 emp.doWork();
 
-Constructor: Constructor is a function in class which is invoked automatically while creating an object.
+Constructor: Constructor is a method in a class which is invoked automatically while creating an object.
 
 class Employee {
   empName;
@@ -441,23 +441,7 @@ class Employee {
 let emp = new Employee("john");
 emp.name
 
-class Employee {
-  empName;
-  constructor(name){
-    this.empName = name;
-  }
-
-	get empName(){
-		return this.empName;
-  }
-
-	set empName(newName){
-		return this.empName = newName;
-  }
-} // It will create erros. We should not have same name for property and method
-
-let emp = new Employee("john");
-
+// Setter method
 class Person {
   constructor(name){
     this._name = name;
