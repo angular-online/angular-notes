@@ -104,8 +104,6 @@ If we use strictNullChecks flag, we can't assign null and undefined to other dat
 
 tsc demo.ts --strictNullChecks 
 
-strictNullChecks is encouraged by TypeScript. As, it can avoid many common errors.
-
 While using strictNullChecks, if we want to accept 'number' or 'undefined' or 'null' for a variable, we can use union datatypes number|undefined|null.
 
 let num:number|undefined|null = 123;
@@ -128,47 +126,9 @@ let strLength: number = (someValue as string).length;
 
 Union Types:
 ------------
-function square(a: any) {
-    if(typeof a === "number") {
-        return a*a;
-    } else if(typeof a === "string") {
-        let val = parseInt(a); 
-        if(!isNaN(val)) {
-            return val*val;
-        } else {
-            throw new Error(`Expected a parsable string, but got '${a}'.`);
-        }
-    } else {
-        throw new Error(`Expected string or number, but got '${a}'.`);
-    }
-}
-
-square(2);
-square('2px');
-square(true); // Don't show compilation error. Causes a runtime exception, page will be broken.
-
-The square function is designed to handle only numbers and strings. To accept both strings and numbers, we are using any(a: any) data type. Because of that, TSC can not find the unsupported data types. So, it don't show any compilation errors even we pass unsupported values. Ex: square(true);
-
-Using union datatypes we can restrict the function to accept only numbers and strings instead of 'any'.
-
-function square(a: number | string) {
-    if(typeof a === "number") {
-        return a*a;
-    } else if(typeof a === "string") {
-        let val = parseInt(a); 
-        if(!isNaN(val)) {
-            return val*val;
-        } else {
-            throw new Error(`Expected a parsable string, but got '${a}'.`);
-        }
-    } else {
-        throw new Error(`Expected string or number, but got '${a}'.`);
-    }
-}
-
-square(2);
-square('2px');
-square(true); // Show compilation error
+let age: number | string;
+age = 25;
+age = '25y'
 
 Conclusion of Datatypes:
 ------------------------ 
@@ -188,9 +148,9 @@ TypeScript use 'Best common type' algorithm to decide datatype in some cases.
 
 let x = [0, 1, null]; // x will be considered as numerical array as per Best common type algorithm.
 
-let zoo = [new Rhino(), new Elephant(), new Snake()];
+let list = [123,'test', true];
 
-zoo will become union of (Rhino | Elephant | Snake)[].
+list will become union of (number | string | boolean)[].
 
 Destructuring:
 ==============
