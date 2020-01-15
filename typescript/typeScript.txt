@@ -97,7 +97,7 @@ let n: null = null;
 
 By default null and undefined are subtypes of all other types. That means you can assign null and undefined to something like number.
 
-let num:number = 123;
+let num: number = 123;
 num = null;
 
 If we use strictNullChecks flag, we can't assign null and undefined to other datatyped variables.
@@ -106,8 +106,18 @@ tsc demo.ts --strictNullChecks
 
 While using strictNullChecks, if we want to accept 'number' or 'undefined' or 'null' for a variable, we can use union datatypes number|undefined|null.
 
-let num:number|undefined|null = 123;
+let num: number|undefined|null = 123;
 num = null;
+
+Union Types:
+------------
+let age: number | string;
+age = 25;
+age = '25y';
+
+Conclusion of Datatypes:
+------------------------ 
+If we use data types, we can catch most of the errors / exceptions in the compilation phase itself.
 
 Type assertions:
 ----------------
@@ -123,16 +133,6 @@ let strLength: number = (<string>someValue).length;
 
 let someValue: any = "this is a string";
 let strLength: number = (someValue as string).length;
-
-Union Types:
-------------
-let age: number | string;
-age = 25;
-age = '25y'
-
-Conclusion of Datatypes:
------------------------- 
-If we use data types, we can catch most of the errors / exceptions in the compilation phase itself.
 
 Type Inference
 ==============
