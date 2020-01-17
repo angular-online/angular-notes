@@ -299,6 +299,8 @@ class Clock implements ClockInterface {
 
 Interfaces describe the public side of the class, rather than both the public and private side. This prohibits exposing private side.
 
+http://www.jsontots.com/ - Generate TypeScript Interfaces from json objects
+
 Classes
 =======
 class Greeter {
@@ -842,6 +844,6 @@ npm install --save-dev @types/jquery
 
 After adding jquery typings, typescript files with jquery code will be compiled without any errors.
 
-Generate TypeScript Interfaces from objects
--------------------------------------------
+Generate TypeScript Interfaces from json objects
+------------------------------------------------
 http://www.jsontots.com/
