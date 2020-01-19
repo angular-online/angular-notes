@@ -820,7 +820,7 @@ https://developer.mozilla.org/en-US/docs/Web/API
 
 TypeScript support all the web api interfaces.
 
-private x : HTMLInputElement;
+private x: HTMLInputElement;
 this.x = <HTMLInputElement>document.getElementById(xId);
 this.x = document.getElementById(xId) as HTMLInputElement;
 
@@ -843,7 +843,3 @@ To install typings file for jQuery we need to run below.
 npm install --save-dev @types/jquery
 
 After adding jquery typings, typescript files with jquery code will be compiled without any errors.
-
-Generate TypeScript Interfaces from json objects
-------------------------------------------------
-http://www.jsontots.com/
