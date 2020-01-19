@@ -736,10 +736,6 @@ resultProduct.textContent = `The product of ${a} and ${b} is ${math.product(a, b
 
 ES6 Modules are not yet supported by all the browsers. So, we need to convert and bundle the es6 modules code to es5 equivalent code. Webpack is an advanced javascript module bundler / build tool.
 
-// Install webpack globally
-> npm install webpack -g
-> npm install webpack-cli -g
-
 Code Repo: https://github.com/angular-online/getting-started-with-webpack-and-es6-modules-the-demo
 
 > Clone the Repo
