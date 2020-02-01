@@ -429,7 +429,7 @@ An Input property is a settable property annotated with an @Input decorator. Val
 
 An Output property is an observable property annotated with an @Output decorator. The property almost always returns an Angular EventEmitter. Values flow out of the component as events bound with an event binding.
 
-We can't use the 'public' and 'private' access modifiers on @Input and @Output properties.
+We can't use the 'private' access modifier on @Input and @Output properties.
 
 All data bound properties(@Input / @Output) must be public properties. Angular never binds to a component private property.
 
