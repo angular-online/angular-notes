@@ -207,7 +207,7 @@ Don't forget the leading asterisk (*) in *ngIf. It is an essential part of the s
 
 Template Syntax:
 ================
-HTML is the language of the Angular template. Almost all HTML syntax is valid template syntax. The <script> element is a notable exception; it is forbidden, to elimingate the risk of script injection attacks. In practice, <script> is ignored and a warning appears in the browser console.
+HTML is the language of the Angular template. Almost all HTML syntax is valid template syntax. The <script> element is a notable exception; it is forbidden, to eliminate the risk of script injection attacks. In practice, <script> is ignored and a warning appears in the browser console.
 
 http://localhost:4200/components-templates/template-syntax
 
