@@ -710,6 +710,10 @@ Command used in app:
 Create 'attribute-directives' folder under 'components-templates' folder and execute the below command in 'attribute-directives' folder.
 > ng generate directive highlight 
 
+----OR----
+
+> ng g d components-templates/attribute-directives/highlight --module=components-templates
+
 It creates 'highlight' directive in 'attribute-directives' folder and update the 'components-templates.module' declarations array.
 
 // Below is the command to create v1 version of the directive.
