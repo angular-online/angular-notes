@@ -697,13 +697,3 @@ AngularJs:(Don't need to read for Angular 2+ interviews)
 32. What is a REST API? What are different method types?
 
 33. What is the difference b/w GET and POST methods.
-
-Reading Techniques
-==================
-1. Read in Question and Answer pattern. Read a concept, think about the possible questions in it. Question yourself and answer yourself. Play the dual-role as interviewer and interviewee while reading the master copies.
-
-2. Read some master-copy Top-Bottom once and Bottom-Top some other time.
-
-3. Read loud to twist your tongue.
-
-4. List out all the concepts in a master-copy and try to memorize the concepts list. That will give you a macro-level overview on the subject.
