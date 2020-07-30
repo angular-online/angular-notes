@@ -967,23 +967,36 @@ NPM
 > npm install jasmine --save-dev // Old NPM version(<5)
 - Install jasmine as dev dependency and list under 'devDependencies' in package.json file
 
-> npm install -g @angular/cli - Global installation
+> npm install -g @angular/cli 
+- Globally install angular cli tool.
+- We can access 'ng' command anywhere in system after global installation.
 
 Specifying version in package.json
 ----------------------------------
-npm install jquery@2.2.4 - Install specific version
+> npm install jquery@2.2.4 
+- Install specific version
 
-"jquery": "*" - any version
+> "jquery": "*" 
+- "*" means any version
 
-"jquery": "latest" - latest version
+> "jquery": "latest" 
+- Install the latest version
 
-"jquery": "1.x"
-  or:
-"jquery": "^1.0.0" ----> install the latest minor version. Latest in 1.x.x but not 2.0.0
+> "jquery": "1.x"
+> "jquery": "^1.0.0" 
+- Install the latest minor and patch versions. 
+- Latest in 1.x.x but not 2.0.0
 
-"jquery": "~1.11"  -----> install the latest patch version. Upto 1.11.x but not 1.12.0
+> "jquery": "~1.11"  
+- Install the latest patch version.
+- Upto 1.11.x but not 1.12.0
 
-package-lock.json
+package-lock.json file
+----------------------
+- Help to install same version of dependency across all team members.
+- It will record which version of dependency installed for the first installer. It make sures to install the same version for all other team mates.
+- We need to push this file to git repo.
+- For example, If I specify "jquery": "*" and jquery 2.0.0 installed for me. package-lock.json file will record my version and install the same for all other team mates. Otherwise, each team mate get different version and causing different different bugs. 
 
 Sites to Refer:
 ===============
