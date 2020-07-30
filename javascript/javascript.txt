@@ -344,11 +344,11 @@ greet('John');
 
 If a function don't return anything, by default "undefined" will be returned.
 
-variables declared inside function are local to that function.
+variables declared inside a function are local to that function.
 Example: examples/scoping.html
 
 Global variables can be accessed from anywhere in the code. 
-Local variables can be accessed within the function block only.
+Local variables can be accessed only within the function block.
 
 Callback function
 -----------------
@@ -403,8 +403,8 @@ var minorAges = ages.filter(function (value, index){
 
 Ex: examples/ajax folder
 
-Self calling functions / Immediately invoked functions:
--------------------------------------------------------
+Self calling functions / Immediately invoked functions
+------------------------------------------------------
 (function() {
   
 	var a = 5, b=10;
@@ -422,12 +422,13 @@ function User() {
 }
 var user = new User();
 
-instanceof: for checking type of custom objects
-===========
-user instanceof User
+instanceof operator
+-------------------
+- Used for checking type of custom objects
+- Ex: user instanceof User // true
 
-AJAX:
-=====
+AJAX
+====
 AJAX - Asynchronous Javascript And Xml
 
 It's not a programming language. It's a technique to hit server and change webpage content without re-loading page.
@@ -457,150 +458,98 @@ Different readyStates available are below,
 
 Ex: ajax folder
 
-Closure
-=======
-A closure is an inner function that has access to the outer function’s variables, properties and scope.
+Arrays
+======
+var arr = []; // create array using square brackets
+var arr = new Array(); // create using Array constructor method 
 
-function getCounter() {
-  var count = 0;
-  function counter() {
-    count += 1;
-    console.log(count)
-  }
-  return counter;
-}
+arr.length; // Gives array length
+arr.push(elem); // Add element at end
+arr.pop(); // Remove element at end
 
-var counter = getCounter();
+push and pop Operates at tail.
+shift/unshift operates at head.
 
-counter();
-counter();
-counter();
+arr.unshift(elem) - Add new element at head.
+arr.shift() - Remove the first elment.
 
-Here counter() function is closure.
+var fruits = ["Apple", "Orange"];
+var apple = fruits.shift(); // now we have only ["Orange"] left
+fruits.unshift("Lemon"); // now got ["Lemon", "Orange"]
 
-Problems solved by closure:
----------------------------
-1. If we put 'var count = 0;' in global scope, any other script may change 'count' value. For example, if your colleague define a variable with same name, then our function doesn't work properly.
+join() and split() methods 
+--------------------------
+var fruitsArr = ["Lemon","Apple","Orange","Peach"];
 
-var count = 0;
-function counter() {
-  count += 1;
-  console.log(count)
-}
+var fruitsStr = fruits.join(',');
+console.log(fruitsStr); // "Lemon,Apple,Orange,Peach"
 
-counter();
-counter();
-
-2. If we put 'var count = 0;' in local scope, 'count' will be initiated again and again when we call count. So, counter doesn't work properly.
-
-function counter() {
-  var count = 0;
-  count += 1;
-  console.log(count)
-}
-
-counter();
-counter();
-
-To overcome these kind of problems we use closures.
-
-Arrays:
-=======
-var arr = [];
-new Array()
-.length
-.pop()
-.push() 
-
-push and pop Operates at end.
-
-shift/unshift operates from start.
-shift - Remove the first elment.
-unshift - Add new element at starting.
-
-var fruits = ["Apple", "Orange"]
-
-var apple = fruits.shift() // now we have only ["Orange"] left
-
-fruits.unshift("Lemon") // now got ["Lemon", "Orange"]
-
-console.log(fruits)
-
-join and split:
----------------
-var fruits = ["Lemon","Apple","Orange","Peach"];
-
-var str = fruits.join(', ');
-console.log(str);
-
-var fruits = "Apple,Orange,Peach";
-
-var arr = fruits.split(',');
-console.log(arr);
-
-// arr is ["Apple", "Orange", "Peach"]
+var fruitsStr = "Lemon,Apple,Orange,Peach";
+var fruitsArr = fruitsStr.split(',');
+console.log(fruitsArr); // ["Lemon","Apple","Orange","Peach"]
 
 length
 -------
 var arr = [0, 1, 2, 3];
 arr.length = 2; // trims the last two elements
-arr.length = 20; // insert 18 undefined 
+arr.length = 20; // insert 18 undefined values
 
 delete
 ------
 var arr = ["Go", "to", "home"]
-delete arr[1]
-// now arr = ["Go", undefined, "home"]
-console.log(arr[1]) // undefined
+delete arr[1]; // ["Go", undefined, "home"]
+console.log(arr[1]); // undefined
 
-splice:
--------
-arr.splice(index, deleteCount, [elem1, ..., elemN])
+delete operatior just erase the value at specified index in array. It don't erase the memory reference.
 
-var arr = ["Go", "to", "home"]
-arr.splice(1, 1)  // remove 1 element starting at index 1
+*** splice ***
+--------------
+We can perform any kind of manipulation on an array using splice method. 
+
+It mutate/change the array.
+
+arr.splice(index, deleteCount, [elem1, ..., elemN]);
+index - At what index to start
+deleteCount - How many elements to delete
+[elem1, ..., elemN] - Elements to insert after deletion
+
+var arr = ["Go", "to", "home"];
+var removedElements = arr.splice(1, 1);  // remove 1 element starting at index 1
 console.log(arr); // ["Go", "home"]
 
-splice returns array of removed elements.
+splice() method returns array of removed elements.
 
 replace elements:
 var arr = ["Go", "to", "home", "now"];
-// remove first 3 elements and add two
-arr.splice(0, 3, "Come", "here") 
-console.log( arr ) // ["Come", "here", "now"]
+arr.splice(0, 3, "Come", "here"); // remove first 3 elements and add two
+console.log(arr); // ["Come", "here", "now"]
 
-insert elements, just set deleteCount to 0
+To insert elements, just set deleteCount to 0
 var arr = ["Go", "to", "home"];
-// from 2nd position 
-// delete 0 
-// and insert "my", "sweet"
-arr.splice(2, 0, "my", "sweet") 
-console.log( arr) // "Go", "to", "my", "sweet", "home"
+arr.splice(2, 0, "my", "sweet"); // from 2nd position, delete 0 elements and insert "my", "sweet"
+console.log(arr); // "Go", "to", "my", "sweet", "home"
 
-a negative index, which counts from array end
-var arr = [1, 2, 5]
+Negative index counts from array end
+var arr = [1, 2, 5];
+arr.splice(-1, 0, 3, 4); // At element -1, delete 0 elements and insert 3 and 4
+console.log(arr);  // 1,2,3,4,5
 
-// at element -1
-// delete 0 elements, 
-// then insert 3 and 4
-arr.splice(-1, 0, 3, 4)
+Array slice
+-----------
+Array slice() method is used to extract sub array from array. Works same as string slice() method.
 
-console.log(arr)  // 1,2,3,4,5
+It don't mutate/change the array. it will return the sliced elements.
 
-Array slice:
-------------
 var arr = ["Why", "learn", "JavaScript"];
+var subArr = arr.slice(0, 2); // starting at 0 index, end at 2 index and omit last value 
+console.log(subArr); // ["Why", "learn"]
+console.log(arr); // ["Why", "learn", "JavaScript"]. Not changed/mutated.
 
-var arr2 = arr.slice(0,2) // starting at 0 index, end at 2 index and omit last value 
-
-console.log(arr2);
-it will return the sliced elements.
- 
-if we miss the end index, it will take until end.
+If we miss the end index, it will take until end.
 
 forEach()
 ---------
-To iterate through array elements.
+Used to iterate through every element.
 var arr = ["Why", "learn", "JavaScript"];
 
 arr.forEach(function(value, index){
@@ -610,7 +559,10 @@ arr.forEach(function(value, index){
 
 map()
 -----
-Take each value and manipulate and returns the new array.
+Used to take each value and manipulate and returns the new array.
+
+Don't mutate the array. Return a new array with manipulated values.
+
 var arr = [4, 9, 16, 25];
 
 var sqrts = arr.map(function(value, index){
@@ -619,7 +571,10 @@ var sqrts = arr.map(function(value, index){
 
 filter()
 --------
-Returns a new array of filtered values.
+Used to filter an array based on some condition. Returns a new array of filtered values.
+
+Don't mutate the array. Return a new array with filtered values.
+
 var ages = [4, 9, 16, 25];
 
 var minorAges = ages.filter(function (value, index){
@@ -630,13 +585,21 @@ reverse()
 --------- 
 arr.reverse() reverse the array. 
 
-Objects:
-========
-var user = new Object();
-var user = { };
-user.name = 'John'
+Mutate the array. 
+
+var ages = [4, 9, 16, 25];
+ages.reverse();
+console.log(ages); // [25, 16, 9, 4]
+
+Objects
+=======
+var user = new Object(); // create object using constructor method
+var user = { }; // create object using curly braces
+user.name = 'John';
 user.age = 25;
-delete user.name
+console.log(user.name); // dot notation for accessing an object property
+
+delete user.name; // delete the property reference also.
 
 We can also use [] to access properties of object.
 user['name'] // John
@@ -655,13 +618,17 @@ var box = {
 	type: {}
 } 
 
-We can place any kind of data in object.
+We can place any kind of data in an object.
 
 Non-existing properties returns undefined.
 box.area  // returns undefined
 
 JSON: JavaScript Object Notation
 -----
+- The notation of a javascript object. 
+- The format of a javascript object. 
+
+{name: 'john', age: 30, skills: ['js', 'java', 'ts', 'angular']}
 
 window Object
 =============
@@ -687,58 +654,69 @@ Object.keys(box) returns an array with all keys of box object.
 Object.values(box) returns an array with all values of box object.
 
 To check an object is empty or not, check the length of Object.keys(box) array.
+
 var user = {};
 if(user) {
 	console.log('not empty');
-} // If can't evaluate it.
+} // If can't evaluate that an object is empty or not.
 
-if(Object.keys(box).length) {
-  // box is not an empty object
+if(Object.keys(user).length) {
+  // user is not an empty object
 }
 
-this
-====
+'this' keyword behaviour in functions
+=====================================
 This behaviour will change depends on context.
-> In a regular function, this will become window object
+
+- In a regular function, this will become window object
 function test(){
   console.log(this); // this = window object
 }
 
-> Creating custom object:
+- In constructor function this will represent the current object.
+
 function User(name) {
   this.name = name;
  
   this.sayHi = function() {
-    console.log("I am "  + this.name)
+    console.log("I am "  + this.name);
   };
 }
 
-var userObj1 = new User("John");
+var userObj = new User("John");
+userObj.sayHi(); // I am John
 
-userObj1.sayHi()
+- The value of this in a function is dynamic. 
+- It is determined when function is called, not when it is declared.
 
-The value of this is dynamic. It is determined when function is called, not when it is declared.
-
-> In an object method, this will become current object.
-var obj = {
+- In an object method, this will become current object.
+var userObj = {
   name: 'John',
   printName: function(){
     console.log(this.name);
   }
 };
-obj.printName(); // this = obj
+userObj.printName(); // 'this' becomes userObj here. 
 
-DOM:
-====
+*** Simply remember, 'this' in a normal function represents 'window' object. In all other cases, it represents the current object.
+
+DOM
+===
 Document Object Model (DOM)
-- allow to access contents of the page, modify elements etc
-	
-The DOM represents document as a tree. The tree is made up of parent-child relationships, a parent can have one or many children nodes.
+- DOM allows us to access contents of a web page, modify elements, delete elements etc... other operations through javascript programs.
+- DOM represents webpage as a tree. The tree is made up of parent-child relationships, a parent can have one or many children nodes.
 
 window.document is the global object for DOM. We can access it as window.document OR document.
 
-Traversing:
------------
+- Every element/tag of a webpage is internally represented as an object. 
+- 'document' object contains references of all elements in object format.
+
+Webpage Traversing 
+------------------
+Webpage Traversing means traveling in a webpage from one element to another element programatically.
+
+'document' object contains many methods and properties to traverse a webpage.
+
 document.body
 document.body.childNodes
 document.body.firstChild
@@ -746,24 +724,28 @@ document.body.lastChild
 
 dir - method
 ------------
-dir() is a chrome console method to expand and see the list of properties available on a DOM element.
+dir() is a chrome console method to expand and see the list of properties available on a DOM object.
 
+HTML:
 <div id="logo">div for logo</div>
-var logo = document.getElementById('logo');
-console.log(logo);
 
-dir(logo);
+Javascript: 
+var logo = document.getElementById('logo'); // access element with id 'logo'
+console.log(logo); // variable 'logo' contains DOM object of element with id 'logo'. But, console.log print html format of that reference element.
 
-document.getElementById:
-------------------------
+dir(logo); // dir() method prints the object format of that element. This method works only in chrome console.
+
+document.getElementById('id') method
+------------------------------------
 <div id="info">Info</div>
+
 <script>
-  var div = document.getElementById('info')
-  console.log( div.innerHTML )
+  var div = document.getElementById('info');
+  console.log(div.innerHTML);
 </script>
 
-getElementsByTagName
---------------------
+document.getElementsByTagName('tagName')
+----------------------------------------
 <table id="myTable">
   <tr>
     <td>Your age:</td>
@@ -783,7 +765,7 @@ getElementsByTagName
 </table>
 
 <script>
-  var elements = document.getElementsByTagName('input');
+  var elements = document.getElementsByTagName('input'); // Returns a nodelist of 'input' elements
   console.log(elements);
   for(var i=0; i<elements.length; i++) {
     var input = elements[i]; 
@@ -791,17 +773,21 @@ getElementsByTagName
   }
 </script>
 
-document.getElementsByClassName
--------------------------------
+document.getElementsByClassName('className')
+--------------------------------------------
 <div class="abc def test">some text1</div>
 <div class="abc">some text2</div>
 <script>
-console.log( document.getElementsByClassName('abc') );
+console.log(document.getElementsByClassName('abc')); // Returns a nodelist of elements with class name 'abc'
 </script>
 
-document.querySelector, querySelectorAll:
------------------------------------------
+document.querySelector(), querySelectorAll()
+--------------------------------------------
 The methods querySelector and querySelectorAll allow to select elements by CSS3 query.
+
+document.querySelector() - returns the first matched element.
+document.querySelectorAll() - returns all matched elements with the query.
+
 <ul>
   <li>The</li>
   <li>Test</li>
@@ -810,49 +796,49 @@ The methods querySelector and querySelectorAll allow to select elements by CSS3 
   <li>Is</li>
   <li>Passed</li>
 </ul>
+
 <script>
-  var elements = document.querySelectorAll('UL > LI:last-child')
+  var elements = document.querySelectorAll('UL > LI:last-child'); 
 
   for(var i=0; i<elements.length; i++) {
     console.log(elements[i].innerHTML );
   }
 </script>
 
-// document.querySelector - returns the first matched element.
 var elem = document.querySelector('ul');
 console.log(elem);
 
-Events:
-=======
+Events
+======
 We can bind events to the elements in 3 ways,
 1. With element attribute
 2. With DOM-object property
 3. Using addEventListener method
 
-Handle events with element attribute:
--------------------------------------
+Handle events with element attribute
+------------------------------------
 <input id="b1" value="Click me" onclick="alert('Thanks!');" type="button"/>
 
-Inside an event handler, this references the current element.
+- Inside an event handler, this references the current element.
 
 <button onclick="alert(this.innerHTML)">Click me to see me</button>
 
-'event' contains the entire information about the event.
+- 'event' object contains the entire information about the event.
 
 <button onclick="console.log(event)">Click me to see me</button>
 
-Handle events with DOM-object property:
----------------------------------------
+Handle events with DOM-object property
+--------------------------------------
 <input id="myElement" type="button" value="Press me"/>
 <script>
 document.getElementById('myElement').onclick = function(event) {
-    console.log('Thanks');
-    console.log(event);
+  console.log('Thanks');
+  console.log(event);
 }
 </script>
 
-Handle events using addEventListener:
--------------------------------------
+Handle events using addEventListener() method
+---------------------------------------------
 Ex: event-listener.html
 
 // Add event to element
@@ -874,33 +860,20 @@ elem.removeEventListener(type, handlerFunction)
     }
 </script>
 
-mousedown
-Triggered by an element when a mouse button is pressed down over it
-mouseup
-Triggered by an element when a mouse button is released over it
-mouseover
-Triggered by an element when the mouse comes over it
-mouseout
-Triggered by an element when the mouse goes out of it
-mousemove
-Triggered by an element on every mouse move over it.
+mousedown - Triggered by an element when a mouse button is pressed down over it
+mouseup   - Triggered by an element when a mouse button is released over it
+mouseove  - Triggered by an element when the mouse comes over it
+mouseout  - Triggered by an element when the mouse goes out of it
+mousemove - Triggered by an element on every mouse move over it.
+click     - Triggered by a mouse click: mousedown and then mouseup over an element
+contextmenu - Triggered by a right-button mouse click over an element.
+dblclick  - Triggered by two clicks within a short time over an element
+keydown   - A key is pressed down.
+keypress  - A character key is pressed.
+keyup     - A key is released.
 
-click
-Triggered by a mouse click: mousedown and then mouseup over an element
-contextmenu
-Triggered by a right-button mouse click over an element.
-dblclick
-Triggered by two clicks within a short time over an element
-
-keydown
-A key is pressed down.
-keypress
-A character key is pressed.
-keyup
-A key is released.
-
-Event Propagation and Prevent default:
-======================================
+Event Propagation and Prevent default
+=====================================
 Examples: event-propagation.html
 
 // To prevent default action. Ex: Prevent navigation of <a> tag, form submission etc..
@@ -968,8 +941,7 @@ var lastname = localStorage.getItem("name"); // To retrieve data
 
 localStorage.removeItem("key"); // To remove data
 
-Only store strings
-------------------
+- localStorage only store strings
 If we store object in localStorage and trying to access it, we will get "[object Object]". So, we need to stringify the objects and store it in localStorage.
 
 WRONG:
@@ -983,16 +955,19 @@ user = JSON.parse(user); // {name: 'John', age: 25}
 
 NPM
 ===
-npm init
+> npm init
+- Initialize npm on a repository. Configure npm on a normal folder. Generates package.json file in it.
 
-npm install jquery
-npm i jquery
-npm install jquery --save // Old NPM version
+> npm install jquery
+> npm i jquery
+> npm install jquery --save // Old NPM version(<5)
+- Install jquery in project level and list under dependencies in package.json file
 
-npm install jasmine -D
-npm install jasmine --save-dev // Old NPM version
+> npm install jasmine -D
+> npm install jasmine --save-dev // Old NPM version(<5)
+- Install jasmine as dev dependency and list under 'devDependencies' in package.json file
 
-npm install -g @angular/cli - Global installation
+> npm install -g @angular/cli - Global installation
 
 Specifying version in package.json
 ----------------------------------
