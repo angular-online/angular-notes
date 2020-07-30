@@ -1,9 +1,9 @@
- - Git, GitHub Account
-   - https://git-scm.com/downloads
+- NodeJs
+  - https://nodejs.org/en/download/
+  - Install LTS version
 
- - Visual studio code
-   - https://code.visualstudio.com/download
+- Visual studio code
+  - https://code.visualstudio.com/download
 
- - NodeJs
-   - https://nodejs.org/en/download/
-   - Install LTS version
+- Git, GitHub Account
+  - https://git-scm.com/downloads

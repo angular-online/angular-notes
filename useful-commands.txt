@@ -127,6 +127,18 @@ Alt + Left => Go back to where ctrl+clicked
 
 Alt + Right => Go to actual implementation. Works opp to Alt + Left.
 
+Ctrl + / => Single line comment
+
+Ctrl + Shift + / => Multi line comment
+
+Ctrl + k, s => Save multiple files
+
+Ctrl + f => search in current file
+
+Ctrl + Shift + f => Search in all files
+
+Ctrl + p => Quick open panel, search based on file name
+
 TypeScript:
 ===========
 tsc temp.ts => compile TS to js
