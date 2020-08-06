@@ -1,10 +1,10 @@
 ES6 / ECMA Script 2015.
 
-let:
-====
+let
+===
 'let' is a new keyword introduced to define variables with new features.
  
-Adding new features to "var" keyword will generate many backward compatability issues. So, introduced 'let' keyword.
+Adding new features to "var" keyword will generate many backward compatability issues. So, in ES6 'let' keyword is introduced.
 
 Hoisting confusion with var
 ---------------------------
@@ -92,24 +92,26 @@ doWork();
 
 ** This re-declaration rule applies for only that block **
 
-(function(){
+function parent(){
   let x = 10;
   let doWork = function(){
-      let x = 12;
-      console.log(x);
-      return x; 
+    let x = 12;
+    console.log(x);
+    return x; 
   }
   doWork();
   console.log(x);
-})();
+};
+
+parent();
 
 Summary of 'let' keyword
 ------------------------
-* Scope of a variable defined with "let" is block level.So,variables are not hoisted to top.
+* Scope of a variable defined with "let" is block level. So, variables are not hoisted to top.
 * Re-declaration not allowed within the same block.
 
-const:
-======
+const
+=====
 'const' keyword is introduced in ES6 to define constants.
 
 const LIMIT = 10;
